@@ -5,6 +5,7 @@ import { GoogleGenAI } from "@google/genai";
 interface Message {
   role: 'user' | 'model';
   text: string;
+  isError?: boolean;
 }
 
 const Chatbot: React.FC = () => {
@@ -26,68 +27,60 @@ const Chatbot: React.FC = () => {
     const userMsg = input.trim();
     if (!userMsg || isLoading) return;
 
-    // 1. Pre-flight Internet Check
-    if (!navigator.onLine) {
-      setMessages(prev => [...prev, 
-        { role: 'user', text: userMsg },
-        { role: 'model', text: "Internet ka masla hai. Apne connection ko check karein. 🌐" }
-      ]);
-      setInput('');
-      return;
-    }
-
-    // 2. Clear input and show user message
+    // 1. Initial State
     setInput('');
     setMessages(prev => [...prev, { role: 'user', text: userMsg }]);
     setIsLoading(true);
 
+    // 2. Connectivity Check
+    if (!navigator.onLine) {
+      setMessages(prev => [...prev, 
+        { role: 'model', text: "Internet connection check karein. Aapka browser offline lag raha hai. 🌐", isError: true }
+      ]);
+      setIsLoading(false);
+      return;
+    }
+
     try {
-      // 3. Initialize SDK using the latest key from environment
-      // Note: We use gemini-3-flash-preview for the best performance and compatibility.
-      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+      /**
+       * Note: The @google/genai SDK handles CORS and headers internally.
+       * We use gemini-3-flash-preview as it is the most stable for browser-based calls.
+       */
+      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
       
       const response = await ai.models.generateContent({
         model: 'gemini-3-flash-preview',
         contents: userMsg,
         config: {
           systemInstruction: `You are 'Rohani Dost', a spiritual counselor for the Noor Emerald website.
-          Your expertise: Islamic Taweez, Talismans, and Wazaif.
-          Language: Roman Urdu (Mix of English and Urdu).
-          Tone: Respectful, empathetic, and religious.
-          Goal: Help users with spiritual problems and guide them to website categories (Marriage, Rizq, Health, Protection).
-          Encourage them to use the WhatsApp link for direct expert contact.`,
-          temperature: 0.7,
-          topP: 0.95,
+          Respond in Roman Urdu. Guide users to Islamic Taweez, Talismans, and Wazaif categories.
+          If they have complex issues, always suggest contacting via WhatsApp.`,
         },
       });
 
-      // 4. Success - Render response text
       const botText = response.text || "Maaf kijiyega, main samajh nahi paya. Dobara bhejien.";
       setMessages(prev => [...prev, { role: 'model', text: botText }]);
 
     } catch (error: any) {
-      // 5. Advanced Debug Logging for Status Codes
-      // Press F12 in your browser to see these details when an error occurs.
-      console.group("--- DEBUG: Gemini API Error ---");
-      console.error("Status Code:", error?.status || "N/A");
-      console.error("Error Name:", error?.name);
-      console.error("Message:", error.message);
-      console.error("Full Error Details:", error);
+      // 3. Exact Error Tracking (Visible in UI)
+      const statusCode = error?.status || "Unknown Status";
+      const errorDetail = error?.message || "Connection Blocked (CORS/Network)";
+      
+      console.group("--- Gemini Connection Debug ---");
+      console.error("Status:", statusCode);
+      console.error("Message:", errorDetail);
+      console.error("Full Object:", error);
       console.groupEnd();
 
-      let errorMessage = "Server se rabta nahi ho pa raha. Aap WhatsApp par rabta kar sakte hain.";
+      // 4. Fallback Auto-Reply System
+      const fallbackMessage = `⚠️ SERVER ERROR (${statusCode}): ${errorDetail}\n\nMaazrat, system update ho raha hai ya browser request block kar raha hai. Aap foran neeche diye gaye WhatsApp button par rabta karein taake hum apki madad kar sakein.`;
       
-      // Determine error type for better user feedback
-      const status = error?.status;
-      if (status === 403 || error.message?.includes("API_KEY_INVALID")) {
-        errorMessage = "Technical masla (Invalid API Key). Hum isay jald theek kar denge. Tab tak WhatsApp use karein. 🛠️";
-      } else if (status === 429) {
-        errorMessage = "System par zyada load hai. Thori der baad dobara koshish karein. ⏳";
-      } else if (error.message?.includes("fetch") || error.name === "TypeError") {
-        errorMessage = "Network block ho raha hai. Internet check karein ya VPN off karke dekhein. 📡";
-      }
+      setMessages(prev => [...prev, { 
+        role: 'model', 
+        text: fallbackMessage,
+        isError: true 
+      }]);
 
-      setMessages(prev => [...prev, { role: 'model', text: errorMessage }]);
     } finally {
       setIsLoading(false);
     }
@@ -116,7 +109,7 @@ const Chatbot: React.FC = () => {
              </div>
              <div>
                 <h3 className="font-serif-display font-bold text-lg">Rohani Dost AI</h3>
-                <p className="text-[10px] text-[#daa520] uppercase tracking-widest font-bold">Online Counselor</p>
+                <p className="text-[10px] text-[#daa520] uppercase tracking-widest font-bold">Direct Connection Mode</p>
              </div>
           </div>
         </div>
@@ -128,7 +121,9 @@ const Chatbot: React.FC = () => {
               <div className={`max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed shadow-sm ${
                 msg.role === 'user' 
                 ? 'bg-[#064e3b] text-white rounded-tr-none' 
-                : 'bg-white text-gray-700 border border-blue-100 rounded-tl-none font-lora italic'
+                : msg.isError 
+                  ? 'bg-red-50 text-red-700 border border-red-200 rounded-tl-none font-mono text-xs'
+                  : 'bg-white text-gray-700 border border-blue-100 rounded-tl-none font-lora italic'
               }`}>
                 {msg.text}
               </div>
@@ -137,7 +132,7 @@ const Chatbot: React.FC = () => {
           {isLoading && (
             <div className="flex justify-start">
               <div className="bg-white p-4 rounded-2xl border border-blue-100 flex items-center gap-2">
-                <span className="text-xs text-[#064e3b] font-bold italic">Typing...</span>
+                <span className="text-xs text-[#064e3b] font-bold italic">Contacting Server...</span>
                 <div className="flex gap-1">
                   <div className="w-1.5 h-1.5 bg-[#daa520] rounded-full animate-bounce" />
                   <div className="w-1.5 h-1.5 bg-[#daa520] rounded-full animate-bounce [animation-delay:0.2s]" />
@@ -156,7 +151,7 @@ const Chatbot: React.FC = () => {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-              placeholder="Apna masla likhein..."
+              placeholder="Sawal yahan likhein..."
               className="flex-1 bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-900 focus:outline-none focus:border-[#daa520] focus:ring-2 focus:ring-[#daa520]/10 transition-all placeholder:text-gray-400"
             />
             <button 
@@ -173,10 +168,10 @@ const Chatbot: React.FC = () => {
             href="https://wa.me/923706487654" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="w-full flex items-center justify-center gap-3 py-3 bg-[#25D366] text-white rounded-xl font-bold text-xs uppercase tracking-widest hover:scale-[1.02] transition-transform shadow-lg group"
+            className="w-full flex items-center justify-center gap-3 py-3 bg-[#25D366] text-white rounded-xl font-bold text-xs uppercase tracking-widest hover:scale-[1.02] transition-transform shadow-lg group animate-pulse"
           >
             <i className="fa-brands fa-whatsapp text-lg" />
-            Direct WhatsApp Rabta
+            Direct WhatsApp Rabta (Fast)
           </a>
         </div>
       </div>
