@@ -47,10 +47,10 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
   };
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 px-4 py-6 lg:px-10">
-      <nav className={`mx-auto max-w-7xl transition-all duration-700 rounded-xl shadow-2xl border-b-2 border-[#daa520] ${
+    <header className="fixed top-0 left-0 w-full z-50 px-4 py-4 lg:px-10 pointer-events-none">
+      <nav className={`mx-auto max-w-7xl transition-all duration-700 rounded-xl shadow-2xl border-b-2 border-[#daa520] pointer-events-auto ${
         isScrolled 
-        ? 'bg-gradient-to-r from-[#064e3b] to-[#022c22] py-2' 
+        ? 'bg-[#064e3b]/95 backdrop-blur-md py-2' 
         : 'bg-gradient-to-r from-[#064e3b] via-[#043d2e] to-[#022c22] py-5'
       } islamic-pattern relative overflow-visible`}>
         <div className="container mx-auto px-8 flex justify-between items-center relative z-10">
@@ -83,7 +83,9 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
                   <a 
                     href={item.href}
                     onClick={(e) => handleLinkClick(e, item.label)}
-                    className={`px-4 py-2 font-serif-display text-lg transition-all duration-300 relative group ${
+                    className={`px-4 py-2 font-serif-display text-lg transition-all duration-300 relative group rounded-lg ${
+                      item.label === 'Spiritual Counseling' ? 'btn-gold-glow bg-white/5 border border-[#daa520]/20' : ''
+                    } ${
                       (item.label === 'Home' && currentView === 'home') || 
                       (item.label === 'Pregnancy' && currentView === 'pregnancy') ||
                       (item.label === 'Islamic Taweez' && currentView === 'taweez') ||
@@ -106,8 +108,11 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
               </React.Fragment>
             ))}
             
-            <button className="ml-6 bg-transparent border border-[#daa520] text-[#daa520] px-8 py-2.5 rounded-sm font-serif-display font-bold tracking-widest hover:bg-[#daa520] hover:text-[#064e3b] transition-all duration-500 uppercase text-xs">
-              Donate
+            <button 
+              onClick={() => { onNavigate?.('home'); setTimeout(() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }), 100); }}
+              className="ml-6 bg-[#daa520] text-[#064e3b] px-8 py-2.5 rounded-lg font-serif-display font-bold tracking-widest hover:bg-white hover:text-[#064e3b] transition-all duration-500 uppercase text-xs btn-gold-glow animate-pulse-gold shadow-lg"
+            >
+              Contact Us
             </button>
           </div>
 

@@ -147,6 +147,17 @@ function App() {
         {view === 'taweez-sub' && taweezSubCategory && <TaweezSubPage category={taweezSubCategory} onNavigate={navigateTo} />}
         {view === 'talisman-sub' && talismanSubCategory && <TalismanSubPage category={talismanSubCategory} onNavigate={navigateTo} />}
       </main>
+
+      {/* Floating WhatsApp Button */}
+      <a 
+        href="https://wa.me/923706487654" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="fixed bottom-8 right-8 z-[100] w-16 h-16 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 animate-pulse-gold"
+        title="WhatsApp Support"
+      >
+        <i className="fa-brands fa-whatsapp text-4xl" />
+      </a>
       
       <Footer onNavigate={navigateTo} />
     </div>

@@ -150,7 +150,7 @@ const CounselingPage: React.FC<CounselingPageProps> = ({ onNavigate }) => {
                     onNavigate?.('home');
                     setTimeout(() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }), 100);
                   }}
-                  className="w-full md:w-auto px-12 py-6 bg-[#064e3b] text-white font-serif-display font-bold text-2xl rounded-2xl hover:bg-[#daa520] transition-all duration-500 shadow-[0_20px_40px_rgba(6,78,59,0.2)] flex items-center justify-center gap-6 group"
+                  className="w-full md:w-auto px-12 py-6 bg-[#064e3b] text-white font-serif-display font-bold text-2xl rounded-2xl transition-all duration-500 shadow-[0_20px_40px_rgba(6,78,59,0.2)] flex items-center justify-center gap-6 group btn-gold-glow animate-pulse-gold"
                 >
                   Book My Session 📅
                   <i className="fa-solid fa-calendar-check group-hover:scale-110 transition-transform" />
