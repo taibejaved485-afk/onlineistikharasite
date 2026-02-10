@@ -26,6 +26,7 @@ import TaweezSubPage from './TaweezSubPage.tsx';
 import TalismanSubPage from './TalismanSubPage.tsx';
 import TalismansPage from './TalismansPage.tsx';
 import CounselingPage from './CounselingPage.tsx';
+import Chatbot from './components/Chatbot.tsx';
 
 export type TaweezCategory = 'jadu' | 'sehat' | 'mohabbat' | 'kamyabi' | 'rizq' | 'hamal' | 'wazaif' | 'amazing';
 export type TalismanCategory = 'success' | 'love' | 'magic' | 'business' | 'pregnancy' | 'pray' | 'ismeazam' | 'guidance' | 'istikhara';
@@ -158,6 +159,9 @@ function App() {
       >
         <i className="fa-brands fa-whatsapp text-4xl" />
       </a>
+
+      {/* AI Rohani Dost Chatbot */}
+      <Chatbot />
       
       <Footer onNavigate={navigateTo} />
     </div>
