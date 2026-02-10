@@ -23,71 +23,78 @@ const Chatbot: React.FC = () => {
   }, [messages, isLoading]);
 
   const handleSend = async () => {
-    if (!input.trim() || isLoading) return;
+    const userMsg = input.trim();
+    if (!userMsg || isLoading) return;
 
-    // 1. Connectivity Check
+    // 1. Pre-flight Internet Check
     if (!navigator.onLine) {
       setMessages(prev => [...prev, 
-        { role: 'user', text: input.trim() },
-        { role: 'model', text: "Internet ka masla lag raha hai. Apna connection check karein. 🌐" }
+        { role: 'user', text: userMsg },
+        { role: 'model', text: "Internet ka masla hai. Apne connection ko check karein aur dobara koshish karein. 🌐" }
       ]);
       setInput('');
       return;
     }
 
-    const userMessage = input.trim();
+    // 2. Clear input and show user message
     setInput('');
-    setMessages(prev => [...prev, { role: 'user', text: userMessage }]);
+    setMessages(prev => [...prev, { role: 'user', text: userMsg }]);
     setIsLoading(true);
 
     try {
-      // 2. Initialize Google GenAI SDK
-      // Note: We use process.env.API_KEY as per system requirements.
-      // We use 'gemini-3-flash-preview' as 'gemini-1.5-flash' is deprecated/prohibited.
-      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+      // 3. Check for API Key presence
+      const apiKey = process.env.API_KEY;
+      if (!apiKey) {
+        throw new Error("API_KEY is missing. Please check your environment variables.");
+      }
+
+      // 4. Initialize SDK and call model
+      // Using gemini-3-flash-preview as mandated
+      const ai = new GoogleGenAI({ apiKey: apiKey });
       
       const response = await ai.models.generateContent({
         model: 'gemini-3-flash-preview',
-        contents: userMessage,
+        contents: userMsg,
         config: {
-          systemInstruction: `You are a 'Rohani Counselor' and expert in 'Islamic Taweez', 'Talismans', and 'Wazaif' for the Noor Emerald website.
-          Your goal is to help users with their spiritual problems using Roman Urdu (mix of Urdu and English).
-          Be empathetic, respectful, and religious in tone.
-          
-          Website Categories to guide users towards:
-          - Islamic Taweez: Wazaif, Mohabbat, Sehat, Jadu ka tor, Kamyabi, Rizq, Hamal.
-          - Talismans: Success, Love, Black Magic, Karobar, Pregnancy, Pray Request, Get Ism-e-Azam, Guidance, Istikhara.
-          
-          Action: Suggest specific categories and invite them to use the WhatsApp link or Contact Form for detailed help.`,
+          systemInstruction: `You are a 'Rohani Counselor' for the Noor Emerald website. 
+          Expert in Islamic Taweez, Talismans, and Wazaif. 
+          Respond in Roman Urdu. Be empathetic and religious. 
+          Suggest relevant website categories (Marriage, Rizq, Jadu ka tor, etc.) 
+          and invite users to use the WhatsApp link for direct help.`,
+          temperature: 0.7,
+          topP: 0.95,
         },
       });
 
-      // 3. Extract generated text
+      // 5. Success - Render response
       const botText = response.text || "Maaf kijiyega, main samajh nahi paya. Dobara bhejien.";
       setMessages(prev => [...prev, { role: 'model', text: botText }]);
 
     } catch (error: any) {
-      // 4. Detailed Error Logging for Debugging
-      console.error("--- DEBUG: Gemini API Error ---");
+      // 6. Detailed Error Logging for Developers (Inspect via F12)
+      console.group("--- Gemini AI Connectivity Error ---");
+      console.error("Status Code:", error?.status || "N/A");
+      console.error("Error Name:", error?.name);
+      console.error("Error Message:", error?.message);
       console.error("Full Error Object:", error);
+      console.groupEnd();
+
+      // 7. Context-Aware User Messaging
+      let errorMessage = "Server se rabta nahi ho pa raha. Aap WhatsApp par rabta kar sakte hain.";
       
-      // Extracting status code if possible from SDK error structure
-      const statusCode = error?.status || (error?.message?.match(/\d{3}/) ? error.message.match(/\d{3}/)[0] : "Unknown");
-      console.error("Detected Status Code:", statusCode);
-      console.error("Error Message String:", error.message);
+      const status = error?.status || (error?.message?.includes("403") ? 403 : error?.message?.includes("429") ? 429 : 500);
 
-      let userFriendlyError = "Server se rabta nahi ho pa raha. Aap WhatsApp par rabta kar sakte hain.";
-
-      // Specific handling for common API errors
-      if (statusCode === "403" || error.message?.includes("API_KEY_INVALID")) {
-        userFriendlyError = "Technical issue: API Key ka masla hai. Hum jald theek kar rahe hain. 🛠️";
-      } else if (statusCode === "429") {
-        userFriendlyError = "Boht zyada requests bhenji gayi hain. Thori der baad koshish karein. ⏳";
-      } else if (statusCode === "400") {
-        userFriendlyError = "Request mein koi ghalti hai. Kuch aur likh kar check karein. ⚠️";
+      if (status === 403 || error.message?.includes("API_KEY_INVALID")) {
+        errorMessage = "Technical issue (API Key invalid). Hamari team isay jald theek kar degi. Tab tak WhatsApp use karein. 🛠️";
+      } else if (status === 429) {
+        errorMessage = "Abhi boht zyada log rabta kar rahe hain. 1 minute baad dobara message karein. ⏳";
+      } else if (status === 400) {
+        errorMessage = "Request mein koi ghalti hai. Kuch aur likh kar check karein. ⚠️";
+      } else if (error.message?.includes("fetch") || error.name === "TypeError") {
+        errorMessage = "Network block ho raha hai ya CORS ka masla hai. Local environment check karein. 📡";
       }
 
-      setMessages(prev => [...prev, { role: 'model', text: userFriendlyError }]);
+      setMessages(prev => [...prev, { role: 'model', text: errorMessage }]);
     } finally {
       setIsLoading(false);
     }
@@ -99,6 +106,7 @@ const Chatbot: React.FC = () => {
       <button 
         onClick={() => setIsOpen(!isOpen)}
         className={`fixed bottom-28 right-8 z-[110] w-14 h-14 bg-[#064e3b] text-[#daa520] rounded-full flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 border-2 border-[#daa520]/50 ${isOpen ? 'rotate-90' : ''}`}
+        aria-label="Toggle Chat"
       >
         <i className={`fa-solid ${isOpen ? 'fa-xmark' : 'fa-comment-dots'} text-2xl`} />
       </button>
@@ -135,10 +143,13 @@ const Chatbot: React.FC = () => {
           ))}
           {isLoading && (
             <div className="flex justify-start">
-              <div className="bg-white p-4 rounded-2xl border border-blue-100 flex gap-1">
-                <div className="w-1.5 h-1.5 bg-[#daa520] rounded-full animate-bounce" />
-                <div className="w-1.5 h-1.5 bg-[#daa520] rounded-full animate-bounce [animation-delay:0.2s]" />
-                <div className="w-1.5 h-1.5 bg-[#daa520] rounded-full animate-bounce [animation-delay:0.4s]" />
+              <div className="bg-white p-4 rounded-2xl border border-blue-100 flex items-center gap-2">
+                <span className="text-xs text-[#064e3b] font-bold italic">Typing...</span>
+                <div className="flex gap-1">
+                  <div className="w-1.5 h-1.5 bg-[#daa520] rounded-full animate-bounce" />
+                  <div className="w-1.5 h-1.5 bg-[#daa520] rounded-full animate-bounce [animation-delay:0.2s]" />
+                  <div className="w-1.5 h-1.5 bg-[#daa520] rounded-full animate-bounce [animation-delay:0.4s]" />
+                </div>
               </div>
             </div>
           )}
@@ -159,12 +170,12 @@ const Chatbot: React.FC = () => {
               onClick={handleSend}
               disabled={isLoading}
               className="w-12 h-12 bg-[#daa520] text-[#064e3b] rounded-xl flex items-center justify-center hover:bg-[#064e3b] hover:text-white transition-all disabled:opacity-50"
+              aria-label="Send Message"
             >
               <i className="fa-solid fa-paper-plane" />
             </button>
           </div>
           
-          {/* WhatsApp Direct Link Button */}
           <a 
             href="https://wa.me/923706487654" 
             target="_blank" 
