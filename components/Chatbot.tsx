@@ -25,12 +25,24 @@ const Chatbot: React.FC = () => {
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
 
+    // 1. Check Internet Connection
+    if (!navigator.onLine) {
+      setMessages(prev => [...prev, 
+        { role: 'user', text: input.trim() },
+        { role: 'model', text: "Internet ka masla lag raha hai. Apka connection check karein aur dobara koshish karein. 🌐" }
+      ]);
+      setInput('');
+      return;
+    }
+
     const userMessage = input.trim();
     setInput('');
     setMessages(prev => [...prev, { role: 'user', text: userMessage }]);
     setIsLoading(true);
 
     try {
+      // 2. Initialize Gemini SDK
+      // Using gemini-3-flash-preview for fast, reliable rohani guidance
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
       const chat = ai.chats.create({
         model: 'gemini-3-flash-preview',
@@ -43,19 +55,36 @@ const Chatbot: React.FC = () => {
           - Islamic Taweez: Wazaif, Mohabbat (Love), Sehat (Health), Jadu ka tor (Black Magic removal), Kamyabi (Success), Rizq (Wealth), Hamal (Pregnancy).
           - Talismans: Success, Love, Black Magic, Karobar (Business), Pregnancy, Pray Request, Get Ism-e-Azam, Guidance, Istikhara.
           
-          Action: When a user shares a problem, suggest the specific category they should look at on our website. 
-          Encourage them to use our 'Request Form' or WhatsApp for direct consultation.
-          Keep responses concise and helpful.`,
+          Action: Suggest the specific website category and invite them to use the WhatsApp link or Contact Form.`,
         },
       });
 
-      const response = await chat.sendMessage({ message: userMessage });
-      const botText = response.text || "Maaf kijiyega, kuch masla hua. Dobara koshish karein.";
+      // 3. Send Message
+      const result = await chat.sendMessage({ message: userMessage });
+      const botText = result.text || "Maaf kijiyega, main samajh nahi paya. Dobara bhejien.";
       
       setMessages(prev => [...prev, { role: 'model', text: botText }]);
-    } catch (error) {
-      console.error("Chat error:", error);
-      setMessages(prev => [...prev, { role: 'model', text: "Server se rabta nahi ho pa raha. Aap WhatsApp par rabta kar sakte hain." }]);
+    } catch (error: any) {
+      // 4. Enhanced Error Handling & Logging
+      console.error("--- Gemini Chatbot Error ---");
+      console.error("Message:", error.message);
+      
+      // Attempt to extract status code if available in the SDK error
+      const statusCode = error?.status || error?.response?.status;
+      if (statusCode) console.error("Status Code:", statusCode);
+
+      let errorMessage = "Server se rabta nahi ho pa raha. Aap WhatsApp par rabta kar sakte hain.";
+
+      if (error.message?.includes("API_KEY_INVALID") || statusCode === 403) {
+        errorMessage = "Technical issue (API Key invalid). Hamari team isay jald theek kar degi. Tab tak WhatsApp use karein. 🙏";
+        console.error("CRITICAL: Invalid API Key provided.");
+      } else if (error.message?.includes("fetch") || error.name === "TypeError") {
+        errorMessage = "Network error! Server se rabta toot gaya hai. Internet check karein. 📡";
+      } else if (statusCode === 429) {
+        errorMessage = "Boht zyada requests bhenji gayi hain. Thori der baad dobara koshish karein. ⏳";
+      }
+
+      setMessages(prev => [...prev, { role: 'model', text: errorMessage }]);
     } finally {
       setIsLoading(false);
     }
