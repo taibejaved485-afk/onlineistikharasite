@@ -25,11 +25,11 @@ const Chatbot: React.FC = () => {
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
 
-    // 1. Check Internet Connection
+    // 1. Connectivity Check
     if (!navigator.onLine) {
       setMessages(prev => [...prev, 
         { role: 'user', text: input.trim() },
-        { role: 'model', text: "Internet ka masla lag raha hai. Apka connection check karein aur dobara koshish karein. 🌐" }
+        { role: 'model', text: "Internet ka masla lag raha hai. Apna connection check karein. 🌐" }
       ]);
       setInput('');
       return;
@@ -41,50 +41,53 @@ const Chatbot: React.FC = () => {
     setIsLoading(true);
 
     try {
-      // 2. Initialize Gemini SDK
-      // Using gemini-3-flash-preview for fast, reliable rohani guidance
+      // 2. Initialize Google GenAI SDK
+      // Note: We use process.env.API_KEY as per system requirements.
+      // We use 'gemini-3-flash-preview' as 'gemini-1.5-flash' is deprecated/prohibited.
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-      const chat = ai.chats.create({
+      
+      const response = await ai.models.generateContent({
         model: 'gemini-3-flash-preview',
+        contents: userMessage,
         config: {
           systemInstruction: `You are a 'Rohani Counselor' and expert in 'Islamic Taweez', 'Talismans', and 'Wazaif' for the Noor Emerald website.
           Your goal is to help users with their spiritual problems using Roman Urdu (mix of Urdu and English).
           Be empathetic, respectful, and religious in tone.
           
           Website Categories to guide users towards:
-          - Islamic Taweez: Wazaif, Mohabbat (Love), Sehat (Health), Jadu ka tor (Black Magic removal), Kamyabi (Success), Rizq (Wealth), Hamal (Pregnancy).
-          - Talismans: Success, Love, Black Magic, Karobar (Business), Pregnancy, Pray Request, Get Ism-e-Azam, Guidance, Istikhara.
+          - Islamic Taweez: Wazaif, Mohabbat, Sehat, Jadu ka tor, Kamyabi, Rizq, Hamal.
+          - Talismans: Success, Love, Black Magic, Karobar, Pregnancy, Pray Request, Get Ism-e-Azam, Guidance, Istikhara.
           
-          Action: Suggest the specific website category and invite them to use the WhatsApp link or Contact Form.`,
+          Action: Suggest specific categories and invite them to use the WhatsApp link or Contact Form for detailed help.`,
         },
       });
 
-      // 3. Send Message
-      const result = await chat.sendMessage({ message: userMessage });
-      const botText = result.text || "Maaf kijiyega, main samajh nahi paya. Dobara bhejien.";
-      
+      // 3. Extract generated text
+      const botText = response.text || "Maaf kijiyega, main samajh nahi paya. Dobara bhejien.";
       setMessages(prev => [...prev, { role: 'model', text: botText }]);
+
     } catch (error: any) {
-      // 4. Enhanced Error Handling & Logging
-      console.error("--- Gemini Chatbot Error ---");
-      console.error("Message:", error.message);
+      // 4. Detailed Error Logging for Debugging
+      console.error("--- DEBUG: Gemini API Error ---");
+      console.error("Full Error Object:", error);
       
-      // Attempt to extract status code if available in the SDK error
-      const statusCode = error?.status || error?.response?.status;
-      if (statusCode) console.error("Status Code:", statusCode);
+      // Extracting status code if possible from SDK error structure
+      const statusCode = error?.status || (error?.message?.match(/\d{3}/) ? error.message.match(/\d{3}/)[0] : "Unknown");
+      console.error("Detected Status Code:", statusCode);
+      console.error("Error Message String:", error.message);
 
-      let errorMessage = "Server se rabta nahi ho pa raha. Aap WhatsApp par rabta kar sakte hain.";
+      let userFriendlyError = "Server se rabta nahi ho pa raha. Aap WhatsApp par rabta kar sakte hain.";
 
-      if (error.message?.includes("API_KEY_INVALID") || statusCode === 403) {
-        errorMessage = "Technical issue (API Key invalid). Hamari team isay jald theek kar degi. Tab tak WhatsApp use karein. 🙏";
-        console.error("CRITICAL: Invalid API Key provided.");
-      } else if (error.message?.includes("fetch") || error.name === "TypeError") {
-        errorMessage = "Network error! Server se rabta toot gaya hai. Internet check karein. 📡";
-      } else if (statusCode === 429) {
-        errorMessage = "Boht zyada requests bhenji gayi hain. Thori der baad dobara koshish karein. ⏳";
+      // Specific handling for common API errors
+      if (statusCode === "403" || error.message?.includes("API_KEY_INVALID")) {
+        userFriendlyError = "Technical issue: API Key ka masla hai. Hum jald theek kar rahe hain. 🛠️";
+      } else if (statusCode === "429") {
+        userFriendlyError = "Boht zyada requests bhenji gayi hain. Thori der baad koshish karein. ⏳";
+      } else if (statusCode === "400") {
+        userFriendlyError = "Request mein koi ghalti hai. Kuch aur likh kar check karein. ⚠️";
       }
 
-      setMessages(prev => [...prev, { role: 'model', text: errorMessage }]);
+      setMessages(prev => [...prev, { role: 'model', text: userFriendlyError }]);
     } finally {
       setIsLoading(false);
     }
