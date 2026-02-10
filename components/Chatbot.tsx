@@ -30,7 +30,7 @@ const Chatbot: React.FC = () => {
     if (!navigator.onLine) {
       setMessages(prev => [...prev, 
         { role: 'user', text: userMsg },
-        { role: 'model', text: "Internet ka masla hai. Apne connection ko check karein aur dobara koshish karein. 🌐" }
+        { role: 'model', text: "Internet ka masla hai. Apne connection ko check karein. 🌐" }
       ]);
       setInput('');
       return;
@@ -42,56 +42,49 @@ const Chatbot: React.FC = () => {
     setIsLoading(true);
 
     try {
-      // 3. Check for API Key presence
-      const apiKey = process.env.API_KEY;
-      if (!apiKey) {
-        throw new Error("API_KEY is missing. Please check your environment variables.");
-      }
-
-      // 4. Initialize SDK and call model
-      // Using gemini-3-flash-preview as mandated
-      const ai = new GoogleGenAI({ apiKey: apiKey });
+      // 3. Initialize SDK using the latest key from environment
+      // Note: We use gemini-3-flash-preview for the best performance and compatibility.
+      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
       
       const response = await ai.models.generateContent({
         model: 'gemini-3-flash-preview',
         contents: userMsg,
         config: {
-          systemInstruction: `You are a 'Rohani Counselor' for the Noor Emerald website. 
-          Expert in Islamic Taweez, Talismans, and Wazaif. 
-          Respond in Roman Urdu. Be empathetic and religious. 
-          Suggest relevant website categories (Marriage, Rizq, Jadu ka tor, etc.) 
-          and invite users to use the WhatsApp link for direct help.`,
+          systemInstruction: `You are 'Rohani Dost', a spiritual counselor for the Noor Emerald website.
+          Your expertise: Islamic Taweez, Talismans, and Wazaif.
+          Language: Roman Urdu (Mix of English and Urdu).
+          Tone: Respectful, empathetic, and religious.
+          Goal: Help users with spiritual problems and guide them to website categories (Marriage, Rizq, Health, Protection).
+          Encourage them to use the WhatsApp link for direct expert contact.`,
           temperature: 0.7,
           topP: 0.95,
         },
       });
 
-      // 5. Success - Render response
+      // 4. Success - Render response text
       const botText = response.text || "Maaf kijiyega, main samajh nahi paya. Dobara bhejien.";
       setMessages(prev => [...prev, { role: 'model', text: botText }]);
 
     } catch (error: any) {
-      // 6. Detailed Error Logging for Developers (Inspect via F12)
-      console.group("--- Gemini AI Connectivity Error ---");
+      // 5. Advanced Debug Logging for Status Codes
+      // Press F12 in your browser to see these details when an error occurs.
+      console.group("--- DEBUG: Gemini API Error ---");
       console.error("Status Code:", error?.status || "N/A");
       console.error("Error Name:", error?.name);
-      console.error("Error Message:", error?.message);
-      console.error("Full Error Object:", error);
+      console.error("Message:", error.message);
+      console.error("Full Error Details:", error);
       console.groupEnd();
 
-      // 7. Context-Aware User Messaging
       let errorMessage = "Server se rabta nahi ho pa raha. Aap WhatsApp par rabta kar sakte hain.";
       
-      const status = error?.status || (error?.message?.includes("403") ? 403 : error?.message?.includes("429") ? 429 : 500);
-
+      // Determine error type for better user feedback
+      const status = error?.status;
       if (status === 403 || error.message?.includes("API_KEY_INVALID")) {
-        errorMessage = "Technical issue (API Key invalid). Hamari team isay jald theek kar degi. Tab tak WhatsApp use karein. 🛠️";
+        errorMessage = "Technical masla (Invalid API Key). Hum isay jald theek kar denge. Tab tak WhatsApp use karein. 🛠️";
       } else if (status === 429) {
-        errorMessage = "Abhi boht zyada log rabta kar rahe hain. 1 minute baad dobara message karein. ⏳";
-      } else if (status === 400) {
-        errorMessage = "Request mein koi ghalti hai. Kuch aur likh kar check karein. ⚠️";
+        errorMessage = "System par zyada load hai. Thori der baad dobara koshish karein. ⏳";
       } else if (error.message?.includes("fetch") || error.name === "TypeError") {
-        errorMessage = "Network block ho raha hai ya CORS ka masla hai. Local environment check karein. 📡";
+        errorMessage = "Network block ho raha hai. Internet check karein ya VPN off karke dekhein. 📡";
       }
 
       setMessages(prev => [...prev, { role: 'model', text: errorMessage }]);
