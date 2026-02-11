@@ -169,7 +169,8 @@ const Footer: React.FC<FooterProps> = ({ onNavigate, onAdminClick }) => {
             Copyright © 2026 <span className="text-[#daa520]/60 font-serif-display font-bold">Online Istikhara Site</span>. All Rights Reserved.
           </p>
           <button 
-            onClick={onAdminClick} 
+            type="button"
+            onClick={(e) => { e.preventDefault(); onAdminClick?.(); }} 
             className="text-[#daa520]/20 hover:text-[#daa520]/60 transition-colors text-[10px] uppercase tracking-[0.3em] font-bold"
           >
             Admin Portal

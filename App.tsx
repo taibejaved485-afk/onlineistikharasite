@@ -31,8 +31,6 @@ import MarriagePage from './MarriagePage.tsx';
 import Chatbot from './components/Chatbot.tsx';
 import IslamicDivider from './components/IslamicDivider.tsx';
 
-declare var Quill: any;
-
 export type TaweezCategory = 'jadu' | 'sehat' | 'mohabbat' | 'kamyabi' | 'rizq' | 'hamal' | 'wazaif' | 'amazing';
 export type TalismanCategory = 'success' | 'love' | 'magic' | 'business' | 'pregnancy' | 'pray' | 'ismeazam' | 'guidance' | 'istikhara';
 export type ViewType = 'home' | 'about' | 'faq' | 'testimonials' | 'privacy' | 'disclaimer' | 'return' | 'pregnancy' | 'taweez' | 'taweez-sub' | 'talisman-sub' | 'talismans-main' | 'counseling' | 'marriage';
@@ -44,6 +42,18 @@ function App() {
   
   // Admin & Blog State
   const [blogs, setBlogs] = useState<any[]>([]);
+  const [isAdminModalOpen, setIsAdminModalOpen] = useState(false);
+  const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(false);
+  const [adminPass, setAdminPass] = useState('');
+  const [loginError, setLoginError] = useState(false);
+
+  // New Blog Form State
+  const [blogForm, setBlogForm] = useState({
+    title: '',
+    category: 'Istikhara',
+    img: '',
+    content: ''
+  });
 
   useEffect(() => {
     const saved = localStorage.getItem('noor_emerald_blogs');
@@ -115,7 +125,43 @@ function App() {
   };
 
   const handleAdminClick = () => {
-    window.location.href = 'admin/index.html';
+    setIsAdminModalOpen(true);
+  };
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (adminPass === 'admin123') {
+      setIsAdminAuthenticated(true);
+      setLoginError(false);
+    } else {
+      setLoginError(true);
+      setTimeout(() => setLoginError(false), 3000);
+    }
+  };
+
+  const saveBlog = () => {
+    if (!blogForm.title || !blogForm.content) {
+      alert("Title aur Content lazmi hai!");
+      return;
+    }
+    const newEntry = {
+      ...blogForm,
+      id: Date.now(),
+      date: new Date().toLocaleDateString()
+    };
+    const updatedBlogs = [newEntry, ...blogs];
+    setBlogs(updatedBlogs);
+    localStorage.setItem('noor_emerald_blogs', JSON.stringify(updatedBlogs));
+    setBlogForm({ title: '', category: 'Istikhara', img: '', content: '' });
+    alert("Blog kamyabi se save ho gaya!");
+  };
+
+  const deleteBlog = (id: number) => {
+    if (window.confirm("Kya aap waqai ye blog delete karna chahte hain?")) {
+      const updated = blogs.filter(b => b.id !== id);
+      setBlogs(updated);
+      localStorage.setItem('noor_emerald_blogs', JSON.stringify(updated));
+    }
   };
 
   const waLink = "https://wa.me/923706487654?text=Assalam-o-Alaikum!%20Mujhe%20Online%20Istikhara%20se%20rohani%20masail%20ke%20bare%20mein%20maloomat%20chahiye.";
@@ -162,6 +208,110 @@ function App() {
         {view === 'taweez-sub' && taweezSubCategory && <TaweezSubPage category={taweezSubCategory} onNavigate={navigateTo} />}
         {view === 'talisman-sub' && talismanSubCategory && <TalismanSubPage category={talismanSubCategory} onNavigate={navigateTo} />}
       </main>
+
+      {/* Admin Modal */}
+      {isAdminModalOpen && (
+        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-[#064e3b]/80 backdrop-blur-md" onClick={() => setIsAdminModalOpen(false)} />
+          <div className="relative bg-white w-full max-w-4xl rounded-[40px] shadow-2xl border-t-8 border-[#daa520] overflow-hidden animate-fade-in-up">
+            
+            <button onClick={() => setIsAdminModalOpen(false)} className="absolute top-6 right-6 text-gray-400 hover:text-[#064e3b] z-10">
+              <i className="fa-solid fa-xmark text-2xl" />
+            </button>
+
+            {!isAdminAuthenticated ? (
+              <div className="p-12 text-center">
+                <div className="w-20 h-20 bg-[#064e3b] rounded-full flex items-center justify-center mx-auto mb-6 border-2 border-[#daa520]">
+                  <i className="fa-solid fa-lock text-[#daa520] text-3xl" />
+                </div>
+                <h2 className="text-3xl font-serif-display text-[#064e3b] mb-2 font-bold">Admin Portal</h2>
+                <p className="text-gray-500 mb-8 font-lora">Credentials darj karein</p>
+                
+                <form onSubmit={handleLogin} className="max-w-sm mx-auto space-y-4">
+                  <input 
+                    type="password" 
+                    placeholder="Password (admin123)" 
+                    value={adminPass}
+                    onChange={(e) => setAdminPass(e.target.value)}
+                    className="w-full px-6 py-4 bg-gray-50 border border-gray-200 rounded-2xl text-center focus:outline-none focus:border-[#daa520] transition-all"
+                  />
+                  <button type="submit" className="w-full py-4 bg-[#daa520] text-[#064e3b] font-bold rounded-2xl hover:bg-[#064e3b] hover:text-white transition-all shadow-lg">
+                    Login Dashboard
+                  </button>
+                  {loginError && <p className="text-red-500 text-sm font-bold animate-pulse">Ghalat Password! Dobara koshish karein.</p>}
+                </form>
+              </div>
+            ) : (
+              <div className="flex flex-col h-[80vh]">
+                <div className="bg-[#064e3b] p-6 text-white flex justify-between items-center islamic-pattern">
+                  <h3 className="text-2xl font-serif-display font-bold">Online <span className="text-[#daa520]">Istikhara</span> Dashboard</h3>
+                  <button onClick={() => setIsAdminAuthenticated(false)} className="text-[#daa520] font-bold text-xs uppercase tracking-widest hover:text-white">Logout</button>
+                </div>
+                
+                <div className="flex-1 overflow-y-auto p-10 grid grid-cols-1 lg:grid-cols-3 gap-10">
+                  <div className="lg:col-span-2 space-y-6">
+                    <h4 className="text-xl font-serif-display text-[#064e3b] font-bold border-b pb-2">Naya Blog Likhein</h4>
+                    <div className="grid grid-cols-2 gap-4">
+                      <input 
+                        type="text" 
+                        placeholder="Blog Title" 
+                        value={blogForm.title}
+                        onChange={(e) => setBlogForm({...blogForm, title: e.target.value})}
+                        className="col-span-2 px-6 py-4 bg-gray-50 border rounded-2xl focus:border-[#daa520] outline-none"
+                      />
+                      <select 
+                        value={blogForm.category}
+                        onChange={(e) => setBlogForm({...blogForm, category: e.target.value})}
+                        className="px-6 py-4 bg-gray-50 border rounded-2xl focus:border-[#daa520] outline-none appearance-none"
+                      >
+                        <option>Istikhara</option>
+                        <option>Wazaif</option>
+                        <option>Jadu ka Tor</option>
+                        <option>Nuri Ilaj</option>
+                        <option>Miscellaneous</option>
+                      </select>
+                      <input 
+                        type="text" 
+                        placeholder="Image URL" 
+                        value={blogForm.img}
+                        onChange={(e) => setBlogForm({...blogForm, img: e.target.value})}
+                        className="px-6 py-4 bg-gray-50 border rounded-2xl focus:border-[#daa520] outline-none"
+                      />
+                    </div>
+                    <textarea 
+                      placeholder="Blog ka content yahan likhein (HTML support mojood hai)..." 
+                      rows={8}
+                      value={blogForm.content}
+                      onChange={(e) => setBlogForm({...blogForm, content: e.target.value})}
+                      className="w-full px-6 py-4 bg-gray-50 border rounded-2xl focus:border-[#daa520] outline-none resize-none"
+                    />
+                    <button onClick={saveBlog} className="w-full py-5 bg-[#064e3b] text-white font-bold rounded-2xl shadow-xl hover:bg-[#daa520] hover:text-[#064e3b] transition-all">
+                      Save Blog Entry
+                    </button>
+                  </div>
+
+                  <div className="space-y-6">
+                    <h4 className="text-xl font-serif-display text-[#064e3b] font-bold border-b pb-2">Sabiqa Blogs ({blogs.length})</h4>
+                    <div className="space-y-4 max-h-[400px] overflow-y-auto pr-2">
+                      {blogs.map(blog => (
+                        <div key={blog.id} className="p-4 bg-gray-50 rounded-2xl border border-gray-100 flex justify-between items-center group">
+                          <div className="flex-1 min-w-0">
+                            <p className="font-bold text-[#064e3b] truncate text-sm">{blog.title}</p>
+                            <p className="text-[10px] text-gray-400">{blog.category} • {blog.date}</p>
+                          </div>
+                          <button onClick={() => deleteBlog(blog.id)} className="text-gray-300 hover:text-red-500 p-2">
+                            <i className="fa-solid fa-trash-can" />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
       <a 
         href={waLink} 
