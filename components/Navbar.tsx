@@ -63,13 +63,13 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 pointer-events-none">
-      {/* Top Bar with Bismillah */}
+      {/* Top Bar with Bismillah - Hidden on small mobile to save space */}
       <div className={`w-full bg-[#064e3b] text-[#fbbf24] transition-all duration-500 overflow-hidden ${isScrolled ? 'h-0 opacity-0' : 'h-24 md:h-16 opacity-100 border-b border-[#daa520]/20'} pointer-events-auto`}>
         <div className="container mx-auto px-6 h-full flex flex-col md:flex-row items-center justify-center md:justify-between relative">
-          <div className="md:absolute md:left-1/2 md:-translate-x-1/2 text-2xl md:text-3xl font-amiri tracking-widest drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)] order-1">
+          <div className="md:absolute md:left-1/2 md:-translate-x-1/2 text-xl md:text-3xl font-amiri tracking-widest drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)] order-1">
             بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
           </div>
-          <div className="text-[0.8rem] md:text-sm font-amiri font-bold text-[#fbbf24] tracking-wider mt-2.5 md:mt-0 md:ml-auto order-2">
+          <div className="text-[0.7rem] md:text-sm font-amiri font-bold text-[#fbbf24] tracking-wider mt-1 md:mt-0 md:ml-auto order-2">
             {hijriDate}
           </div>
           <div className="hidden md:block w-32 order-0"></div>
@@ -86,23 +86,23 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
           
           {/* Column 1: Logo (Left) */}
           <div className="flex-1 flex justify-start flex-shrink-0">
-            <a href="#" onClick={handleLogoClick} className="flex items-center gap-3 group cursor-pointer whitespace-nowrap">
-              <div className="w-9 h-9 md:w-11 md:h-11 bg-gradient-to-br from-[#daa520] to-[#b8860b] rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                <i className="fa-solid fa-moon text-[#064e3b] text-xl" />
+            <a href="#" onClick={handleLogoClick} className="flex items-center gap-2 md:gap-3 group cursor-pointer whitespace-nowrap">
+              <div className="w-8 h-8 md:w-11 md:h-11 bg-gradient-to-br from-[#daa520] to-[#b8860b] rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                <i className="fa-solid fa-moon text-[#064e3b] text-base md:text-xl" />
               </div>
-              <div className="hidden sm:block">
-                <h1 className="text-white font-serif-display text-base md:text-lg font-bold leading-tight tracking-wider">
+              <div className="block">
+                <h1 className="text-white font-serif-display text-sm md:text-lg font-bold leading-tight tracking-wider">
                   ONLINE <span className="text-[#daa520]">ISTIKHARA</span>
                 </h1>
-                <p className="text-[8px] text-[#daa520]/80 font-amiri uppercase tracking-[0.2em] -mt-1 font-semibold">
+                <p className="hidden sm:block text-[8px] text-[#daa520]/80 font-amiri uppercase tracking-[0.2em] -mt-1 font-semibold">
                   Rohani Masail Ka Hal
                 </p>
               </div>
             </a>
           </div>
 
-          {/* Column 2: Nav Links (Center) */}
-          <div className="hidden lg:flex flex-[2] items-center justify-center gap-[20px] px-4">
+          {/* Column 2: Nav Links (Center) - Only visible on Laptop/Desktop */}
+          <div className="hidden lg:flex desktop-nav-center items-center justify-center gap-[15px] xl:gap-[20px] px-4">
             {MENU_DATA.map((item, idx) => (
               <React.Fragment key={idx}>
                 {item.children ? (
@@ -111,7 +111,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
                   <a 
                     href={item.href}
                     onClick={(e) => handleLinkClick(e, item.label)}
-                    className={`px-1 py-2 font-serif-display text-[14px] transition-all duration-300 relative group whitespace-nowrap ${
+                    className={`px-1 py-2 font-serif-display text-[13px] xl:text-[14px] transition-all duration-300 relative group whitespace-nowrap ${
                       item.label === 'Spiritual Counseling' ? 'text-[#daa520] font-bold' : ''
                     } ${
                       (item.label === 'Home' && currentView === 'home') || 
@@ -137,22 +137,23 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
             ))}
           </div>
 
-          {/* Column 3: Contact Button (Right) */}
+          {/* Column 3: Contact Button (Right) - Visible on Laptop/Desktop */}
           <div className="hidden lg:flex flex-1 justify-end flex-shrink-0">
             <button 
               onClick={() => { onNavigate?.('home'); setTimeout(() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }), 100); }}
-              className="bg-[#daa520] text-[#064e3b] px-5 py-2.5 rounded-lg font-serif-display font-bold tracking-widest hover:bg-white hover:text-[#064e3b] transition-all duration-500 uppercase text-[10px] shadow-lg whitespace-nowrap"
+              className="bg-[#daa520] text-[#064e3b] px-4 xl:px-5 py-2.5 rounded-lg font-serif-display font-bold tracking-widest hover:bg-white hover:text-[#064e3b] transition-all duration-500 uppercase text-[9px] xl:text-[10px] shadow-lg whitespace-nowrap"
             >
               Contact Us
             </button>
           </div>
 
-          {/* Mobile Toggle */}
+          {/* Mobile Toggle - Hidden on Laptop/Desktop */}
           <button 
             className="lg:hidden text-[#daa520] p-2 hover:bg-white/5 rounded-lg transition-colors flex-shrink-0"
             onClick={() => setIsMobileMenuOpen(true)}
+            aria-label="Open Menu"
           >
-            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-7 h-7 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M4 8h16M4 16h16" />
             </svg>
           </button>

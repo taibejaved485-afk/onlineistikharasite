@@ -182,13 +182,13 @@ const TalismanSubPage: React.FC<TalismanSubPageProps> = ({ category, onNavigate 
   return (
     <div className="pt-0 bg-[#fcfaf2]">
       {/* Hero Header */}
-      <section className="relative pt-44 pb-32 bg-[#064e3b] islamic-pattern overflow-hidden text-center">
+      <section className="relative pt-32 md:pt-44 pb-20 md:pb-32 bg-[#064e3b] islamic-pattern overflow-hidden text-center">
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-transparent pointer-events-none" />
         
-        <div className="absolute top-32 left-6 lg:left-12 z-30">
+        <div className="absolute top-24 md:top-32 left-4 lg:left-12 z-30">
           <button 
             onClick={() => onNavigate?.('home')}
-            className="group flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-[#daa520] border border-[#daa520]/30 text-white rounded-full transition-all duration-300 font-serif-display text-sm font-bold shadow-2xl"
+            className="group flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 bg-white/10 hover:bg-[#daa520] border border-[#daa520]/30 text-white rounded-full transition-all duration-300 font-serif-display text-xs md:text-sm font-bold shadow-2xl"
           >
             <i className="fa-solid fa-arrow-left group-hover:-translate-x-1 transition-transform" />
             Back to Home
@@ -196,67 +196,67 @@ const TalismanSubPage: React.FC<TalismanSubPageProps> = ({ category, onNavigate 
         </div>
 
         <div className="container mx-auto px-6 max-w-5xl relative z-10 animate-fade-in-up">
-          <div className="text-7xl mb-8 filter drop-shadow-xl animate-float">{content.icon}</div>
-          <h1 className="text-white font-serif-display text-4xl md:text-6xl font-bold mb-6 drop-shadow-2xl">
+          <div className="text-5xl md:text-7xl mb-6 md:mb-8 filter drop-shadow-xl animate-float">{content.icon}</div>
+          <h1 className="text-white font-serif-display text-3xl md:text-6xl font-bold mb-4 md:mb-6 drop-shadow-2xl">
             {content.title}
           </h1>
-          <p className="text-[#daa520] font-amiri text-2xl md:text-3xl italic mb-10 drop-shadow-md">
+          <p className="text-[#daa520] font-amiri text-xl md:text-3xl italic mb-6 md:mb-10 drop-shadow-md">
             {content.subtitle}
           </p>
-          <div className="h-1.5 w-64 bg-gradient-to-r from-transparent via-[#daa520] to-transparent mx-auto" />
+          <div className="h-1.5 w-32 md:w-64 bg-gradient-to-r from-transparent via-[#daa520] to-transparent mx-auto" />
         </div>
       </section>
 
-      {/* Main Content Layout */}
-      <section className="py-24">
-        <div className="container mx-auto px-6 max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
+      {/* Main Content Layout - Wide on Desktop, Vertical on Mobile */}
+      <section className="py-12 md:py-24">
+        <div className="container mx-auto px-4 md:px-6 max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
             
             {/* Left Column: Details */}
-            <div className="space-y-12">
+            <div className="space-y-8 md:space-y-12">
               <div className="relative">
-                <h2 className="text-[#064e3b] font-serif-display text-4xl font-bold mb-6 italic">Spiritual Analysis & Deep Understanding</h2>
-                <div className="w-24 h-1.5 bg-[#daa520] rounded-full" />
+                <h2 className="text-[#064e3b] font-serif-display text-2xl md:text-4xl font-bold mb-4 md:mb-6 italic">Spiritual Analysis & Deep Understanding</h2>
+                <div className="w-16 md:w-24 h-1 md:h-1.5 bg-[#daa520] rounded-full" />
               </div>
 
-              <div className="bg-white p-10 rounded-[40px] border-2 border-gray-100 shadow-2xl relative overflow-hidden group">
-                <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#daa520]/5 rounded-full group-hover:scale-110 transition-transform duration-700" />
-                <p className="text-gray-600 font-lora text-xl leading-relaxed relative z-10 first-letter:text-5xl first-letter:text-[#064e3b] first-letter:font-serif-display first-letter:mr-3 first-letter:float-left">
+              <div className="bg-white p-6 md:p-10 rounded-[24px] md:rounded-[40px] border-2 border-gray-100 shadow-2xl relative overflow-hidden group">
+                <div className="absolute -top-10 -right-10 w-24 md:w-40 h-24 md:h-40 bg-[#daa520]/5 rounded-full group-hover:scale-110 transition-transform duration-700" />
+                <p className="text-gray-600 font-lora text-base md:text-xl leading-relaxed relative z-10 first-letter:text-4xl md:first-letter:text-5xl first-letter:text-[#064e3b] first-letter:font-serif-display first-letter:mr-3 first-letter:float-left">
                   {content.significance}
                 </p>
               </div>
 
-              <div className="p-10 bg-[#064e3b] text-white rounded-[40px] shadow-2xl border-l-[12px] border-[#daa520] relative">
+              <div className="p-6 md:p-10 bg-[#064e3b] text-white rounded-[24px] md:rounded-[40px] shadow-2xl border-l-[8px] md:border-l-[12px] border-[#daa520] relative">
                 <div className="absolute inset-0 islamic-pattern opacity-10 pointer-events-none" />
-                <h3 className="text-[#daa520] font-serif-display text-2xl font-bold mb-6 text-right font-amiri tracking-widest uppercase">مقصد اور روحانی فوائد</h3>
-                <p className="text-3xl font-amiri leading-[1.8] text-right dir-rtl relative z-10">
+                <h3 className="text-[#daa520] font-serif-display text-xl md:text-2xl font-bold mb-4 md:mb-6 text-right font-amiri tracking-widest uppercase">مقصد اور روحانی فوائد</h3>
+                <p className="text-2xl md:text-3xl font-amiri leading-[1.8] text-right dir-rtl relative z-10">
                   {content.urdu}
                 </p>
               </div>
             </div>
 
             {/* Right Column: Key Benefits & Action */}
-            <div className="sticky top-44 space-y-10">
-              <div className="bg-white p-12 rounded-[50px] border-2 border-[#daa520]/10 shadow-3xl">
-                <div className="flex items-center gap-4 mb-10">
-                   <div className="w-1.5 h-10 bg-[#daa520]" />
-                   <h3 className="text-[#064e3b] font-serif-display text-3xl font-bold">Primary Benefit 💠</h3>
+            <div className="lg:sticky lg:top-44 space-y-8 md:space-y-10">
+              <div className="bg-white p-6 md:p-12 rounded-[30px] md:rounded-[50px] border-2 border-[#daa520]/10 shadow-3xl">
+                <div className="flex items-center gap-3 md:gap-4 mb-6 md:mb-10">
+                   <div className="w-1 md:w-1.5 h-8 md:h-10 bg-[#daa520]" />
+                   <h3 className="text-[#064e3b] font-serif-display text-2xl md:text-3xl font-bold">Primary Benefit 💠</h3>
                 </div>
                 
-                <div className="bg-[#daa520]/5 p-8 rounded-3xl border border-[#daa520]/20 mb-10">
-                   <p className="text-[#064e3b] font-serif-display text-2xl font-bold italic text-center">
+                <div className="bg-[#daa520]/5 p-6 md:p-8 rounded-2xl md:rounded-3xl border border-[#daa520]/20 mb-6 md:mb-10">
+                   <p className="text-[#064e3b] font-serif-display text-xl md:text-2xl font-bold italic text-center">
                      "{content.benefit}"
                    </p>
                 </div>
 
-                <h4 className="text-[#064e3b] font-serif-display text-xl font-bold mb-6 italic">Specific Solutions:</h4>
-                <ul className="space-y-6 mb-12">
+                <h4 className="text-[#064e3b] font-serif-display text-lg md:text-xl font-bold mb-4 md:mb-6 italic">Specific Solutions:</h4>
+                <ul className="space-y-4 md:space-y-6 mb-8 md:mb-12">
                   {content.details.map((detail: string, i: number) => (
-                    <li key={i} className="flex gap-4 items-center group">
-                      <div className="w-6 h-6 rounded-full bg-[#064e3b] flex items-center justify-center text-[#daa520] shrink-0 group-hover:bg-[#daa520] group-hover:text-white transition-all">
-                        <i className="fa-solid fa-star-and-crescent text-[10px]" />
+                    <li key={i} className="flex gap-3 md:gap-4 items-center group">
+                      <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-[#064e3b] flex items-center justify-center text-[#daa520] shrink-0 group-hover:bg-[#daa520] group-hover:text-white transition-all">
+                        <i className="fa-solid fa-star-and-crescent text-[8px] md:text-[10px]" />
                       </div>
-                      <span className="text-gray-700 font-lora text-lg font-bold">{detail}</span>
+                      <span className="text-gray-700 font-lora text-base md:text-lg font-bold">{detail}</span>
                     </li>
                   ))}
                 </ul>
@@ -266,7 +266,7 @@ const TalismanSubPage: React.FC<TalismanSubPageProps> = ({ category, onNavigate 
                     onNavigate?.('home');
                     setTimeout(() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }), 100);
                   }}
-                  className="w-full py-6 bg-[#064e3b] text-white font-serif-display font-bold text-2xl rounded-2xl hover:bg-[#daa520] hover:text-[#064e3b] transition-all duration-500 shadow-2xl flex items-center justify-center gap-5 group"
+                  className="w-full py-4 md:py-6 bg-[#064e3b] text-white font-serif-display font-bold text-xl md:text-2xl rounded-xl md:rounded-2xl hover:bg-[#daa520] hover:text-[#064e3b] transition-all duration-500 shadow-2xl flex items-center justify-center gap-4 md:gap-5 group"
                 >
                   Consult Now
                   <i className="fa-solid fa-scroll group-hover:translate-x-2 transition-transform" />
@@ -280,35 +280,35 @@ const TalismanSubPage: React.FC<TalismanSubPageProps> = ({ category, onNavigate 
 
       {/* Istikhara FAQ Section - Specific to Istikhara category */}
       {category === 'istikhara' && content.faqs && (
-        <section className="py-24 bg-[#f0f9ff] islamic-pattern">
-          <div className="container mx-auto px-6 max-w-4xl relative z-10">
-            <div className="text-center mb-16">
-               <h2 className="text-[#064e3b] font-serif-display text-4xl md:text-5xl font-bold mb-4">Frequently Asked Questions</h2>
-               <p className="text-gray-500 font-lora text-lg italic">Common queries about our Istikhara consultation process.</p>
-               <div className="w-24 h-1.5 bg-[#daa520] mx-auto mt-6 rounded-full" />
+        <section className="py-12 md:py-24 bg-[#f0f9ff] islamic-pattern">
+          <div className="container mx-auto px-4 md:px-6 max-w-4xl relative z-10">
+            <div className="text-center mb-10 md:mb-16">
+               <h2 className="text-[#064e3b] font-serif-display text-3xl md:text-5xl font-bold mb-4">Frequently Asked Questions</h2>
+               <p className="text-gray-500 font-lora text-base md:text-lg italic">Common queries about our Istikhara consultation process.</p>
+               <div className="w-16 md:w-24 h-1 md:h-1.5 bg-[#daa520] mx-auto mt-4 md:mt-6 rounded-full" />
             </div>
 
             <div className="space-y-4">
               {content.faqs.map((faq: any, idx: number) => (
                 <div 
                   key={idx}
-                  className={`bg-white rounded-2xl overflow-hidden border-2 transition-all duration-500 ${openFaq === idx ? 'border-[#daa520] shadow-xl' : 'border-blue-100 hover:border-blue-300'}`}
+                  className={`bg-white rounded-xl md:rounded-2xl overflow-hidden border-2 transition-all duration-500 ${openFaq === idx ? 'border-[#daa520] shadow-xl' : 'border-blue-100 hover:border-blue-300'}`}
                 >
                   <button 
                     onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
-                    className="w-full text-left px-8 py-6 flex justify-between items-center group"
+                    className="w-full text-left px-6 md:px-8 py-5 md:py-6 flex justify-between items-center group"
                   >
-                    <span className={`text-xl font-serif-display font-bold transition-colors ${openFaq === idx ? 'text-[#daa520]' : 'text-[#064e3b]'}`}>
+                    <span className={`text-lg md:text-xl font-serif-display font-bold transition-colors ${openFaq === idx ? 'text-[#daa520]' : 'text-[#064e3b]'}`}>
                       {faq.question}
                     </span>
-                    <div className={`w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-[#064e3b] transition-transform duration-500 ${openFaq === idx ? 'rotate-180 bg-[#daa520] text-white' : ''}`}>
-                       <i className="fa-solid fa-chevron-down text-xs" />
+                    <div className={`w-7 h-7 md:w-8 md:h-8 rounded-full bg-blue-50 flex items-center justify-center text-[#064e3b] transition-transform duration-500 ${openFaq === idx ? 'rotate-180 bg-[#daa520] text-white' : ''}`}>
+                       <i className="fa-solid fa-chevron-down text-[10px] md:text-xs" />
                     </div>
                   </button>
                   
-                  <div className={`transition-all duration-500 ease-in-out ${openFaq === idx ? 'max-h-[500px] opacity-100 pb-8 px-8' : 'max-h-0 opacity-0 pointer-events-none'}`}>
-                    <div className="h-px w-full bg-gradient-to-r from-transparent via-[#daa520]/20 to-transparent mb-6" />
-                    <p className="text-gray-600 font-lora text-lg leading-relaxed italic border-l-4 border-blue-200 pl-6">
+                  <div className={`transition-all duration-500 ease-in-out ${openFaq === idx ? 'max-h-[300px] opacity-100 pb-6 md:pb-8 px-6 md:px-8' : 'max-h-0 opacity-0 pointer-events-none'}`}>
+                    <div className="h-px w-full bg-gradient-to-r from-transparent via-[#daa520]/20 to-transparent mb-4 md:mb-6" />
+                    <p className="text-gray-600 font-lora text-base md:text-lg leading-relaxed italic border-l-4 border-blue-200 pl-4 md:pl-6">
                       {faq.answer}
                     </p>
                   </div>
@@ -320,7 +320,7 @@ const TalismanSubPage: React.FC<TalismanSubPageProps> = ({ category, onNavigate 
       )}
 
       {/* Footer Decorative Pattern */}
-      <div className="h-24 bg-gradient-to-b from-[#fcfaf2] to-[#064e3b] islamic-pattern opacity-5" />
+      <div className="h-16 md:h-24 bg-gradient-to-b from-[#fcfaf2] to-[#064e3b] islamic-pattern opacity-5" />
     </div>
   );
 };

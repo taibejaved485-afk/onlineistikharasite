@@ -22,84 +22,45 @@
             margin: 0;
             padding: 0;
             background-color: #fcfdfa;
+            -webkit-font-smoothing: antialiased;
         }
         .font-serif-display { font-family: 'Playfair Display', serif; }
         .font-cinzel { font-family: 'Cinzel', serif; }
         .font-amiri { font-family: 'Amiri', serif; }
         
-        /* Quill Font Classes */
-        .ql-font-open-sans { font-family: 'Open Sans', sans-serif; }
-        .ql-font-roboto { font-family: 'Roboto', sans-serif; }
-        .ql-font-lato { font-family: 'Lato', sans-serif; }
-        .ql-font-montserrat { font-family: 'Montserrat', sans-serif; }
-        .ql-font-poppins { font-family: 'Poppins', sans-serif; }
-        .ql-font-inter { font-family: 'Inter', sans-serif; }
-        .ql-font-merriweather { font-family: 'Merriweather', serif; }
-        .ql-font-playfair-display { font-family: 'Playfair Display', serif; }
-        .ql-font-lora { font-family: 'Lora', serif; }
-        .ql-font-oswald { font-family: 'Oswald', sans-serif; }
-
-        /* ENSURING EDITOR TEXT IS VISIBLE */
-        .ql-editor {
-            min-height: 300px !important;
-            background-color: #ffffff !important;
-            color: #1a1a1a !important; /* Specific dark color to prevent invisibility */
-            font-size: 1.1rem !important;
-            line-height: 1.6 !important;
-            text-align: left;
+        /* Desktop Header Alignment Fix */
+        @media (min-width: 1024px) {
+            .desktop-nav-center {
+                display: flex !important;
+                justify-content: center !important;
+                flex: 2 !important;
+            }
         }
 
-        /* Prevent parent white-text from affecting the editor */
-        #root .ql-container.ql-snow,
-        #root .ql-editor,
-        #root .ql-editor * {
-            color: #111111 !important;
+        /* Mobile Specific Overrides */
+        @media (max-width: 768px) {
+            .mobile-container {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+            .mobile-text-center {
+                text-align: center !important;
+            }
+            .mobile-stack {
+                grid-template-columns: 1fr !important;
+            }
+            /* Adjust hero for mobile */
+            h1 { font-size: 2.25rem !important; line-height: 1.2 !important; }
+            .mobile-hide { display: none !important; }
+            /* Bulk Content Mobile View */
+            .side-by-side-desktop {
+                flex-direction: column !important;
+            }
+            .sticky-mobile-reset {
+                position: static !important;
+            }
+            .font-amiri.text-3xl { font-size: 1.5rem !important; }
         }
-
-        /* Show placeholder correctly */
-        .ql-editor.ql-blank::before {
-            color: #9ca3af !important;
-            font-style: italic !important;
-        }
-
-        /* Toolbar Styling */
-        .ql-toolbar.ql-snow {
-            border: 1px solid #e5e7eb !important;
-            border-radius: 1.5rem 1.5rem 0 0 !important;
-            background: #f3f4f6 !important;
-            padding: 12px !important;
-        }
-        .ql-container.ql-snow {
-            border: 1px solid #e5e7eb !important;
-            border-radius: 0 0 1.5rem 1.5rem !important;
-            background: white !important;
-        }
-
-        /* Dropdown Label Fixes */
-        .ql-snow .ql-picker.ql-font .ql-picker-label::before,
-        .ql-snow .ql-picker.ql-font .ql-picker-item::before {
-          content: 'Font Family' !important;
-        }
-        .ql-snow .ql-picker.ql-font .ql-picker-label[data-value="open-sans"]::before,
-        .ql-snow .ql-picker.ql-font .ql-picker-item[data-value="open-sans"]::before { content: 'Open Sans' !important; }
-        .ql-snow .ql-picker.ql-font .ql-picker-label[data-value="roboto"]::before,
-        .ql-snow .ql-picker.ql-font .ql-picker-item[data-value="roboto"]::before { content: 'Roboto' !important; }
-        .ql-snow .ql-picker.ql-font .ql-picker-label[data-value="lato"]::before,
-        .ql-snow .ql-picker.ql-font .ql-picker-item[data-value="lato"]::before { content: 'Lato' !important; }
-        .ql-snow .ql-picker.ql-font .ql-picker-label[data-value="montserrat"]::before,
-        .ql-snow .ql-picker.ql-font .ql-picker-item[data-value="montserrat"]::before { content: 'Montserrat' !important; }
-        .ql-snow .ql-picker.ql-font .ql-picker-label[data-value="poppins"]::before,
-        .ql-snow .ql-picker.ql-font .ql-picker-item[data-value="poppins"]::before { content: 'Poppins' !important; }
-        .ql-snow .ql-picker.ql-font .ql-picker-label[data-value="inter"]::before,
-        .ql-snow .ql-picker.ql-font .ql-picker-item[data-value="inter"]::before { content: 'Inter' !important; }
-        .ql-snow .ql-picker.ql-font .ql-picker-label[data-value="merriweather"]::before,
-        .ql-snow .ql-picker.ql-font .ql-picker-item[data-value="merriweather"]::before { content: 'Merriweather' !important; }
-        .ql-snow .ql-picker.ql-font .ql-picker-label[data-value="playfair-display"]::before,
-        .ql-snow .ql-picker.ql-font .ql-picker-item[data-value="playfair-display"]::before { content: 'Playfair' !important; }
-        .ql-snow .ql-picker.ql-font .ql-picker-label[data-value="lora"]::before,
-        .ql-snow .ql-picker.ql-font .ql-picker-item[data-value="lora"]::before { content: 'Lora' !important; }
-        .ql-snow .ql-picker.ql-font .ql-picker-label[data-value="oswald"]::before,
-        .ql-snow .ql-picker.ql-font .ql-picker-item[data-value="oswald"]::before { content: 'Oswald' !important; }
 
         .islamic-pattern {
             position: relative;
@@ -122,18 +83,48 @@
             animation: fadeInUp 1s ease-out forwards;
         }
 
-        /* Blog Content Rendering (Prose) */
+        /* Quill Font Classes */
+        .ql-font-open-sans { font-family: 'Open Sans', sans-serif; }
+        .ql-font-roboto { font-family: 'Roboto', sans-serif; }
+        .ql-font-lato { font-family: 'Lato', sans-serif; }
+        .ql-font-montserrat { font-family: 'Montserrat', sans-serif; }
+        .ql-font-poppins { font-family: 'Poppins', sans-serif; }
+        .ql-font-inter { font-family: 'Inter', sans-serif; }
+        .ql-font-merriweather { font-family: 'Merriweather', serif; }
+        .ql-font-playfair-display { font-family: 'Playfair Display', serif; }
+        .ql-font-lora { font-family: 'Lora', serif; }
+        .ql-font-oswald { font-family: 'Oswald', sans-serif; }
+
+        .ql-editor {
+            min-height: 300px !important;
+            background-color: #ffffff !important;
+            color: #1a1a1a !important;
+            font-size: 1.1rem !important;
+            line-height: 1.6 !important;
+        }
+
+        #root .ql-container.ql-snow,
+        #root .ql-editor,
+        #root .ql-editor * {
+            color: #111111 !important;
+        }
+
+        .ql-toolbar.ql-snow {
+            border: 1px solid #e5e7eb !important;
+            border-radius: 1.5rem 1.5rem 0 0 !important;
+            background: #f3f4f6 !important;
+            padding: 12px !important;
+        }
+        .ql-container.ql-snow {
+            border: 1px solid #e5e7eb !important;
+            border-radius: 0 0 1.5rem 1.5rem !important;
+            background: white !important;
+        }
+
         .blog-prose h1 { font-family: 'Playfair Display', serif; font-size: 2.25rem; font-weight: 700; color: #064e3b; margin: 1.5rem 0; }
         .blog-prose h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: #064e3b; margin: 1.25rem 0; }
         .blog-prose p { margin-bottom: 1.25rem; line-height: 1.8; color: #374151; }
         .blog-prose ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.25rem; }
-        .blog-prose ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 1.25rem; }
-        .blog-prose strong { color: #064e3b; font-weight: 700; }
-        .blog-prose u { text-decoration: underline; }
-        .blog-prose em { font-style: italic; }
-        .blog-prose .ql-align-center { text-align: center !important; }
-        .blog-prose .ql-align-right { text-align: right !important; }
-        .blog-prose .ql-align-left { text-align: left !important; }
     </style>
 <script type="importmap">
 {

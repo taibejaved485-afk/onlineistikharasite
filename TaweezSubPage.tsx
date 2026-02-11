@@ -42,7 +42,7 @@ const CATEGORY_CONTENT: Record<TaweezCategory, any> = {
     title: "Spiritual Healing for Health",
     subtitle: "Sehat aur Shifa-e-Kamila",
     icon: "💊",
-    significance: "Health is a blessing from Allah, and for every illness, He has provided a cure. Rohani ilaj (Spiritual Healing) jismani ilaj ke sath mil kar shifa ki raftar ko barha deta hai. Introduction: Bohat si bimariyan aisi hoti hain jin ki medical report theek aati hai lekin mareez ki halat kharab hoti hai. Ye aksar asrat, saya ya nazar-e-bad ki wajah se hota hai. Insani jism rohani asrat ko boht jaldi qabool karta hai, is liye jab tak rohani ilaj na ho, dawai bhi asar nahi karti. Solution: Quran mein 'Ayat-e-Shifa' mojood hain jo har tarah ki jismani aur nafsiati bimari ke liye dhaal hain. Hum makhsoos ayaat ka damm aur naqsh faraham karte hain jo Allah ke hukm se mareez ko shifa dete hain. Hamari tayyar karda 'Loh-e-Shifa' mareez ke jism se manfi quwwaton ko nikaal fenkti hai. Benefits: Is se mareez ka hosla barhta hai, purani se purani bimari mein afaqah hota hai, aur zehni sukoon milta hai. Ye ilaj har umar ke fard ke liye moassar hai. Iske zariye mareez ke jism mein tawanayi bahal hoti hai aur wo hamesha ke liye sakoon mahsoos karta hai. Har asar aur bad-dua ka kaat hota hai.",
+    significance: "Health is a blessing from Allah, and for every illness, He has provided a cure. Rohani ilaj (Spiritual Healing) jismani ilaj ke sath mil kar shifa ki raftar ko barha deta hai. Introduction: Bohat si bimariyan aisi hoti hain jin ki medical report theek aati hai lekin mareez ki halat kharab hoti hai. Ye aksar asrat, saya ya nazar-e-bad ki wajah se hota hai. Insani jism rohani asrat ko boht jaldi qabool karta hai, is liye jab tak rohani ilaj na ho, dawai bhi asar nahi karti. Solution: Quran mein 'Ayat-e-Shifa' mojood hain jo har tarah ki jismani aur nafsiati bimari ke liye dhaal hain. Hum makhsoos ayaat ka damm aur naqsh faraham karte hain jo Allah ke hukm se mareez ko shifa dete hain. Hamari tayyar karda 'Loh-e-Shifa' mareez ke jism se manfi quwwaton ko nikaal fenkti hai. Benefits: Is se mareez ka hosla barhta hai, purani se purani bimari mein afaqah hota, aur zehni sukoon milta hai. Ye ilaj har umar ke fard ke liye moassar hai. Iske zariye mareez ke jism mein tawanayi bahal hoti hai aur wo hamesha ke liye sakoon mahsoos karta hai. Har asar aur bad-dua ka kaat hota hai.",
     urdu: "Bimariyon se shifa aur jismani o nafsiati sehat ke liye makhsoos Qurani duain aur rohani ilaj ka bandobast kiya jata hai. Allah ne har bimari ke liye shifa utari hai aur hum usi shifa ke darwazay tak aapki rehnumayi karte hain.",
     details: [
       "Purani aur pechida bimariyon mein rohani madad aur shifa.",
@@ -143,13 +143,13 @@ const TaweezSubPage: React.FC<TaweezSubPageProps> = ({ category, onNavigate }) =
   return (
     <div className="pt-0 bg-[#fdfdfc]">
       {/* Hero Header */}
-      <section className="relative pt-44 pb-32 bg-[#064e3b] islamic-pattern overflow-hidden text-center">
+      <section className="relative pt-32 md:pt-44 pb-20 md:pb-32 bg-[#064e3b] islamic-pattern overflow-hidden text-center">
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-transparent pointer-events-none" />
         
-        <div className="absolute top-32 left-6 lg:left-12 z-30">
+        <div className="absolute top-24 md:top-32 left-4 lg:left-12 z-30">
           <button 
             onClick={() => onNavigate?.('taweez')}
-            className="group flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-[#daa520] border border-[#daa520]/30 text-white rounded-full transition-all duration-300 font-serif-display text-sm font-bold shadow-2xl"
+            className="group flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 bg-white/10 hover:bg-[#daa520] border border-[#daa520]/30 text-white rounded-full transition-all duration-300 font-serif-display text-xs md:text-sm font-bold shadow-2xl"
           >
             <i className="fa-solid fa-arrow-left group-hover:-translate-x-1 transition-transform" />
             Back to All Taweezat
@@ -157,72 +157,72 @@ const TaweezSubPage: React.FC<TaweezSubPageProps> = ({ category, onNavigate }) =
         </div>
 
         <div className="container mx-auto px-6 max-w-5xl relative z-10 animate-fade-in-up">
-          <div className="text-7xl mb-8 filter drop-shadow-xl animate-float">{content.icon}</div>
-          <h1 className="text-white font-serif-display text-5xl md:text-7xl font-bold mb-6 drop-shadow-2xl">
+          <div className="text-5xl md:text-7xl mb-6 md:mb-8 filter drop-shadow-xl animate-float">{content.icon}</div>
+          <h1 className="text-white font-serif-display text-3xl md:text-7xl font-bold mb-4 md:mb-6 drop-shadow-2xl">
             {content.title}
           </h1>
-          <p className="text-[#daa520] font-amiri text-3xl md:text-4xl italic mb-10 drop-shadow-md">
+          <p className="text-[#daa520] font-amiri text-xl md:text-4xl italic mb-6 md:mb-10 drop-shadow-md">
             {content.subtitle}
           </p>
-          <div className="h-1 w-64 bg-gradient-to-r from-transparent via-[#daa520] to-transparent mx-auto" />
+          <div className="h-1 w-32 md:w-64 bg-gradient-to-r from-transparent via-[#daa520] to-transparent mx-auto" />
         </div>
       </section>
 
-      {/* Main Content Layout */}
-      <section className="py-24">
-        <div className="container mx-auto px-6 max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
+      {/* Main Content Layout - Side by Side Desktop, Vertical Mobile */}
+      <section className="py-12 md:py-24">
+        <div className="container mx-auto px-4 md:px-6 max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start">
             
             {/* Left: Significance Content */}
-            <div className="space-y-12">
+            <div className="space-y-8 md:space-y-12">
               <div className="relative">
-                <h2 className="text-[#064e3b] font-serif-display text-4xl font-bold mb-6 italic">Spiritual Significance & Deep Analysis</h2>
-                <div className="w-24 h-1.5 bg-[#daa520] rounded-full" />
+                <h2 className="text-[#064e3b] font-serif-display text-2xl md:text-4xl font-bold mb-4 md:mb-6 italic">Spiritual Significance & Deep Analysis</h2>
+                <div className="w-16 md:w-24 h-1 md:h-1.5 bg-[#daa520] rounded-full" />
               </div>
 
-              <div className="bg-white p-10 rounded-[40px] border border-gray-100 shadow-2xl relative overflow-hidden group">
-                <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#daa520]/5 rounded-full group-hover:scale-110 transition-transform duration-700" />
-                <p className="text-gray-600 font-lora text-xl leading-relaxed relative z-10 first-letter:text-5xl first-letter:text-[#064e3b] first-letter:font-serif-display first-letter:mr-3 first-letter:float-left">
+              <div className="bg-white p-6 md:p-10 rounded-[24px] md:rounded-[40px] border border-gray-100 shadow-2xl relative overflow-hidden group">
+                <div className="absolute -top-10 -right-10 w-24 md:w-40 h-24 md:h-40 bg-[#daa520]/5 rounded-full group-hover:scale-110 transition-transform duration-700" />
+                <p className="text-gray-600 font-lora text-base md:text-xl leading-relaxed relative z-10 first-letter:text-4xl md:first-letter:text-5xl first-letter:text-[#064e3b] first-letter:font-serif-display first-letter:mr-3 first-letter:float-left">
                   {content.significance}
                 </p>
               </div>
 
-              <div className="p-10 bg-[#064e3b] text-white rounded-[40px] shadow-2xl border-r-[12px] border-[#daa520] relative">
+              <div className="p-6 md:p-10 bg-[#064e3b] text-white rounded-[24px] md:rounded-[40px] shadow-2xl border-r-[8px] md:border-r-[12px] border-[#daa520] relative">
                 <div className="absolute inset-0 islamic-pattern opacity-10 pointer-events-none" />
-                <h3 className="text-[#daa520] font-serif-display text-2xl font-bold mb-6 text-right font-amiri tracking-widest uppercase">اصل مقصد اور روhani حل</h3>
-                <p className="text-3xl font-amiri leading-[1.8] text-right dir-rtl relative z-10">
+                <h3 className="text-[#daa520] font-serif-display text-xl md:text-2xl font-bold mb-4 md:mb-6 text-right font-amiri tracking-widest uppercase">اصل مقصد اور روhani حل</h3>
+                <p className="text-2xl md:text-3xl font-amiri leading-[1.8] text-right dir-rtl relative z-10">
                   {content.urdu}
                 </p>
               </div>
             </div>
 
             {/* Right: Key Features & Order Button */}
-            <div className="sticky top-44 space-y-10">
-              <div className="bg-white p-12 rounded-[50px] border-2 border-[#daa520]/10 shadow-3xl space-y-10">
-                <h3 className="text-[#064e3b] font-serif-display text-3xl font-bold mb-4 italic">Exclusive Benefits 💠</h3>
+            <div className="lg:sticky lg:top-44 space-y-8 md:space-y-10">
+              <div className="bg-white p-6 md:p-12 rounded-[30px] md:rounded-[50px] border-2 border-[#daa520]/10 shadow-3xl space-y-8 md:space-y-10">
+                <h3 className="text-[#064e3b] font-serif-display text-2xl md:text-3xl font-bold mb-2 md:mb-4 italic">Exclusive Benefits 💠</h3>
                 
-                <ul className="space-y-8">
+                <ul className="space-y-6 md:space-y-8">
                   {content.details.map((detail: string, i: number) => (
-                    <li key={i} className="flex gap-5 items-start group">
-                      <div className="mt-1.5 w-7 h-7 rounded-full bg-[#daa520] flex items-center justify-center text-[#064e3b] shrink-0 shadow-xl group-hover:rotate-12 group-hover:scale-110 transition-all duration-300">
-                        <i className="fa-solid fa-star-and-crescent text-[12px]" />
+                    <li key={i} className="flex gap-4 md:gap-5 items-start group">
+                      <div className="mt-1.5 w-6 h-6 md:w-7 md:h-7 rounded-full bg-[#daa520] flex items-center justify-center text-[#064e3b] shrink-0 shadow-xl group-hover:rotate-12 group-hover:scale-110 transition-all duration-300">
+                        <i className="fa-solid fa-star-and-crescent text-[10px] md:text-[12px]" />
                       </div>
-                      <span className="text-gray-700 font-lora text-lg leading-relaxed font-bold">{detail}</span>
+                      <span className="text-gray-700 font-lora text-base md:text-lg leading-relaxed font-bold">{detail}</span>
                     </li>
                   ))}
                 </ul>
 
-                <div className="pt-12 border-t border-gray-100">
-                  <div className="mb-8 text-center">
-                     <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#064e3b]/50 mb-2">Ready for a solution?</p>
-                     <h4 className="text-[#064e3b] font-serif-display text-xl font-bold italic">Secure Your Consultation Today</h4>
+                <div className="pt-8 md:pt-12 border-t border-gray-100">
+                  <div className="mb-6 md:mb-8 text-center">
+                     <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#064e3b]/50 mb-2">Ready for a solution?</p>
+                     <h4 className="text-[#064e3b] font-serif-display text-lg md:text-xl font-bold italic">Secure Your Consultation Today</h4>
                   </div>
                   <button 
                     onClick={() => {
                       onNavigate?.('home');
                       setTimeout(() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }), 100);
                     }}
-                    className="w-full py-6 bg-[#064e3b] text-white font-serif-display font-bold text-2xl rounded-[24px] hover:bg-[#daa520] hover:text-[#064e3b] transition-all duration-500 shadow-2xl flex items-center justify-center gap-5 group"
+                    className="w-full py-4 md:py-6 bg-[#064e3b] text-white font-serif-display font-bold text-xl md:text-2xl rounded-[16px] md:rounded-[24px] hover:bg-[#daa520] hover:text-[#064e3b] transition-all duration-500 shadow-2xl flex items-center justify-center gap-4 md:gap-5 group"
                   >
                     Request This Service
                     <i className="fa-solid fa-scroll group-hover:translate-x-2 group-hover:-rotate-12 transition-all duration-300" />
@@ -236,14 +236,14 @@ const TaweezSubPage: React.FC<TaweezSubPageProps> = ({ category, onNavigate }) =
       </section>
 
       {/* Faith Confirmation Strip */}
-      <section className="py-16 bg-gray-50 border-t border-gray-100">
+      <section className="py-10 md:py-16 bg-gray-50 border-t border-gray-100">
         <div className="container mx-auto px-6 text-center">
-          <div className="flex items-center justify-center gap-6 opacity-30">
-            <div className="h-px w-24 bg-gray-400" />
-            <p className="text-gray-600 font-amiri text-2xl italic tracking-widest uppercase">
+          <div className="flex items-center justify-center gap-4 md:gap-6 opacity-30">
+            <div className="h-px w-12 md:w-24 bg-gray-400" />
+            <p className="text-gray-600 font-amiri text-lg md:text-2xl italic tracking-widest uppercase">
               Shifa aur Kamyabi sirf Allah ke hath mein hai
             </p>
-            <div className="h-px w-24 bg-gray-400" />
+            <div className="h-px w-12 md:w-24 bg-gray-400" />
           </div>
         </div>
       </section>
