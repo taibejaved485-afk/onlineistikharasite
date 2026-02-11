@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Navbar from './components/Navbar.tsx';
 import Hero from './components/Hero.tsx';
 import IstikharaSection from './components/IstikharaSection.tsx';
@@ -29,6 +29,8 @@ import TalismansPage from './TalismansPage.tsx';
 import CounselingPage from './CounselingPage.tsx';
 import Chatbot from './components/Chatbot.tsx';
 
+declare var Quill: any;
+
 export type TaweezCategory = 'jadu' | 'sehat' | 'mohabbat' | 'kamyabi' | 'rizq' | 'hamal' | 'wazaif' | 'amazing';
 export type TalismanCategory = 'success' | 'love' | 'magic' | 'business' | 'pregnancy' | 'pray' | 'ismeazam' | 'guidance' | 'istikhara';
 export type ViewType = 'home' | 'about' | 'faq' | 'testimonials' | 'privacy' | 'disclaimer' | 'return' | 'pregnancy' | 'taweez' | 'taweez-sub' | 'talisman-sub' | 'talismans-main' | 'counseling';
@@ -45,6 +47,10 @@ function App() {
   const [adminPass, setAdminPass] = useState('');
   const [showPass, setShowPass] = useState(false);
   const [loginError, setLoginError] = useState(false);
+  
+  // Quill Ref
+  const quillRef = useRef<any>(null);
+  const editorContainerRef = useRef<HTMLDivElement>(null);
 
   // Blog Form State
   const [newBlog, setNewBlog] = useState({ title: '', category: 'General Blog', img: '', content: '' });
@@ -87,6 +93,30 @@ function App() {
     return () => window.removeEventListener('hashchange', handleLocationChange);
   }, []);
 
+  // Initialize Quill when modal and auth is ready
+  useEffect(() => {
+    if (isAdminModalOpen && isAdminAuthenticated && editorContainerRef.current && !quillRef.current) {
+      quillRef.current = new Quill(editorContainerRef.current, {
+        theme: 'snow',
+        placeholder: 'Yahan apna blog content likhein (Bold, Headings, Lists ka istemal karein)...',
+        modules: {
+          toolbar: [
+            [{ 'header': [1, 2, 3, false] }],
+            ['bold', 'italic', 'underline'],
+            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+            [{ 'align': [] }],
+            ['clean']
+          ]
+        }
+      });
+    }
+    
+    // Cleanup Quill when modal closes or unauthenticated
+    if (!isAdminModalOpen || !isAdminAuthenticated) {
+      quillRef.current = null;
+    }
+  }, [isAdminModalOpen, isAdminAuthenticated]);
+
   const navigateTo = (target: ViewType, category?: TaweezCategory | TalismanCategory) => {
     if (target === 'about') window.location.hash = 'about-page';
     else if (target === 'faq') window.location.hash = 'faq-page';
@@ -121,13 +151,28 @@ function App() {
   };
 
   const saveBlog = () => {
-    if (!newBlog.title || !newBlog.content) return alert("Please fill title and content");
-    const entry = { ...newBlog, id: Date.now(), date: new Date().toLocaleDateString() };
+    const editorContent = quillRef.current ? quillRef.current.root.innerHTML : '';
+    
+    if (!newBlog.title || editorContent === '<p><br></p>') {
+      return alert("Title aur Content dono zaroori hain!");
+    }
+
+    const entry = { 
+      ...newBlog, 
+      content: editorContent,
+      id: Date.now(), 
+      date: new Date().toLocaleDateString() 
+    };
+    
     const updated = [entry, ...blogs];
     setBlogs(updated);
     localStorage.setItem('noor_emerald_blogs', JSON.stringify(updated));
+    
+    // Clear Form
     setNewBlog({ title: '', category: 'General Blog', img: '', content: '' });
-    alert("Blog Published!");
+    if (quillRef.current) quillRef.current.root.innerHTML = '';
+    
+    alert("Blog Published successfully!");
   };
 
   const deleteBlog = (id: number) => {
@@ -153,7 +198,7 @@ function App() {
             <PregnancySection />
             <KalaJaduSection />
             <MohabbatSection />
-            < RizqSection />
+            <RizqSection />
             <SehatSection />
             <ConsultationSection />
           </>
@@ -176,7 +221,7 @@ function App() {
       {isAdminModalOpen && (
         <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-[#064e3b]/80 backdrop-blur-sm" onClick={() => setIsAdminModalOpen(false)} />
-          <div className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white rounded-[40px] shadow-2xl border-2 border-[#daa520]/30 islamic-pattern p-8 md:p-12 animate-fade-in-up">
+          <div className="relative w-full max-w-5xl max-h-[90vh] overflow-y-auto bg-white rounded-[40px] shadow-2xl border-2 border-[#daa520]/30 islamic-pattern p-6 md:p-12 animate-fade-in-up">
             
             <button onClick={() => { setIsAdminModalOpen(false); setIsAdminAuthenticated(false); }} className="absolute top-8 right-8 text-gray-400 hover:text-[#064e3b]">
               <i className="fa-solid fa-circle-xmark text-3xl" />
@@ -220,7 +265,7 @@ function App() {
                   <button onClick={() => setIsAdminAuthenticated(false)} className="text-xs font-bold uppercase tracking-widest text-[#daa520] hover:text-[#064e3b] bg-[#064e3b]/5 px-4 py-2 rounded-full">Logout</button>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                   <div className="space-y-6">
                     <div>
                       <label className="text-xs font-bold uppercase text-[#064e3b]/60 ml-1">Title</label>
@@ -240,13 +285,15 @@ function App() {
                       <input type="text" placeholder="https://..." value={newBlog.img} onChange={e => setNewBlog({...newBlog, img: e.target.value})} className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:border-[#daa520] outline-none text-[#064e3b]" />
                     </div>
                   </div>
-                  <div className="flex flex-col">
-                    <label className="text-xs font-bold uppercase text-[#064e3b]/60 ml-1">Content</label>
-                    <textarea rows={8} placeholder="Content description..." value={newBlog.content} onChange={e => setNewBlog({...newBlog, content: e.target.value})} className="flex-1 px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:border-[#daa520] outline-none resize-none text-[#064e3b]" />
+                  
+                  {/* Rich Text Editor Area */}
+                  <div className="md:col-span-2 flex flex-col">
+                    <label className="text-xs font-bold uppercase text-[#064e3b]/60 ml-1 mb-2">Detailed Content (Rich Editor)</label>
+                    <div ref={editorContainerRef} className="bg-white rounded-2xl shadow-inner"></div>
                   </div>
                 </div>
 
-                <button onClick={saveBlog} className="w-full py-5 bg-[#064e3b] text-white font-serif-display text-xl font-bold rounded-2xl hover:bg-[#daa520] hover:text-[#064e3b] transition-all shadow-xl flex items-center justify-center gap-3">
+                <button onClick={saveBlog} className="w-full py-5 bg-[#064e3b] text-white font-serif-display text-xl font-bold rounded-2xl hover:bg-[#daa520] hover:text-[#064e3b] transition-all shadow-xl flex items-center justify-center gap-3 active:scale-95">
                   <i className="fa-solid fa-cloud-arrow-up" /> Publish Content
                 </button>
 
@@ -286,7 +333,7 @@ function App() {
       </a>
 
       {/* AI Rohani Dost Chatbot */}
-      < Chatbot />
+      <Chatbot />
       
       <Footer onNavigate={navigateTo} onAdminClick={() => setIsAdminModalOpen(true)} />
     </div>

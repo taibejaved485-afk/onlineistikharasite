@@ -18,6 +18,13 @@ const BlogSection: React.FC<BlogSectionProps> = ({ blogs }) => {
     document.body.style.overflow = 'auto'; // Restore scrolling
   };
 
+  // Helper to remove HTML tags for preview snippet
+  const getPlainText = (html: string) => {
+    const tmp = document.createElement("DIV");
+    tmp.innerHTML = html;
+    return tmp.textContent || tmp.innerText || "";
+  };
+
   if (blogs.length === 0) {
     return (
       <section id="blogs-section" className="py-20 bg-[#fcfdfa] text-center border-t border-gray-100 scroll-mt-24">
@@ -75,7 +82,7 @@ const BlogSection: React.FC<BlogSectionProps> = ({ blogs }) => {
                 </h3>
                 
                 <p className="text-gray-500 font-lora text-sm line-clamp-3 mb-10 leading-relaxed italic">
-                  {blog.content}
+                  {getPlainText(blog.content)}
                 </p>
                 
                 <button 
@@ -133,11 +140,11 @@ const BlogSection: React.FC<BlogSectionProps> = ({ blogs }) => {
                   {selectedBlog.title}
                 </h2>
 
-                <div className="prose prose-emerald max-w-none">
-                  <p className="text-gray-700 font-lora text-lg md:text-xl leading-loose whitespace-pre-wrap italic">
-                    {selectedBlog.content}
-                  </p>
-                </div>
+                {/* Render Rich HTML Content */}
+                <div 
+                  className="blog-prose font-lora text-lg md:text-xl text-gray-700 leading-loose"
+                  dangerouslySetInnerHTML={{ __html: selectedBlog.content }}
+                />
 
                 <div className="mt-16 pt-10 border-t border-gray-100 flex flex-col items-center">
                    <i className="fa-solid fa-star-and-crescent text-[#daa520] text-3xl mb-6 opacity-40" />
