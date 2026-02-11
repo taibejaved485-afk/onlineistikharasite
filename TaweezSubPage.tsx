@@ -12,112 +12,120 @@ const CATEGORY_CONTENT: Record<TaweezCategory, any> = {
     title: "Daily Islamic Wazaif",
     subtitle: "Rozmarra ki Mushkilat ka Qurani Hal",
     icon: "📖",
-    significance: "Islamic Wazaif are powerful spiritual tools rooted in the divine verses of the Holy Quran and the beautiful names of Allah (Asma-ul-Husna). Zindagi mein kabhi kabhi aisy mawaqay aate hain jab insan zehni dabao aur pareshani ka shikar ho jata hai. Aisy mein Allah ka zikr hi wo wahid rasta hai jo dil ko sakoon deta hai. Hamare tajweez karda wazaif Quran-o-Sunnat ki roshni mein tayyar kiye gaye hain. Introduction: Wazaif ka matlab hai kisi makhsoos kalimay ya ayat ko aik muqarrah tadad mein parhna. Ye rohani qatray ki manind hain jo ahista ahista dil ki sakhti ko khatam karte hain. Solution: Quran-e-Pak mein irshad hai 'Bala bi-dhikrillahi tatma'innul qulub' (Be-shak Allah ke zikr mein hi dilon ka itminan hai). Hum har maslay ke liye makhsoos ayaat ka intikhab karte hain jo aapki rohani quwwat ko jidat bakhshti hain. Benefits: In wazaif ke zariye aapko zehni sakoon milta hai, dushmano ke shar se hifazat hoti hai, aur rizq mein barkat ke darwazay khulte hain. Ye wazaif aapke ghar mein aman aur mohabbat ki faza qaim karne mein madadgar sabit hote hain.",
-    urdu: "Har maslay ka hal Quran mein maujood hai. Rozmarra ki pareshaniyon aur mushkilat ke liye makhsoos Qurani kalimat ka wird aapki zindagi mein sakoon aur barkat lata hai. Hum aapko batatay hain ke kis tarah in makhsoos ayaat se aap apni mushkilat ko asan kar sakte hain.",
+    significance: "Islamic Wazaif are powerful spiritual tools rooted in the divine verses of the Holy Quran and the beautiful names of Allah (Asma-ul-Husna). Zindagi mein kabhi kabhi aisy mawaqay aate hain jab insan zehni dabao aur pareshani ka shikar ho jata hai. Aisy mein Allah ka zikr hi wo wahid rasta hai jo dil ko sakoon deta hai. Hamare tajweez karda wazaif Quran-o-Sunnat ki roshni mein tayyar kiye gaye hain. Introduction: Wazaif ka matlab hai kisi makhsoos kalimay ya ayat ko aik muqarrah tadad mein parhna. Ye rohani qatray ki manind hain jo ahista ahista dil ki sakhti ko khatam karte hain. Duniyawi masail ka ghalba dilon ko veeran kar deta hai, lekin wazaif ki madaumat se rooh ko tawanayi milti hai. Solution: Quran-e-Pak mein irshad hai 'Bala bi-dhikrillahi tatma'innul qulub' (Be-shak Allah ke zikr mein hi dilon ka itminan hai). Hum har maslay ke liye makhsoos ayaat ka intikhab karte hain jo aapki rohani quwwat ko jidat bakhshti hain. Hamare mahireen aapke sitaron aur naam ke mutabiq makhsoos 'Adad' (Numbers) nikaalte hain taake wazaif ka asar fori ho sake. Benefits: In wazaif ke zariye aapko zehni sakoon milta hai, dushmano ke shar se hifazat hoti hai, aur rizq mein barkat ke darwazay khulte hain. Ye wazaif aapke ghar mein aman aur mohabbat ki faza qaim karne mein madadgar sabit hote hain. Iske ilawa, mustaqil madaumat se na-sirf duniyawi balkay ukhrawi kamyabi bhi hasil hoti hai. Aapki shakhsiyat mein kashish aur pur-waqar sakoon paida hota hai jo logon ko aapki taraf mutasir karta hai.",
+    urdu: "Har maslay ka hal Quran mein maujood hai. Rozmarra ki pareshaniyon aur mushkilat ke liye makhsoos Qurani kalimat ka wird aapki zindagi mein sakoon aur barkat lata hai. Hum aapko batatay hain ke kis tarah in makhsoos ayaat se aap apni mushkilat ko asan kar sakte hain. Hamara maqsad sirf dua sikhana nahi balkay Allah se aik gehra taluq qaim karna hai.",
     details: [
-      "Zehni sakoon aur anxiety se mukammal nijaat.",
-      "Ghar mein lari jhagray khatam karne ke liye makhsoos azkar.",
-      "Dushman aur hasid ki buri nazar se hifazati dhal.",
-      "Rizq mein barkat aur karobari bandish ka khatma.",
-      "Be-khwabi (Insomnia) aur khauf ka rohani ilaj."
+      "Zehni sakoon aur anxiety se mukammal nijaat ka Qurani tariqa.",
+      "Ghar mein lari jhagray khatam karne ke liye makhsoos Ism-e-Azam.",
+      "Dushman aur hasid ki buri nazar se hifazati dhal (Divine Shield).",
+      "Rizq mein barkat aur karobari bandish ka mustaqil khatma.",
+      "Be-khwabi (Insomnia) aur khauf ka rohani ilaj aur sukoon.",
+      "Mushkil tareen kaam mein ghaibi madad hasil karne ka rasta."
     ]
   },
   mohabbat: {
     title: "Harmonious Relationships",
     subtitle: "Jayiz Mohabbat aur Ittefaq",
     icon: "❤️",
-    significance: "In the light of Shariah, love and harmony between family members are the foundation of a peaceful society. Aaj kal ke daur mein gharon mein na-chaqi aur miyan biwi ke darmiyan ikhtelafat aik aam masla ban chuke hain. Introduction: Aksar ye ikhtelafat rohani bandish ya buri nazar ki wajah se hote hain jo hasideen ki wajah se paida ki jati hai. Jab dilon mein dooriyan barh jati hain, to Quran-e-Pak ki ayaat dilon ko jorne ka kaam karti hain. Solution: Allah Ta'ala ne Surah Al-Anfal mein farmaya ke 'Dilon mein mohabbat Allah hi dalta hai'. Hum jayiz mohabbat aur ittefaq ke liye makhsoos Naqsh aur duaen tajweez karte hain jo Shariah ke dairay mein hoti hain. Benefits: In amliyat ke zariye miyan biwi ke darmiyan mohabbat barhti hai, sasural ke masail hal hote hain, aur ghar mein sukoon ki faza qaim hoti hai. Ye solutions un logon ke liye hain jo apni shadi shuda zindagi ko tabahi se bachana chahte hain.",
-    urdu: "Miyan-biwi mein ittefaq aur jayiz muhabbat ke rohani amliyat ke zariye hum gharon mein sukoon aur mohabbat paida karne ki koshish karte hain. Hamari renumayi sirf aur sirf jayiz rishton ke liye hai.",
+    significance: "In the light of Shariah, love and harmony between family members are the foundation of a peaceful society. Aaj kal ke daur mein gharon mein na-chaqi aur miyan biwi ke darmiyan ikhtelafat aik aam masla ban chuke hain. Introduction: Aksar ye ikhtelafat rohani bandish ya buri nazar ki wajah se hote hain jo hasideen ki wajah se paida ki jati hai. Jab dilon mein dooriyan barh jati hain, to Quran-e-Pak ki ayaat dilon ko jorne ka kaam karti hain. Rishton ki narazi aksar shaitani waswaso ki wajah se barhti hai jo basay basaye gharon ko tabah kar dete hain. Solution: Allah Ta'ala ne Surah Al-Anfal mein farmaya ke 'Dilon mein mohabbat Allah hi dalta hai'. Hum jayiz mohabbat aur ittefaq ke liye makhsoos Naqsh aur duaen tajweez karte hain jo Shariah ke dairay mein hoti hain. Hamare tayyar karda 'Naqsh-e-Hub' makhsoos Zafran aur Gulab ke arq se likhay jate hain jo dilon mein narmi paida karte hain. Benefits: In amliyat ke zariye miyan biwi ke darmiyan mohabbat barhti hai, sasural ke masail hal hote hain, aur ghar mein sukoon ki faza qaim hoti hai. Ye solutions un logon ke liye hain jo apni shadi shuda zindagi ko tabahi se bachana chahte hain. Isse ghar mein barkat aati hai aur aulad ki parwarish par bhi achay asrat muratab hote hain. Aapka khandan muttahid rehta hai aur bahar ki buri quwwatein asar nahi kar patin.",
+    urdu: "Miyan-biwi mein ittefaq aur jayiz muhabbat ke rohani amliyat ke zariye hum gharon mein sukoon aur mohabbat paida karne ki koshish karte hain. Hamari renumayi sirf aur sirf jayiz rishton ke liye hai. Hum kisi bhi ghair-sharai kaam ki support nahi karte.",
     details: [
-      "Miyan biwi ke darmiyan na-chaqi ka mukammal khatma.",
+      "Miyan biwi ke darmiyan na-chaqi ka mukammal aur mustaqil khatma.",
       "Sasural mein izzat aur mohabbat hasil karne ka rohani hal.",
-      "Pasand ki shadi mein anay wali rukawaton ka sharai tor.",
-      "Gharelu ranjishen aur dushmani khatam karne ke wazaif.",
-      "Dilon mein narmi aur hamdardi paida karne ke makhsoos naqsh."
+      "Pasand ki shadi mein anay wali rukawaton ka sharai tor aur rasta.",
+      "Gharelu ranjishen aur dushmani khatam karne ke makhsoos wazaif.",
+      "Dilon mein narmi aur hamdardi paida karne ke makhsoos naqsh-e-noori.",
+      "Talaq ke masail aur judayi ko khatam karne ki rohani koshish."
     ]
   },
   sehat: {
     title: "Spiritual Healing for Health",
     subtitle: "Sehat aur Shifa-e-Kamila",
     icon: "💊",
-    significance: "Health is a blessing from Allah, and for every illness, He has provided a cure. Rohani ilaj (Spiritual Healing) jismani ilaj ke sath mil kar shifa ki raftar ko barha deta hai. Introduction: Bohat si bimariyan aisi hoti hain jin ki medical report theek aati hai lekin mareez ki halat kharab hoti hai. Ye aksar asrat, saya ya nazar-e-bad ki wajah se hota hai. Solution: Quran mein 'Ayat-e-Shifa' mojood hain jo har tarah ki jismani aur nafsiati bimari ke liye dhaal hain. Hum makhsoos ayaat ka damm aur naqsh faraham karte hain jo Allah ke hukm se mareez ko shifa dete hain. Benefits: Is se mareez ka hosla barhta hai, purani se purani bimari mein afaqah hota hai, aur zehni sukoon milta hai. Ye ilaj har umar ke fard ke liye moassar hai.",
-    urdu: "Bimariyon se shifa aur jismani o nafsiati sehat ke liye makhsoos Qurani duain aur rohani ilaj ka bandobast kiya jata hai. Allah ne har bimari ke liye shifa utari hai.",
+    significance: "Health is a blessing from Allah, and for every illness, He has provided a cure. Rohani ilaj (Spiritual Healing) jismani ilaj ke sath mil kar shifa ki raftar ko barha deta hai. Introduction: Bohat si bimariyan aisi hoti hain jin ki medical report theek aati hai lekin mareez ki halat kharab hoti hai. Ye aksar asrat, saya ya nazar-e-bad ki wajah se hota hai. Insani jism rohani asrat ko boht jaldi qabool karta hai, is liye jab tak rohani ilaj na ho, dawai bhi asar nahi karti. Solution: Quran mein 'Ayat-e-Shifa' mojood hain jo har tarah ki jismani aur nafsiati bimari ke liye dhaal hain. Hum makhsoos ayaat ka damm aur naqsh faraham karte hain jo Allah ke hukm se mareez ko shifa dete hain. Hamari tayyar karda 'Loh-e-Shifa' mareez ke jism se manfi quwwaton ko nikaal fenkti hai. Benefits: Is se mareez ka hosla barhta hai, purani se purani bimari mein afaqah hota hai, aur zehni sukoon milta hai. Ye ilaj har umar ke fard ke liye moassar hai. Iske zariye mareez ke jism mein tawanayi bahal hoti hai aur wo hamesha ke liye sakoon mahsoos karta hai. Har asar aur bad-dua ka kaat hota hai.",
+    urdu: "Bimariyon se shifa aur jismani o nafsiati sehat ke liye makhsoos Qurani duain aur rohani ilaj ka bandobast kiya jata hai. Allah ne har bimari ke liye shifa utari hai aur hum usi shifa ke darwazay tak aapki rehnumayi karte hain.",
     details: [
-      "Purani aur pechida bimariyon mein rohani madad.",
-      "Nafsiati masail aur depression ka Quranic ilaj.",
-      "Bachon ki sehat aur hifazat ke liye makhsoos taweezat.",
-      "Jism mein taqat aur tawanayi bahal karne ke wazaif.",
-      "Buri nazar ke asrat se jism ko pak karne ka tarika."
+      "Purani aur pechida bimariyon mein rohani madad aur shifa.",
+      "Nafsiati masail, depression aur weham ka Quranic aur noori ilaj.",
+      "Bachon ki sehat, nazr-e-bad aur hifazat ke liye makhsoos taweezat.",
+      "Jism mein taqat aur tawanayi bahal karne ke makhsoos noori wazaif.",
+      "Buri nazar ke asrat se jism ko pak karne ka 100% kargar tarika.",
+      "Be-chaini aur darr (fear) ko khatam karne ke liye rohani shield."
     ]
   },
   jadu: {
     title: "Protection from Black Magic",
     subtitle: "Jadu ka Tor aur Hifazat",
     icon: "🛡️",
-    significance: "Black magic (Kala Jadu) and the Evil Eye (Nazar-e-Bad) are real threats mentioned in the Holy Quran and Hadith. Introduction: Jadu insan ki zindagi ko tabah kar deta hai, karobar band kar deta hai aur sehat ko barbad kar deta hai. Ye hasad ki wajah se kiya jata hai. Solution: Hum Quran-e-Pak ki makhsoos ayaat (Manzil) aur makhsoos aadaad se tayyar karda 'Loh-e-Hifazat' dete hain jo har qism ke jadu ko kaat deta hai. Benefits: Is se aapka karobar khul jata hai, ghar mein barkat aati hai, aur dushman ki har chal nakaam ho jati hai. Aapka ghar aur ahle-khana har qism ke shar se mehfooz rehte hain.",
-    urdu: "Nazar-e-bad, har qism ki hifazat, aur bandishon ke khatmay ke liye Quran-o-Sunnat ki roshni mein mazboot rohani hifazati dhal. Jadu ka tor Quran se hi mumkin hai.",
+    significance: "Black magic (Kala Jadu) and the Evil Eye (Nazar-e-Bad) are real threats mentioned in the Holy Quran and Hadith. Introduction: Jadu insan ki zindagi ko tabah kar deta hai, karobar band kar deta hai aur sehat ko barbad kar deta hai. Ye hasad ki wajah se kiya jata hai. Jab dushman aapki tarraqi dekh nahi sakta to wo sifli ilm ka sahara leta hai jo aapke ghar ki khushiyan cheen leta hai. Solution: Hum Quran-e-Pak ki makhsoos ayaat (Manzil) aur makhsoos aadaad se tayyar karda 'Loh-e-Hifazat' dete hain jo har qism ke jadu ko kaat deta hai. Hamara tor 100% noori hai aur hum sifli ilm ke sakht khilaf hain. Benefits: Is se aapka karobar khul jata hai, ghar mein barkat aati hai, aur dushman ki har chal nakaam ho jati hai. Aapka ghar aur ahle-khana har qism ke shar se mehfooz rehte hain. Is hifazati taweez ke baad kisi bhi qism ka kala jadu ya bandish aap par asar nahi karegi. Ye aik aisi rohani dhaal hai jo hamesha aapke sath rahegi aur ghaibi madad faraham karegi.",
+    urdu: "Nazar-e-bad, har qism ki hifazat, aur bandishon ke khatmay ke liye Quran-o-Sunnat ki roshni mein mazboot rohani hifazati dhal. Jadu ka tor Quran se hi mumkin hai aur hum is mein maharat rakhte hain.",
     details: [
-      "Kalay jadu aur sifli ilm ka 100% rohani tor.",
-      "Karobari bandish aur rizq ki rukawat ka khatma.",
-      "Ghar aur dukan ki hifazat ke liye makhsoos naqsh.",
-      "Hasid ki buri nazar aur jalan se hifazat.",
-      "Sihr-e-mufarriq (rishtey torne wala jadu) ka ilaj."
+      "Kalay jadu aur har qism ke sifli ilm ka 100% rohani o noori tor.",
+      "Karobari bandish aur rizq ki rukawat ka mukammal khatma.",
+      "Ghar aur dukan ki hifazat ke liye makhsoos noori naqsh.",
+      "Hasid ki buri nazar, jalan aur dushmani se mustaqil hifazat.",
+      "Sihr-e-mufarriq (rishtey torne wala jadu) ka fori rohani ilaj.",
+      "Saye aur asrat se bachon aur baron ki mukammal nijaat."
     ]
   },
   kamyabi: {
     title: "Victory & Career Success",
     subtitle: "Kamyabi aur Fateh",
     icon: "🏆",
-    significance: "Success in exams, career, or any life challenge requires both hard work and divine favor. Introduction: Aaj ke muqablay ke daur mein insan mehnat to karta hai lekin naseeb sath nahi deta. Ye aksar rohani rukawaton ki wajah se hota hai jo hasideen ki wajah se paida hoti hain. Solution: Hum Ism-e-Azam ki barkat se aise naqsh tayyar karte hain jo aapki shakhsiyat mein kashish aur raste mein asani paida karte hain. Benefits: Is se aapko naukri mein taraqqi milti hai, imtehanat mein kamyabi milti hai, aur har maidan mein aapka palra bhari rehta hai. Log aapki baat ko tawajjo se sunte hain aur izzat karte hain.",
-    urdu: "Imtihan, muqabla, aur zindagi ke har maidan mein fateh pane aur kamyabi hasil karne ke liye authentic rohani rehnumayi aur makhsoos Ism-e-Azam ka wird.",
+    significance: "Success in exams, career, or any life challenge requires both hard work and divine favor. Introduction: Aaj ke muqablay ke daur mein insan mehnat to karta hai lekin naseeb sath nahi deta. Ye aksar rohani rukawaton ki wajah se hota hai jo hasideen ki wajah se paida hoti hain. Jab raste band lagne lagein to samjh lein ke rohani madad ki zaroorat hai. Solution: Hum Ism-e-Azam ki barkat se aise naqsh tayyar karte hain jo aapki shakhsiyat mein kashish aur raste mein asani paida karte hain. Hamare mahireen aapke sitaron ka jaiza le kar makhsoos waqt mein ye taweez likhte hain. Benefits: Is se aapko naukri mein taraqqi milti hai, imtehanat mein kamyabi milti hai, aur har maidan mein aapka palra bhari rehta hai. Log aapki baat ko tawajjo se sunte hain aur izzat karte hain. Kamyabi ke darwazay khulne ke sath sath aapki zehni salahiyaton mein bhi izafa hota hai.",
+    urdu: "Imtihan, muqabla, aur zindagi ke har maidan mein fateh pane aur kamyabi hasil karne ke liye authentic rohani rehnumayi aur makhsoos Ism-e-Azam ka wird. Hum aapke raste ki har bandish door karenge.",
     details: [
-      "Competitive exams aur job interviews mein kamyabi.",
-      "Office aur karobar mein izzat o martaba mein izafa.",
-      "Legal masail aur court cases mein fateh ka rohani hal.",
-      "Dushmanon par ghalba aur unki chalon se hifazat.",
-      "Personality development aur confidence mein izafa."
+      "Competitive exams aur job interviews mein yaqeeni kamyabi.",
+      "Office aur karobar mein izzat o martaba aur promotion mein izafa.",
+      "Legal masail aur court cases mein fateh ka behtareen rohani hal.",
+      "Dushmanon par ghalba aur unki chalon se hifazati rasta.",
+      "Personality development aur confidence mein be-panah izafa.",
+      "Naye ventures aur projects mein ghaibi kamyabi aur barkat."
     ]
   },
   rizq: {
     title: "Business & Wealth Blessings",
     subtitle: "Rizq aur Karobar mein Barkat",
     icon: "💰",
-    significance: "Rizq (sustenance) is pre-ordained, but its flow can be restricted by spiritual blockages. Introduction: Karobar mein achanak nuqsan, gahakon ki kami, aur paison mein barkat na hona asrat ki alamat ho sakti hai. Solution: Hum Naqsh-e-Sulemani aur makhsoos Barkati ayaat ke zariye rizq ke darwazay kholte hain. Benefits: Is se aapki amdani mein izafa hota hai, be-fuzool kharch khatam hota hai, aur karobar din dugni raat chugni taraqqi karta hai. Karobari dushmani aur jalan ka asar bhi khatam ho jata hai.",
-    urdu: "Karobar mein barkat aur tangi-e-rizq door karne ke liye Ism-e-Azam aur makhsoos Qurani barkati naqsh ka istemal. Rizq Allah ke hath mein hai hum sirf rasta dikhate hain.",
+    significance: "Rizq (sustenance) is pre-ordained, but its flow can be restricted by spiritual blockages. Introduction: Karobar mein achanak nuqsan, gahakon ki kami, aur paison mein barkat na hona asrat ki alamat ho sakti hai. Hasad karne wale log aksar 'Rizq ki Bandish' karwa dete hain jis se karobar thap ho jata hai. Solution: Hum Naqsh-e-Sulemani aur makhsoos Barkati ayaat ke zariye rizq ke darwazay kholte hain. Hamari 'Loh-e-Rizq' har karobari jagah ke liye barkat ki zamanat hai. Benefits: Is se aapki amdani mein izafa hota hai, be-fuzool kharch khatam hota hai, aur karobar din dugni raat chugni taraqqi karta hai. Karobari dushmani aur jalan ka asar bhi khatam ho jata hai. Aapka maal mehfooz rehta hai aur ghaib se aisi jagah se rizq milta hai jahan se aapka gumaan bhi na ho. Karobar mein naye darwazay khulte hain.",
+    urdu: "Karobar mein barkat aur tangi-e-rizq door karne ke liye Ism-e-Azam aur makhsoos Qurani barkati naqsh ka istemal. Rizq Allah ke hath mein hai hum sirf rasta dikhate hain jo Quran ne bataya hai.",
     details: [
-      "Karobari bandish aur nuqsan ka mukammal khatma.",
-      "Naye gahakon ki tawajjo aur sale mein izafa.",
-      "Qarz se nijaat aur mali mustahkami ka wazifa.",
-      "Dukan aur showroom ki barkat ke liye makhsoos naqsh.",
-      "Ghar mein rizq ki farawani aur barkat ki dua."
+      "Karobari bandish aur sudden nuqsan ka mukammal o fori khatma.",
+      "Naye gahakon ki tawajjo aur sale mein be-panah izafa.",
+      "Qarz se nijaat aur mali mustahkami ka makhsoos Qurani wazifa.",
+      "Dukan aur showroom ki barkat ke liye makhsoos noori naqsh.",
+      "Ghar mein rizq ki farawani aur hamesha barkat rehne ki khas dua.",
+      "Financial stability aur wealth accumulation mein rohani madad."
     ]
   },
   hamal: {
     title: "Pregnancy & Fertility Support",
     subtitle: "Aulaad ki Nemat aur Hifazat",
     icon: "🌸",
-    significance: "The journey to parenthood is a blessing and requires spiritual care. Introduction: Be-auladi aik dardnak masla hai jo dilon ko tor deta hai. Aksar medical ilaj ke sath sath rohani madad ki zaroorat hoti hai taake womb (reham) har asar se pak ho sake. Solution: Hum makhsoos Qurani ayaat ke naqsh faraham karte hain jo hamal ko mehfooz banatay hain. Benefits: Maa aur bacha dono sehat mand rehte hain, hamal bar bar girne (miscarriage) ka masla hal hota hai, aur Allah ke fazl se aulaad-e-saaleh naseeb hoti hai.",
-    urdu: "Aulaad ki nemat ke liye Qurani duain aur dauran-e-hamal maa o bacha ki hifazat ke liye makhsoos rohani shields. Hamara maqsad har ghar mein khushi lana hai.",
+    significance: "The journey to parenthood is a blessing and requires spiritual care. Introduction: Be-auladi aik dardnak masla hai jo dilon ko tor deta hai. Aksar medical ilaj ke sath sath rohani madad ki zaroorat hoti hai taake womb (reham) har asar se pak ho sake. Hamal ke doran maa ko buri nazar se bachana boht zaroori hota hai. Solution: Hum makhsoos Qurani ayaat ke naqsh faraham karte hain jo hamal ko mehfooz banatay hain. Hamari tayyar karda 'Loh-e-Hamal' maa aur bache ki hifazat ke liye mash'hoor hai. Benefits: Maa aur bacha dono sehat mand rehte hain, hamal bar bar girne (miscarriage) ka masla hal hota hai, aur Allah ke fazl se aulaad-e-saaleh naseeb hoti hai. Delivery mein asani hoti hai aur bacha har qism ke rohani aur jismani nuqsan se bacha rehta hai. Ye un khawateen ke liye umeed ki kiran hai jo barson se is nemat ki muntazir hain.",
+    urdu: "Aulaad ki nemat ke liye Qurani duain aur dauran-e-hamal maa o bacha ki hifazat ke liye makhsoos rohani shields. Hamara maqsad har ghar mein khushi aur Allah ki rehmat lana hai.",
     details: [
-      "Be-auladi ka mukammal rohani ilaj aur renumayi.",
-      "Hamal bar bar girne se bachane ka khas naqsh.",
-      "Dauran-e-hamal maa aur bache ki rohani hifazat.",
-      "Aulaad-e-narina ke liye makhsoos Qurani wazaif.",
-      "Delivery mein asani aur sehat ke liye khas duain."
+      "Be-auladi ka mukammal rohani ilaj aur authentic renumayi.",
+      "Hamal bar bar girne (Miscarriage) se bachane ka khas noori naqsh.",
+      "Dauran-e-hamal maa aur bache ki mukammal rohani hifazat.",
+      "Aulaad-e-saaleh (righteous children) ke liye makhsoos Qurani wazaif.",
+      "Delivery mein asani aur sehat ke liye khas aur azmooda duain.",
+      "Bachon ke pedaishi masail aur hifazat ke liye rohani hal."
     ]
   },
   amazing: {
     title: "Amazing Spiritual Secrets",
     subtitle: "Hairat-angez aur Nayaab Tilismat",
     icon: "✨",
-    significance: "This category represents the highest level of our spiritual expertise. Introduction: Kuch masail aisy hote hain jo saloon se hal nahi hote aur har rasta band lagta hai. Ye 'Amazing' category inhi pechida masail ke liye hai. Solution: Hum nayaab aadaad aur nayaab auqat mein aise tilismat tayyar karte hain jo hairat-angez nataij dete hain. Benefits: In se namumkin kaam mumkin ho jate hain, shadeed se shadeed bandish khatam hoti hai, aur zindagi mein aik azeem tabdeeli aati hai. Ye sirf khas logon ke liye hai jo rohaniat ki gehrai ko samajhte hain.",
-    urdu: "Wo khas aur nayaab tilismat aur rohani asrat jo hairat-angez nataij dete hain aur namumkin ko mumkin banatay hain. Ye hamari barson ki mehnat ka nichor hai.",
+    significance: "This category represents the highest level of our spiritual expertise. Introduction: Kuch masail aisy hote hain jo saloon se hal nahi hote aur har rasta band lagta hai. Ye 'Amazing' category inhi pechida masail ke liye hai. In mein nayaab Ism-e-Azam ka istemal kiya jata hai. Solution: Hum nayaab aadaad aur nayaab auqat mein aise tilismat tayyar karte hain jo hairat-angez nataij dete hain. In amliyat mein aisi quwwat hoti hai jo namumkin raste khol deti hai. Benefits: In se namumkin kaam mumkin ho jate hain, shadeed se shadeed bandish khatam hoti hai, aur zindagi mein aik azeem tabdeeli aati hai. Ye sirf khas logon ke liye hai jo rohaniat ki gehrai ko samajhte hain. Is se aapki ruhani taqat barhti hai aur aap ghaibi makhlooq ke shar se hamesha ke liye bach jate hain. Ye hamari website ka sab se premium aur secret section hai.",
+    urdu: "Wo khas aur nayaab tilismat aur rohani asrat jo hairat-angez nataij dete hain aur namumkin ko mumkin banatay hain. Ye hamari barson ki mehnat, chillah-kashi aur tajrubay ka nichor hai.",
     details: [
       "Nayaab aur qadeem tilismat jo saloon purani bandish kat de.",
-      "Zindagi mein achanak bari tabdeeli lane ke amliyat.",
-      "Taskheer-e-khalq (logon ko mutasir karne) ka khas naqsh.",
-      "Ghaibi madad aur mushkilat se fori nijaat.",
-      "Spiritual high-energy rings for protection and luck."
+      "Zindagi mein achanak bari tabdeeli lane ke makhsoos amliyat.",
+      "Taskheer-e-khalq (logon ko mutasir karne) ka khas aur hairat-angez naqsh.",
+      "Ghaibi madad aur pechida mushkilat se fori aur yaqeeni nijaat.",
+      "Spiritual high-energy rings for ultimate protection and good luck.",
+      "Sadeeyon puranay rohani asrar (secrets) ka husool aur faida."
     ]
   }
 };
@@ -168,7 +176,7 @@ const TaweezSubPage: React.FC<TaweezSubPageProps> = ({ category, onNavigate }) =
             {/* Left: Significance Content */}
             <div className="space-y-12">
               <div className="relative">
-                <h2 className="text-[#064e3b] font-serif-display text-4xl font-bold mb-6 italic">Roohani Significance & Detailed Analysis</h2>
+                <h2 className="text-[#064e3b] font-serif-display text-4xl font-bold mb-6 italic">Spiritual Significance & Deep Analysis</h2>
                 <div className="w-24 h-1.5 bg-[#daa520] rounded-full" />
               </div>
 

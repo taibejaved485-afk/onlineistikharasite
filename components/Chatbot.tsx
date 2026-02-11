@@ -10,7 +10,7 @@ const QUICK_REPLIES = [
   { label: 'Istikhara ka tareeqa?', response: 'Istikhara ke liye aap hamari "Services" section check karein ya direct WhatsApp par raabta karein. Hum aapki behtareen rehnumayi karenge.' },
   { label: 'Aaj ka Wazifa', response: 'Har qism ke masail ke liye hamare "Blog" section mein tajweez karda makhsoos wazaif mojood hain jo Quran-o-Sunnat ke mutabiq hain.' },
   { label: 'Contact Expert', response: 'Aap hamare "Contact Us" page par ja kar form fill kar sakte hain ya niche diye gaye WhatsApp icon par click karke direct mahireen se baat karein.' },
-  { label: 'Fees & Charges', response: 'Hamari basic maloomat aur mashwara bilkul muft hain, lekin makhsoos rohani ilaj ya taweezat ke hadiya ke liye aap admin se WhatsApp par raabta kar sakte hain.' }
+  { label: 'Fees & Charges', response: 'Hamara Online Istikhara mukammal tor par Fi-Sabilillah hai. Rohani amliyat aur taweezat ke liye hadiya maslay ki nauiyat ke mutabiq hota hai jo ke sirf zaroori ikhrajat ke liye liya jata hai. Mazeed tafseel ke liye aap hamare WhatsApp par rabta kar sakte hain.' }
 ];
 
 const Chatbot: React.FC = () => {
@@ -34,36 +34,35 @@ const Chatbot: React.FC = () => {
   const getStaticResponse = (userInput: string): string => {
     const text = userInput.toLowerCase().trim();
     
+    // Privacy Triggers
+    if (text.includes('privacy') || text.includes('raaz') || text.includes('parda') || text.includes('confidential')) {
+      return "Hamari Service ki Privacy Policy:\n\n100% Confidentiality: Aapka naam, masla, aur tamam guftagu mukammal tor par raaz mein rakhi jati hai.\n\nData Protection: Hum kisi bhi client ka data kisi teesray shakhs (third party) ke sath share nahi karte.\n\nDirect Contact: Aapki tamam baatchit sirf hamaray makhsoos rohani mahir (Expert) tak mehdood rehti hai.\n\nShariat Compliance: Hum shariat ke mutabiq logon ki parda-poshi ka sakhti se dehan rakhte hain.\n\nAap be-fiker ho kar rabta kar sakte hain, aapka aitemad hamari awaleen tarjih hai.";
+    }
+
+    // Fee/Hadiya Triggers
+    if (text.includes('hadiya') || text.includes('fees') || text.includes('charges') || text.includes('paise')) {
+      return "Hamara Online Istikhara mukammal tor par Fi-Sabilillah hai. Rohani amliyat aur taweezat ke liye hadiya maslay ki nauiyat ke mutabiq hota hai jo ke sirf zaroori ikhrajat ke liye liya jata hai. Mazeed tafseel ke liye aap hamare WhatsApp par rabta kar sakte hain.";
+    }
+
+    // Duration/Time Triggers
+    if (text.includes('waqt') || text.includes('kitni der') || text.includes('how long') || text.includes('time')) {
+      return "Istikhara ki report aam tor par 24 se 48 ghanton mein de di jati hai. Rohani ilaj ya bandish ke tor mein maslay ki pechidgi ke mutabiq waqt lag sakta hai.";
+    }
+
+    // Process/Method Triggers
+    if (text.includes('tariqa') || text.includes('kaise karte ho') || text.includes('process')) {
+      return "Hamara tamam kaam Quran-o-Sunnat aur jayez rohani amliyat ki roshni mein hota hai. Hum kisi bhi qism ka ghair-shari ya kala jadu nahi karte, balkay sirf noori ilm se madad lete hain.";
+    }
+
+    // Standard Greetings & Basic Queries
     if (text.includes('assalam') || text.includes('salam') || text.includes('slam')) {
       return "Walaikum Assalam! Online Istikhara mein khush-amdeed. Main aapki kya madad kar sakta hoon?";
     }
-
     if (text === 'hello' || text === 'hi' || text.startsWith('hi ') || text.startsWith('hello ')) {
       return "Hello! Umeed hai aap khairiyat se honge. Main aapki rohani masail mein madad ke liye hazir hoon.";
     }
-
-    if (text.includes('kaun') || text.includes('koun') || text.includes('who are you') || text.includes('what is this site') || text.includes('site kya hai')) {
-      return "Main Online Istikhara ka digital assistant hoon. Main aapko Istikhara, Wazaif, aur Rohani ilaj ke bare mein maloomat de sakta hoon.";
-    }
-    
-    if (text.includes('jadu') || text.includes('taveez') || text.includes('tawiz') || text.includes('tor')) {
-      return "Hum Quran-o-Sunnah ki roshni mein har qism ke jadu, taveez aur bandish ka mukammal kaat (tor) karte hain. Mazeed tafseel aur apna masla bayan karne ke liye niche diye gaye WhatsApp button par click karein.";
-    }
-    
-    if (text.includes('rizq') || text.includes('karobar') || text.includes('paisa') || text.includes('business') || text.includes('tangee') || text.includes('tang')) {
-      return "Karobari bandish aur rizq ki tangee ke liye hamare khas 'Talismans' aur 'Wazaif' mojud hain. Rabtay ke liye WhatsApp par aayen.";
-    }
-    
-    if (text.includes('shadi') || text.includes('rishta') || text.includes('nikah') || text.includes('pabandi')) {
-      return "Pasand ki shadi ho ya rishton mein pabandi, hamare rohani amliyat se hazaron logon ko kamyabi mili hai. Aap apna aur apni walida ka naam likh kar WhatsApp karein.";
-    }
-
     if (text.includes('istikhara')) {
       return "Ji bilkul, hum shadi, safar aur karobar ke liye 'Masnoon Istikhara' ki saholat dete hain. Apna masla likh kar WhatsApp par bhejein.";
-    }
-
-    if (text.includes('privacy') || text.includes('raaz') || text.includes('parda') || text.includes('confidential')) {
-      return "Hamari Service ki Privacy Policy:\n\n100% Confidentiality: Aapka naam, masla, aur tamam guftagu mukammal tor par raaz mein rakhi jati hai.\n\nData Protection: Hum kisi bhi client ka data kisi teesray shakhs (third party) ke sath share nahi karte.\n\nDirect Contact: Aapki tamam baatchit sirf hamaray makhsoos rohani mahir (Expert) tak mehdood rehti hai.\n\nShariat Compliance: Hum shariat ke mutabiq logon ki parda-poshi ka sakhti se dehan rakhte hain.\n\nAap be-fiker ho kar rabta kar sakte hain, aapka aitemad hamari awaleen tarjih hai.";
     }
 
     return "Behtreen rehnumayi ke liye aap hamare 'Contact Us' button par click karke direct raabta kar sakte hain.";
@@ -118,7 +117,7 @@ const Chatbot: React.FC = () => {
               </div>
             </div>
           ))}
-          {isTyping && <div className="text-xs text-gray-400 italic">Bot is typing...</div>}
+          {isTyping && <div className="text-xs text-gray-400 italic px-4">Bot is typing...</div>}
         </div>
 
         <div className="p-5 bg-white border-t space-y-4">
@@ -129,13 +128,13 @@ const Chatbot: React.FC = () => {
               onChange={(e) => setInput(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && handleSend()}
               placeholder="Sawal likhein..."
-              className="flex-1 bg-gray-50 border rounded-2xl px-5 py-3 text-sm"
+              className="flex-1 bg-gray-50 border rounded-2xl px-5 py-3 text-sm focus:outline-none focus:border-[#daa520]"
             />
-            <button onClick={handleSend} className="w-12 h-12 bg-[#fbbf24] text-[#064e3b] rounded-2xl flex items-center justify-center">
+            <button onClick={handleSend} className="w-12 h-12 bg-[#fbbf24] text-[#064e3b] rounded-2xl flex items-center justify-center hover:bg-[#064e3b] hover:text-white transition-all">
               <i className="fa-solid fa-paper-plane" />
             </button>
           </div>
-          <a href={waLink} target="_blank" rel="noopener noreferrer" className="w-full h-16 flex items-center justify-center bg-[#25D366] text-white rounded-2xl font-bold gap-3">
+          <a href={waLink} target="_blank" rel="noopener noreferrer" className="w-full h-14 flex items-center justify-center bg-[#25D366] text-white rounded-2xl font-bold gap-3 shadow-lg hover:scale-[1.02] transition-transform">
             <i className="fa-brands fa-whatsapp text-2xl" /> WhatsApp Rabta
           </a>
         </div>

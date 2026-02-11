@@ -12,135 +12,144 @@ const TALISMAN_CONTENT: Record<TalismanCategory, any> = {
     title: "Kamyabi aur Kamrani ka Tilism",
     subtitle: "Talisman for Success",
     icon: "🏆",
-    significance: "Victory and success are blessings that require the right spiritual alignment. Many people work hard but find their paths blocked by invisible hurdles. Introduction: This Talisman is crafted using the sacred numerical secrets of the great names of Allah that govern success and victory. It is designed to clear the path of the wearer and attract positive spiritual energies. Solution: In the Quran, Allah says, 'Victory is only from Allah.' Our method involves identifying the specific spiritual blockages in your career or education and providing a tailored Naqsh that serves as a divine key. Benefits: Whether it is a promotion you seek, an exam you wish to clear, or a business deal you want to close, this Talisman provides the necessary spiritual boost. It enhances your aura, making you more influential and respected in social and professional circles. It is a shield against the envy (Hasad) of competitors that often stops progress.",
-    urdu: "Mehnat aur koshish ke bawajood kamyabi na milne ki surat mein ye Tilism rasta saaf karne aur fateh pane mein madadgar hota hai. Ism-e-Azam ki barkat se har darwaza khul jata hai.",
+    significance: "Victory and success are blessings that require the right spiritual alignment. Many people work hard but find their paths blocked by invisible hurdles. Introduction: This Talisman is crafted using the sacred numerical secrets of the great names of Allah that govern success and victory. It is designed to clear the path of the wearer and attract positive spiritual energies. Aksar auqat hamari mehnat hasad ki wajah se zaya ho jati hai, ye tilism hasad ke asrat ko khatam karta hai. Solution: In the Quran, Allah says, 'Victory is only from Allah.' Our method involves identifying the specific spiritual blockages in your career or education and providing a tailored Naqsh that serves as a divine key. Hum Ism-e-Azam ke aadaad ko makhsoos tariqay se muratab karte hain. Benefits: Whether it is a promotion you seek, an exam you wish to clear, or a business deal you want to close, this Talisman provides the necessary spiritual boost. It enhances your aura, making you more influential and respected in social and professional circles. It is a shield against the envy (Hasad) of competitors that often stops progress. Isse aapki shakhsiyat mein kashish paida hoti hai aur log aapki baat ko tawajjo se sunte hain. Kamyabi ke darwazay wahan se khulte hain jahan se aapne socha bhi nahi hota.",
+    urdu: "Mehnat aur koshish ke bawajood kamyabi na milne ki surat mein ye Tilism rasta saaf karne aur fateh pane mein madadgar hota hai. Ism-e-Azam ki barkat se har darwaza khul jata hai aur hasideen ki chalen nakaam ho jati hain.",
     benefit: "Confidence mein izafa aur har maidan mein fateh o kamyabi.",
     details: [
-      "Exam success aur zehni focus mein izafa.",
-      "Job promotions aur office mein izzat o martaba.",
-      "Competitive business environment mein ghalba.",
-      "Legal masail aur court cases mein fateh ka hal.",
-      "Personality mein kashish aur rohani quwwat."
+      "Exam success aur zehni focus mein be-panah izafa.",
+      "Job promotions aur office mein izzat o martaba ka husool.",
+      "Competitive business environment mein ghalba aur tarraqi.",
+      "Legal masail aur court cases mein fateh ka mustaqil rohani hal.",
+      "Personality mein kashish aur rohani quwwat mein izafa.",
+      "Sitaron ki gardish aur rukawaton ka mukammal khatma."
     ]
   },
   love: {
     title: "Muhabbat aur Gharelu Ittefaq",
     subtitle: "Talisman for Love & Harmony",
     icon: "❤️",
-    significance: "A peaceful home is a reflection of Jannah on Earth. Introduction: When hearts grow cold and misunderstandings arise, the entire family suffers. Often, this is caused by external spiritual attacks intended to break families. Solution: Our Talisman for Love is based on the verses of 'Mawaddah' and 'Rahmah'. It is written with pure Saffron and Musk to infuse the environment with spiritual warmth. Benefits: It heals broken relationships between husband and wife, resolves conflicts with parents or in-laws, and brings a sense of serenity to the home. It is strictly for lawful (halal) purposes and aims to bring hearts together for the sake of Allah. It acts as a barrier against those who try to create divisions.",
-    urdu: "Rishton mein darar khatam karne aur jayiz mohabbat paida karne ke liye makhsoos Qurani amliyat aur Naqsh-e-Hub. Ghar mein sakoon Allah ki bari nemat hai.",
+    significance: "A peaceful home is a reflection of Jannah on Earth. Introduction: When hearts grow cold and misunderstandings arise, the entire family suffers. Often, this is caused by external spiritual attacks intended to break families. Ghaibi quwwatein aksar hasad ki wajah se gharon mein larayi dalwati hain. Solution: Our Talisman for Love is based on the verses of 'Mawaddah' and 'Rahmah'. It is written with pure Saffron and Musk to infuse the environment with spiritual warmth. Is tilism mein Surah-e-Ikhlas aur makhsoos mohabbat ki ayaat ka istemal hota hai. Benefits: It heals broken relationships between husband and wife, resolves conflicts with parents or in-laws, and brings a sense of serenity to the home. It is strictly for lawful (halal) purposes and aims to bring hearts together for the sake of Allah. It acts as a barrier against those who try to create divisions. Isse ghar mein barkat aati hai aur miyan biwi ke darmiyan aik naya aur mazboot rishta qaim hota hai jo waqt ke sath mazeed gehra hota jata hai.",
+    urdu: "Rishton mein darar khatam karne aur jayiz mohabbat paida karne ke liye makhsoos Qurani amliyat aur Naqsh-e-Hub. Ghar mein sakoon Allah ki bari nemat hai aur hum is nemat ki bahaali mein aapki madad karte hain.",
     benefit: "Rishton mein darar ka khatma aur dilon mein mohabbat ki barkat.",
     details: [
-      "Miyan biwi ke darmiyan shadeed mohabbat aur ittefaq.",
-      "Sasural mein izzat aur maqam hasil karne ka hal.",
-      "Pasand ki shadi mein anay wali rukawaton ka tor.",
-      "Bhaiyon aur rishtedaron ke darmiyan dushmani ka khatma.",
-      "Ghar mein sakoon aur lari jhagray se mukammal nijaat."
+      "Miyan biwi ke darmiyan shadeed mohabbat aur mustaqil ittefaq.",
+      "Sasural mein izzat, maqam aur mohabbat hasil karne ka hal.",
+      "Pasand ki shadi mein anay wali rukawaton ka sharai o rohani tor.",
+      "Bhaiyon aur rishtedaron ke darmiyan purani dushmani ka khatma.",
+      "Ghar mein sakoon aur lari jhagray se mukammal nijaat ka rasta.",
+      "Negative energy aur shaitani waswaso se rishton ki hifazat."
     ]
   },
   magic: {
     title: "Jadu aur Nazr-e-Bad se Hifazat",
     subtitle: "Talisman for Protection",
     icon: "🛡️",
-    significance: "Spiritual warfare is a reality that many ignore until it is too late. Introduction: Black magic (Kala Jadu) can destroy a person's health, wealth, and sanity. It is a dark energy that needs a powerful light to be dismantled. Solution: Our 'Loh-e-Hifazat' is a master talisman that combines the power of Ayat-ul-Kursi, the four Quls, and the secret numbers of protection. Benefits: It provides a 24/7 spiritual shield around the wearer and their home. It returns the negative energy to its source and cleanses the soul from the effects of the evil eye (Nazar-e-Bad). This is essential for anyone who feels they are being held back by unseen forces. It provides peace of mind and allows you to live without fear.",
-    urdu: "Kala jadu aur nazr-e-bad se mukammal chhutkara aur mustaqil hifazati shield. Har qism ki bandish ka rohani tor sirf Quran se hi mumkin hai.",
+    significance: "Spiritual warfare is a reality that many ignore until it is too late. Introduction: Black magic (Kala Jadu) can destroy a person's health, wealth, and sanity. It is a dark energy that needs a powerful light to be dismantled. Hasid ki nazar pathar ko tor deti hai, to insan kya cheez hai. Solution: Our 'Loh-e-Hifazat' is a master talisman that combines the power of Ayat-ul-Kursi, the four Quls, and the secret numbers of protection. Hum har taweez ko mareez ke naam se 'Zakat' ada kar ke tayyar karte hain. Benefits: It provides a 24/7 spiritual shield around the wearer and their home. It returns the negative energy to its source and cleanses the soul from the effects of the evil eye (Nazar-e-Bad). This is essential for anyone who feels they are being held back by unseen forces. It provides peace of mind and allows you to live without fear. Isse dushman ka har waar palat jata hai aur aap hamesha Allah ki amaan mein rehte hain. Ghar mein asrat aur saye ka mukammal khatma hota hai.",
+    urdu: "Kala jadu aur nazr-e-bad se mukammal chhutkara aur mustaqil hifazati shield. Har qism ki bandish ka rohani tor sirf Quran se hi mumkin hai aur hum ye Quran-o-Sunnat ke mutabiq karte hain.",
     benefit: "Har qism ki rohani bandish aur jadu ka mukammal khatma.",
     details: [
-      "Kalay jadu aur sifli ilm ka 100% kaat (tor).",
-      "Nazar-e-bad aur hasideen ki jalan se hifazat.",
-      "Saye, asrat aur khaufnaq khwabon se nijaat.",
-      "Ghar aur karobar ki hifazati rohani dhaal.",
-      "Dushman ki buri chalon se hamesha ke liye bachao."
+      "Kalay jadu aur sifli ilm ka 100% kaat (tor) aur hifazat.",
+      "Nazar-e-bad aur hasideen ki jalan se hamesha ke liye bachao.",
+      "Saye, asrat aur khaufnaq khwabon se mukammal nijaat ka naqsh.",
+      "Ghar aur karobar ki hifazati rohani dhaal aur barkat.",
+      "Dushman ki buri chalon se hamesha ke liye ghaibi bachao.",
+      "Zehni bechaini aur darr ko sukoon mein tabdeel karne ka hal."
     ]
   },
   business: {
     title: "Karobari Barkat aur Rizq",
     subtitle: "Talisman for Business",
     icon: "💰",
-    significance: "Financial stability allows a believer to focus on their faith and serve the community. Introduction: Many businesses fail despite good management because the spiritual 'Barkat' is missing or has been blocked by jealousy. Solution: This Talisman is based on the numerical grid of Surah Al-Waqiah and the 'Ism-e-Rizq'. It acts as a magnet for prosperity and new opportunities. Benefits: It removes the 'Bandish' on earnings, protects the business from sudden losses, and attracts loyal customers. It ensures that the money you earn stays blessed and fulfills your needs without stress. It is a must-have for shopkeepers, entrepreneurs, and anyone struggling with debt.",
-    urdu: "Rizq ki tangi door karne aur karobar mein barkat ke liye makhsoos rohani hal. Karobari bandish khatam ho kar rizq ke darwazay khul jate hain.",
+    significance: "Financial stability allows a believer to focus on their faith and serve the community. Introduction: Many businesses fail despite good management because the spiritual 'Barkat' is missing or has been blocked by jealousy. Karobar ki bandish aaj kal boht aam hai jo hasad ki wajah se ki jati hai. Solution: This Talisman is based on the numerical grid of Surah Al-Waqiah and the 'Ism-e-Rizq'. It acts as a magnet for prosperity and new opportunities. Hum barkat ke liye makhsoos 'Sa'at' mein Zafran se ye naqsh likhte hain. Benefits: It removes the 'Bandish' on earnings, protects the business from sudden losses, and attracts loyal customers. It ensures that the money you earn stays blessed and fulfills your needs without stress. It is a must-have for shopkeepers, entrepreneurs, and anyone struggling with debt. Isse karobar mein izafa hota hai aur aapki amdani ke naye zariye peda hote hain. Karobari dushman nakaam hote hain aur aapka naam market mein roshan hota hai.",
+    urdu: "Rizq ki tangi door karne aur karobar mein barkat ke liye makhsoos rohani hal. Karobari bandish khatam ho kar rizq ke darwazay khul jate hain aur ghaib se madad aati hai.",
     benefit: "Karobar mein barkat aur rizq mein be-panah farawani.",
     details: [
-      "Karobari nuqsan aur bandish ka mukammal khatma.",
-      "Naye gahakon (customers) ki tawajjo hasil karna.",
-      "Qarz se nijaat aur mali mustahkami ka rohani hal.",
-      "Dukan aur office ki barkat ke liye khas naqsh.",
-      "Sudden financial losses se hamesha ke liye hifazat."
+      "Karobari nuqsan aur bandish ka mukammal aur yaqeeni khatma.",
+      "Naye gahakon (customers) ki tawajjo aur sale mein be-panah izafa.",
+      "Qarz se nijaat aur mali mustahkami ka makhsoos rohani hal.",
+      "Dukan aur office ki barkat ke liye khas noori naqsh-e-rizq.",
+      "Sudden financial losses se hamesha ke liye rohani hifazat.",
+      "Amdaani ke naye aur jayiz raste khulne ka noori wazifa."
     ]
   },
   pregnancy: {
     title: "Aulaad ki Nemat aur Hamal ki Hifazat",
     subtitle: "Talisman for Pregnancy",
     icon: "🌸",
-    significance: "The blessing of a child is the greatest joy for a family. Introduction: Infertility or repeated miscarriages are often linked to spiritual blockages in the reham (womb). These asrat prevent a healthy life from blooming. Solution: We provide a specialized Talisman prepared with 'Ayaat-e-Hamal'. It cleanses the mother's body and creates a protected spiritual environment for the unborn child. Benefits: It helps in successful conception, ensures the safety of the pregnancy for the full nine months, and leads to a healthy delivery. It protects the child from the evil eye even before they are born. This is a source of hope for those who have lost hope after many medical treatments.",
-    urdu: "Hamal ki hifazat aur aulaad ki nemat ke liye Ism-e-Azam ki barkat se tayyar karda tilism. Maa aur bacha dono Allah ki hifazat mein rehte hain.",
+    significance: "The blessing of a child is the greatest joy for a family. Introduction: Infertility or repeated miscarriages are often linked to spiritual blockages in the reham (womb). These asrat prevent a healthy life from blooming. Buri nazar aur asrat aksar hamal ko nuqsan pohanchate hain. Solution: We provide a specialized Talisman prepared with 'Ayaat-e-Hamal'. It cleanses the mother's body and creates a protected spiritual environment for the unborn child. Hum maa aur bache ke hifazati hisaar ke liye makhsoos duain damm karte hain. Benefits: It helps in successful conception, ensures the safety of the pregnancy for the full nine months, and leads to a healthy delivery. It protects the child from the evil eye even before they are born. This is a source of hope for those who have lost hope after many medical treatments. Isse aulaad-e-saaleh naseeb hoti hai aur ghar mein khushiyan wapas aati hain. Maa ki sehat bhi hamal ke doran behtar rehti hai.",
+    urdu: "Hamal ki hifazat aur aulaad ki nemat ke liye Ism-e-Azam ki barkat se tayyar karda tilism. Maa aur bacha dono Allah ki hifazat mein rehte hain aur har shar se mehfooz rehte hain.",
     benefit: "Hamal ka safe rehna aur aulaad ki nemat se jholi bharna.",
     details: [
-      "Be-auladi ka rohani ilaj aur conceiving mein madad.",
-      "Miscarriage (hamal girne) se mukammal hifazat.",
-      "Dauran-e-hamal maa ki sehat aur sakoon ka hal.",
-      "Bache ki rohani hifazat aur buri nazar se bachao.",
-      "Delivery mein asani aur sehat mand aulaad ki dua."
+      "Be-auladi ka rohani ilaj aur conceiving mein ghaibi madad.",
+      "Miscarriage (hamal girne) se mukammal aur mustaqil hifazat.",
+      "Dauran-e-hamal maa ki sehat, sakoon aur tawanayi ka hal.",
+      "Bache ki rohani hifazat aur pedaishi buri nazar se bachao.",
+      "Delivery mein asani aur sehat mand aulaad ki khas Qurani dua.",
+      "Womb (reham) se manfi asrat aur bandish ka mukammal khatma."
     ]
   },
   pray: {
     title: "Khasusi Dua ki Darkhwast",
     subtitle: "Special Prayer Request",
     icon: "🤲",
-    significance: "The weapon of a believer is Dua. Introduction: Sometimes your own prayers feel unanswered because of a heavy spiritual burden or a lack of focus. Collective prayer or prayer by those who dedicate their lives to spiritual practice has a special weight. Solution: You can submit your specific concern to us. Our team performs 'Khasusi Dua' during Tahajjud and other blessed hours, making your request a priority in our spiritual circles. Benefits: This service provides a powerful intercession. We use the 'Waseela' of the righteous and the power of 'Ism-e-Azam' to knock at the door of Allah's mercy for your specific need. Many have seen miracles happen through these focused spiritual sessions.",
-    urdu: "Hamare rohani mahireen se makhsoos dua karwane ke liye apni darkhwast bhejien. Allah ke huzoor gir-gira kar dua karna har mushkil ka hal hai.",
+    significance: "The weapon of a believer is Dua. Introduction: Sometimes your own prayers feel unanswered because of a heavy spiritual burden or a lack of focus. Collective prayer or prayer by those who dedicate their lives to spiritual practice has a special weight. Allah Ta'ala farmata hai ke 'Mujhse dua karo main qabool karunga'. Solution: You can submit your specific concern to us. Our team performs 'Khasusi Dua' during Tahajjud and other blessed hours, making your request a priority in our spiritual circles. Hum Ism-e-Azam ke sath aapka naam lekar ilteja karte hain. Benefits: This service provides a powerful intercession. We use the 'Waseela' of the righteous and the power of 'Ism-e-Azam' to knock at the door of Allah's mercy for your specific need. Many have seen miracles happen through these focused spiritual sessions. Isse aapke dil ko sukoon milta hai aur mushkil kaam asaan hone lagte hain. Aapki har jayiz hajat ke liye hum Allah ke huzoor gir-gira kar dua karte hain.",
+    urdu: "Hamare rohani mahireen se makhsoos dua karwane ke liye apni darkhwast bhejien. Allah ke huzoor gir-gira kar dua karna har mushkil ka hal hai aur hum is mein aapka sath dete hain.",
     benefit: "Direct spiritual connection aur Allah ki ghaibi madad ka husool.",
     details: [
-      "Tahajjud ke auqat mein khasusi dua aur ilteja.",
-      "Mushkil tareen masail ke liye makhsoos dua sessions.",
-      "Gharelu aur karobari pareshaniyon ke liye collective prayer.",
-      "Bimariyon se shifa ke liye makhsoos Qurani damm.",
-      "Har hajat ki takmeel ke liye rohani sifarish."
+      "Tahajjud ke mubarak auqat mein khasusi dua aur ilteja ka ehtamam.",
+      "Mushkil tareen masail ke liye makhsoos aur lambay dua sessions.",
+      "Gharelu aur karobari pareshaniyon ke liye collective spiritual prayer.",
+      "Bimariyon se shifa ke liye makhsoos Qurani damm aur ilteja.",
+      "Har jayiz hajat ki jald takmeel ke liye khas rohani sifarish.",
+      "Zehni sakoon aur mushkilat se nijaat ki makhsoos dua."
     ]
   },
   ismeazam: {
     title: "Ism-e-Azam ki Rohani Quwwat",
     subtitle: "Your Personal Ism-e-Azam",
     icon: "✨",
-    significance: "Every person has a unique spiritual key connected to their name and character. Introduction: This is known as your personal 'Ism-e-Azam'. When you call upon Allah using the name that resonates with your soul's vibration, the response is swift. Solution: We calculate your specific Ism-e-Azam using 'Abjad' and ancient spiritual mathematics. We then provide you with the correct method (Wird) to practice it. Benefits: It brings clarity to your mind, opens doors of luck, and provides a direct line to divine assistance in times of crisis. Practicing your Ism-e-Azam daily acts as a spiritual battery, keeping your aura strong and protected from all negativity.",
-    urdu: "Apne naam ke mutabiq makhsoos Ism-e-Azam maloom karein jo har mushkil ki kunji hai. Ye aapki rohani quwwat ko jala bakhshta hai.",
+    significance: "Every person has a unique spiritual key connected to their name and character. Introduction: This is known as your personal 'Ism-e-Azam'. When you call upon Allah using the name that resonates with your soul's vibration, the response is swift. Aapka naam aapki shakhsiyat ka aaina hota hai aur Ism-e-Azam uski taqat. Solution: We calculate your specific Ism-e-Azam using 'Abjad' (Numerical calculation) and ancient spiritual mathematics. We then provide you with the correct method (Wird) and timings to practice it. Isse aapki rooh ko jala milti hai. Benefits: It brings clarity to your mind, opens doors of luck, and provides a direct line to divine assistance in times of crisis. Practicing your Ism-e-Azam daily acts as a spiritual battery, keeping your aura strong and protected from all negativity. Isse aapki duain jald qabool hoti hain aur dunya aapki izzat karti hai. Har mushkil waqt mein Allah ki ghaibi madad aapke sath hoti hai.",
+    urdu: "Apne naam ke mutabiq makhsoos Ism-e-Azam maloom karein jo har mushkil ki kunji hai. Ye aapki rohani quwwat ko jala bakhshta hai aur aapki shakhsiyat ko pur-asar banata hai.",
     benefit: "Zindagi mein asani, barkat aur har mushkil ka fori hal.",
     details: [
-      "Personalized Ism-e-Azam calculation (Abjad ke mutabiq).",
-      "Ism-e-Azam parhne ka sahi tarika aur auqat.",
-      "Zehni quwwat aur rohani kashish mein be-panah izafa.",
-      "Har dua ki qabooliyat ka asan rohani rasta.",
-      "Personality alignment with divine names."
+      "Personalized Ism-e-Azam calculation (Abjad ke usoolon ke mutabiq).",
+      "Ism-e-Azam parhne ka sahi aur asar-andaz tarika o auqat.",
+      "Zehni quwwat aur rohani kashish mein be-panah o mustaqil izafa.",
+      "Har dua ki jald qabooliyat ka asan aur authentic rohani rasta.",
+      "Personality alignment with divine names for social success.",
+      "Hifazati hisaar (Spiritual Protection) jo hamesha sath rahe."
     ]
   },
   guidance: {
     title: "Mukammal Rohani Guidance",
     subtitle: "Complete Spiritual Guidance",
     icon: "🧭",
-    significance: "Confusion is a tool of Shaitaan. Introduction: Many people make wrong life decisions because they lack spiritual clarity. Whether it's marriage, a career shift, or moving abroad, a wrong step can lead to years of regret. Solution: Our guidance service offers a deep analysis of your spiritual state. We use Istikhara and 'Kashf' principles to show you the truth behind the veils. Benefits: You gain the confidence to move forward. We provide you with a 'Roadmap' for your spiritual and worldly success, ensuring that your decisions are aligned with Allah's will. This service is like a lighthouse in the dark ocean of life's complexities.",
-    urdu: "Zindagi ke pechida masail mein Quran-o-Sunnat ki roshni mein behtareen mashwara aur renumayi. Ghalat faislo se bachna hi asli kamyabi hai.",
-    benefit: "Faislo mein yaqeen, sukoon aur ghalat raste se hifazat.",
+    significance: "Confusion is a tool of Shaitaan. Introduction: Many people make wrong life decisions because they lack spiritual clarity. Whether it's marriage, a career shift, or moving abroad, a wrong step can lead to years of regret. Ghalat faislay aksar bandish ki wajah se hote hain. Solution: Our guidance service offers a deep analysis of your spiritual state. We use Istikhara and 'Kashf' (Spiritual Insight) principles to show you the truth behind the veils. Hum aapko batate hain ke konsa rasta aapke liye 'Khair' hai. Benefits: You gain the confidence to move forward. We provide you with a 'Roadmap' for your spiritual and worldly success, ensuring that your decisions are aligned with Allah's will. This service is like a lighthouse in the dark ocean of life's complexities. Isse aapka waqt aur sarmaya dono mehfooz rehte hain aur aap hamesha sukoon mein rehte hain.",
+    urdu: "Zindagi ke pechida masail mein Quran-o-Sunnat ki roshni mein behtareen mashwara aur renumayi. Ghalat faislo se bachna hi asli kamyabi hai aur hum is mein aapke madadgar hain.",
+    benefit: "Faislo mein yaqeen, sukoon aur ghalat raste se mukammal hifazat.",
     details: [
-      "Career aur Business decisions mein rohani mashwara.",
-      "Rishto aur shadi ke mamlat mein gehri renumayi.",
-      "Zehni kashmakash aur confusion ka rohani hal.",
-      "Zindagi ke naye safar se pehle Allah ki raza maloom karna.",
-      "Spiritual growth aur Allah se qurbat ka rasta."
+      "Career aur Business decisions mein behtareen rohani mashwara.",
+      "Rishto aur shadi ke mamlat mein gehri aur makhsoos renumayi.",
+      "Zehni kashmakash aur confusion ka mustaqil rohani hal.",
+      "Zindagi ke naye safar se pehle Allah ki raza maloom karne ka tariqa.",
+      "Spiritual growth aur Allah se qurbat hasil karne ka authentic rasta.",
+      "Dushman aur dost ki pehchan mein rohani madad aur jaiza."
     ]
   },
   istikhara: {
     title: "Online Istikhara (Mashwara-e-Ilahi)",
     subtitle: "Divine Consultation",
     icon: "🔮",
-    significance: "Istikhara is the beautiful Sunnah of asking Allah for the best choice. Introduction: Most people do Istikhara when it's too late. The correct way is to seek guidance before you commit to a decision. Solution: Our experts perform the 'Masnoon Istikhara' on your behalf with the utmost sincerity and purity. Benefits: You receive a clear indication of whether a path is good (Khair) or harmful (Shar) for you. It saves you from future heartache, financial loss, and wasted years. Our report provides context and guidance on how to proceed based on the spiritual signals received during the process. It is the ultimate insurance for a believer's peace of mind.",
-    urdu: "Naye kaam ya faislay se pehle Allah ki barkat aur raza maloom karne ka sharai tarika. Istikhara momin ka aik azeem hathiyar hai.",
-    benefit: "Allah ki marzi maloom hona aur har ghalat kadam se bachat.",
+    significance: "Istikhara is the beautiful Sunnah of asking Allah for the best choice. Introduction: Most people do Istikhara when it's too late. The correct way is to seek guidance before you commit to a decision. Istikhara momin ka hathiyar hai jo use ghalat raste se bachata hai. Solution: Our experts perform the 'Masnoon Istikhara' on your behalf with the utmost sincerity, purity and focused spiritual energy. Hum Quran aur Sunnat ke bataye huye tariqay se mashwara karte hain. Benefits: You receive a clear indication of whether a path is good (Khair) or harmful (Shar) for you. It saves you from future heartache, financial loss, and wasted years. Our report provides context and guidance on how to proceed based on the spiritual signals received during the process. It is the ultimate insurance for a believer's peace of mind. Aapka dil mutmain ho jata hai aur raste asaan ho jate hain.",
+    urdu: "Naye kaam ya faislay se pehle Allah ki barkat aur raza maloom karne ka sharai tarika. Istikhara momin ka aik azeem hathiyar hai jo use kabhi mayoos nahi karta.",
+    benefit: "Allah ki marzi maloom hona aur har ghalat kadam se yaqeeni bachat.",
     details: [
-      "Marriage (Shadi) ke liye makhsoos aur tafseeli Istikhara.",
-      "Business aur investment se pehle Allah ka mashwara.",
-      "Safar (Travel) aur relocation ke liye rohani jaiza.",
-      "Khwab ki tabeer aur unka Istikhara se taluq.",
-      "Written or Audio report of the Istikhara result."
+      "Marriage (Shadi) ke liye makhsoos aur nihayat tafseeli Istikhara.",
+      "Business aur investment se pehle Allah ka mashwara aur barkat.",
+      "Safar (Travel) aur relocation ke liye rohani jaiza aur renumayi.",
+      "Khwab ki tabeer aur unka Istikhara se taluq maloom karna.",
+      "Written or Audio report of the Istikhara result with guidance.",
+      "Har qism ki uljhan door karne ke liye authentic 'Istikhara-e-Noori'."
     ],
     faqs: [
       {
@@ -297,7 +306,7 @@ const TalismanSubPage: React.FC<TalismanSubPageProps> = ({ category, onNavigate 
                     </div>
                   </button>
                   
-                  <div className={`transition-all duration-500 ease-in-out ${openFaq === idx ? 'max-h-[300px] opacity-100 pb-8 px-8' : 'max-h-0 opacity-0 pointer-events-none'}`}>
+                  <div className={`transition-all duration-500 ease-in-out ${openFaq === idx ? 'max-h-[500px] opacity-100 pb-8 px-8' : 'max-h-0 opacity-0 pointer-events-none'}`}>
                     <div className="h-px w-full bg-gradient-to-r from-transparent via-[#daa520]/20 to-transparent mb-6" />
                     <p className="text-gray-600 font-lora text-lg leading-relaxed italic border-l-4 border-blue-200 pl-6">
                       {faq.answer}
