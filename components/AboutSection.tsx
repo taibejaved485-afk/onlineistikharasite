@@ -35,12 +35,12 @@ const AboutSection: React.FC = () => {
           <h2 className="text-[#064e3b] font-serif-display text-4xl md:text-6xl font-bold mb-2">
             Hamare Baray Mein
           </h2>
-          <h3 className="text-[#daa520] font-cinzel text-lg md:text-xl tracking-[0.3em] font-bold">
-            ABOUT OUR MISSION
+          <h3 className="text-[#daa520] font-cinzel text-lg md:text-xl tracking-[0.3em] font-bold uppercase">
+            Online Istikhara: Rohani Masail Ka Shari Hal
           </h3>
           <div className="mt-6 flex justify-center items-center gap-4">
             <div className="h-px w-16 bg-[#daa520]/40" />
-            <i className="fa-solid fa-star-and-crescent text-[#daa520]" />
+            <i className="fa-solid fa-moon text-[#daa520]" />
             <div className="h-px w-16 bg-[#daa520]/40" />
           </div>
         </div>
@@ -71,7 +71,7 @@ const AboutSection: React.FC = () => {
               Hamara maqsad logon ki mushkilat ka hal Quran-o-Sunnat aur jadeed AI technology ki madad se nikalna hai.
             </p>
             <p className="text-gray-600 font-lora text-lg leading-relaxed">
-              At Noor Emerald, we bridge the gap between traditional spiritual wisdom and modern technological convenience. Our platform is dedicated to providing authentic Islamic guidance that respects the sanctity of Sharia while utilizing cutting-edge AI to offer immediate support to the global Ummah.
+              At <span className="text-[#064e3b] font-bold">Online Istikhara</span>, we bridge the gap between traditional spiritual wisdom and modern technological convenience. Our platform is dedicated to providing authentic Islamic guidance that respects the sanctity of Sharia while offering immediate support to the global Ummah.
             </p>
             
             {/* Expertise List */}
@@ -96,25 +96,11 @@ const AboutSection: React.FC = () => {
               <div className="w-16 h-16 mx-auto mb-6 bg-[#064e3b]/5 rounded-2xl flex items-center justify-center text-[#daa520] group-hover:bg-[#daa520] group-hover:text-white transition-all duration-300">
                 <i className={`fa-solid ${value.icon} text-2xl`} />
               </div>
-              <h4 className="text-[#064e3b] font-serif-display text-xl font-bold mb-4">{value.title}</h4>
-              <p className="text-gray-500 font-lora text-sm leading-relaxed">
-                {value.text}
-              </p>
+              <h4 className="text-[#064e3b] font-serif-display text-2xl font-bold mb-4">{value.title}</h4>
+              <p className="text-gray-500 font-lora leading-relaxed">{value.text}</p>
             </div>
           ))}
         </div>
-
-        {/* Final Call to Action */}
-        <div className="text-center">
-            <div className="inline-block p-1 rounded-full bg-gradient-to-r from-[#daa520] to-[#b8860b]">
-                <a href="#contact" className="px-12 py-4 bg-[#064e3b] text-white rounded-full font-serif-display font-bold text-lg tracking-widest uppercase hover:bg-transparent hover:text-[#064e3b] transition-all duration-300 flex items-center gap-3">
-                    Contact Us
-                    <i className="fa-solid fa-paper-plane text-sm" />
-                </a>
-            </div>
-            <p className="mt-6 text-[#064e3b]/50 italic font-lora">Hum har waqt apki rehnumayi ke liye hazir hain.</p>
-        </div>
-
       </div>
     </section>
   );

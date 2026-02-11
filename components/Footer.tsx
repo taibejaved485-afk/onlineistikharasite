@@ -46,10 +46,10 @@ const Footer: React.FC<FooterProps> = ({ onNavigate, onAdminClick }) => {
           <div className="space-y-6">
             <div onClick={() => onNavigate?.('home')} className="flex items-center gap-3 cursor-pointer">
               <div className="w-12 h-12 bg-gradient-to-br from-[#daa520] to-[#b8860b] rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(218,165,32,0.4)]">
-                <span className="text-[#064e3b] font-serif-display font-bold text-2xl">N</span>
+                <i className="fa-solid fa-moon text-[#064e3b] text-2xl" />
               </div>
               <h3 className="text-2xl font-serif-display font-bold tracking-wider">
-                NOOR <span className="text-[#daa520]">EMERALD</span>
+                ONLINE <span className="text-[#daa520]">ISTIKHARA</span>
               </h3>
             </div>
             <p className="text-white/70 font-amiri text-lg leading-relaxed dir-rtl text-right">

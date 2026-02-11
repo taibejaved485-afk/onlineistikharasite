@@ -20,7 +20,7 @@ const Hero: React.FC = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const waLink = "https://wa.me/923706487654?text=Assalam-o-Alaikum!%20Mujhe%20Noor%20Emerald%20se%20rohani%20masail%20ke%20bare%20mein%20maloomat%20chahiye.";
+  const waLink = "https://wa.me/923706487654?text=Assalam-o-Alaikum!%20Mujhe%20Online%20Istikhara%20se%20rohani%20masail%20ke%20bare%20mein%20maloomat%20chahiye.";
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -66,7 +66,6 @@ const Hero: React.FC = () => {
           </p>
           
           <div className="flex flex-wrap justify-center gap-6">
-            {/* WhatsApp Button with Pre-filled Message */}
             <a 
               href={waLink} 
               target="_blank"
@@ -79,11 +78,10 @@ const Hero: React.FC = () => {
               Get Instant Help
             </a>
 
-            {/* AI Assistant Button */}
             <button 
               onMouseEnter={() => setIsAiHovered(true)}
               onMouseLeave={() => setIsAiHovered(false)}
-              className="group flex items-center gap-3 px-8 py-4 bg-[#daa520] text-[#064e3b] font-serif-display font-bold rounded-lg shadow-xl gold-glow hover:bg-[#b8860b] transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 relative z-30"
+              className="group flex items-center gap-3 px-8 py-4 bg-[#daa520] text-[#064e3b] font-serif-display font-bold rounded-lg shadow-xl hover:bg-[#b8860b] transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 relative z-30"
             >
               <svg className="w-6 h-6 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.364-6.364l-.707-.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M12 18v3m4.673-4h-4.673A4.947 4.947 0 017 12.028a5 5 0 0110 0 4.947 4.947 0 01-2.327 4.972z" />
@@ -104,17 +102,6 @@ const Hero: React.FC = () => {
               }`}
             />
           ))}
-        </div>
-      </div>
-
-      {/* Floating AI Tooltip */}
-      <div className={`absolute bottom-10 right-10 z-30 animate-float hidden md:block transition-opacity duration-500 ${isAiHovered ? 'opacity-100' : 'opacity-60'}`}>
-        <div className="relative group">
-          <div className="bg-[#daa520] text-[#064e3b] px-6 py-3 rounded-full font-serif-display font-bold shadow-2xl border-2 border-white/20 flex items-center gap-3 cursor-pointer hover:scale-105 transition-transform">
-             <div className="w-2 h-2 bg-[#064e3b] rounded-full animate-ping"></div>
-             Mujhse apna koi bhi khwab ya masla share karein
-          </div>
-          <div className="absolute -bottom-2 right-10 w-4 h-4 bg-[#daa520] rotate-45"></div>
         </div>
       </div>
 

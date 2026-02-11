@@ -94,16 +94,16 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
           <a href="#" onClick={handleLogoClick} className="flex items-center gap-3 md:gap-4 group cursor-pointer shrink-0 lg:mr-auto">
             <div className="relative">
               <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-[#daa520] to-[#b8860b] rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(218,165,32,0.4)] group-hover:scale-110 transition-transform duration-500">
-                <span className="text-[#064e3b] font-serif-display font-bold text-xl md:text-2xl">N</span>
+                <i className="fa-solid fa-moon text-[#064e3b] text-xl md:text-2xl" />
               </div>
               <div className="absolute -inset-1 border border-[#daa520]/30 rounded-full animate-pulse"></div>
             </div>
             <div className="hidden sm:block">
               <h1 className="text-white font-serif-display text-xl md:text-2xl font-bold leading-tight tracking-wider">
-                NOOR <span className="text-[#daa520]">EMERALD</span>
+                ONLINE <span className="text-[#daa520]">ISTIKHARA</span>
               </h1>
               <p className="text-[10px] text-[#daa520]/70 font-amiri uppercase tracking-[0.3em] -mt-1 font-semibold">
-                Spiritual Excellence
+                Rohani Masail Ka Shari Hal
               </p>
             </div>
           </a>

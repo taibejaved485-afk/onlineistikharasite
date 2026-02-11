@@ -63,17 +63,22 @@ const MobileSidebar: React.FC<MobileSidebarProps> = ({ items, isOpen, onClose, o
 
       {/* Sidebar Content */}
       <div 
-        className={`fixed top-0 left-0 h-full w-[85vw] max-w-[320px] bg-gradient-to-b from-[#064e3b] to-[#011a14] islamic-pattern z-[60] shadow-[10px_0_40px_rgba(0,0,0,0.5)] transform transition-transform duration-500 cubic-bezier(0.16, 1, 0.3, 1) lg:hidden overflow-y-auto border-r border-[#daa520]/20 ${
+        className={`fixed top-0 left-0 h-full w-[85vw] max-w-[320px] bg-gradient-to-b from-[#064e3b] to-[#011a14] islamic-pattern z-[60] shadow-[10px_0_40px_rgba(0,0,0,0.5)] transform transition-transform duration-500 lg:hidden overflow-y-auto border-r border-[#daa520]/20 ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
         <div className="p-6 md:p-8">
           <div className="flex justify-between items-center mb-10">
             <div className="cursor-pointer" onClick={() => { onNavigate?.('home'); onClose(); }}>
-               <h2 className="text-white font-serif-display text-xl md:text-2xl font-bold tracking-widest flex flex-wrap items-baseline gap-1">
-                NOOR <span className="text-[#daa520] text-lg">EMERALD</span>
-              </h2>
-              <div className="h-[2px] w-20 bg-gradient-to-r from-[#daa520] to-transparent mt-1" />
+               <div className="flex items-center gap-2">
+                 <div className="w-8 h-8 bg-[#daa520] rounded-full flex items-center justify-center">
+                   <i className="fa-solid fa-moon text-[#064e3b] text-sm" />
+                 </div>
+                 <h2 className="text-white font-serif-display text-lg font-bold tracking-widest flex flex-wrap items-baseline gap-1">
+                  ONLINE <span className="text-[#daa520]">ISTIKHARA</span>
+                </h2>
+               </div>
+              <div className="h-[2px] w-20 bg-gradient-to-r from-[#daa520] to-transparent mt-2" />
             </div>
             <button onClick={onClose} className="text-[#daa520] hover:rotate-90 transition-transform duration-300 p-2">
               <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -136,16 +141,10 @@ const MobileSidebar: React.FC<MobileSidebarProps> = ({ items, isOpen, onClose, o
           <div className="mt-16 pt-8 border-t border-[#daa520]/10">
             <button 
               onClick={() => { onNavigate?.('home'); onClose(); setTimeout(() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }), 100); }}
-              className="w-full py-4 bg-[#daa520] text-[#064e3b] rounded-xl font-bold font-serif-display shadow-lg hover:bg-white transition-all btn-gold-glow"
+              className="w-full py-4 bg-[#daa520] text-[#064e3b] rounded-xl font-bold font-serif-display shadow-lg hover:bg-white transition-all"
             >
               Contact Us Now
             </button>
-          </div>
-
-          <div className="mt-12 text-center">
-            <p className="text-[#daa520]/40 font-amiri text-sm tracking-widest italic">
-              Al-Quds Ash-Sharif
-            </p>
           </div>
         </div>
       </div>

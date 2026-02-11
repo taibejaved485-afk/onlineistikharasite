@@ -53,11 +53,10 @@ function App() {
   const quillRef = useRef<any>(null);
   const editorContainerRef = useRef<HTMLDivElement>(null);
 
-  // Blog Form State - Default category updated
+  // Blog Form State
   const [newBlog, setNewBlog] = useState({ title: '', category: 'Istikhara', img: '', content: '' });
 
   useEffect(() => {
-    // Initial Load from LocalStorage
     const saved = localStorage.getItem('noor_emerald_blogs');
     if (saved) setBlogs(JSON.parse(saved));
 
@@ -95,48 +94,12 @@ function App() {
         setView('home');
         if (!isInitial) window.scrollTo({ top: 0, behavior: 'smooth' });
       }
-      
-      if (hash && hash !== '#blogs-section' && !isInitial) window.scrollTo(0, 0);
     };
 
     handleLocationChange(true);
     window.addEventListener('hashchange', () => handleLocationChange(false));
     return () => window.removeEventListener('hashchange', () => handleLocationChange(false));
   }, []);
-
-  useEffect(() => {
-    if (isAdminModalOpen && isAdminAuthenticated && editorContainerRef.current && !quillRef.current) {
-      const Font = Quill.import('formats/font');
-      Font.whitelist = [
-        'open-sans', 'roboto', 'lato', 'montserrat', 'poppins', 
-        'inter', 'merriweather', 'playfair-display', 'lora', 'oswald'
-      ];
-      Quill.register(Font, true);
-
-      quillRef.current = new Quill(editorContainerRef.current, {
-        theme: 'snow',
-        placeholder: 'Apna rohani blog content likhein...',
-        modules: {
-          toolbar: [
-            [{ 'font': Font.whitelist }],
-            [{ 'header': [1, 2, 3, false] }],
-            ['bold', 'italic', 'underline'],
-            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-            [{ 'align': [] }],
-            ['clean']
-          ]
-        }
-      });
-      
-      if (quillRef.current.root.innerHTML === '<p><br></p>') {
-        quillRef.current.format('font', 'poppins');
-      }
-    }
-    
-    if (!isAdminModalOpen) {
-      quillRef.current = null;
-    }
-  }, [isAdminModalOpen, isAdminAuthenticated]);
 
   const navigateTo = (target: ViewType, category?: TaweezCategory | TalismanCategory) => {
     if (target === 'about') window.location.hash = 'about-page';
@@ -160,51 +123,7 @@ function App() {
     if (target === 'talisman-sub' && category) setTalismanSubCategory(category as TalismanCategory);
   };
 
-  const handleAdminLogin = () => {
-    if (adminPass.trim() === 'admin123') {
-      setIsAdminAuthenticated(true);
-      setLoginError(false);
-      setAdminPass('');
-    } else {
-      setLoginError(true);
-      setTimeout(() => setLoginError(false), 3000);
-    }
-  };
-
-  const saveBlog = () => {
-    const editorHtml = quillRef.current ? quillRef.current.root.innerHTML : '';
-    
-    if (!newBlog.title || editorHtml === '<p><br></p>') {
-      return alert("Title aur Content dono zaroori hain!");
-    }
-
-    const entry = { 
-      ...newBlog, 
-      content: editorHtml, 
-      id: Date.now(), 
-      date: new Date().toLocaleDateString() 
-    };
-    
-    const updated = [entry, ...blogs];
-    setBlogs(updated);
-    localStorage.setItem('noor_emerald_blogs', JSON.stringify(updated));
-    
-    setNewBlog({ title: '', category: 'Istikhara', img: '', content: '' });
-    if (quillRef.current) {
-        quillRef.current.root.innerHTML = '';
-        quillRef.current.format('font', 'poppins');
-    }
-    
-    alert("Blog published with selected category!");
-  };
-
-  const deleteBlog = (id: number) => {
-    const updated = blogs.filter(b => b.id !== id);
-    setBlogs(updated);
-    localStorage.setItem('noor_emerald_blogs', JSON.stringify(updated));
-  };
-
-  const waLink = "https://wa.me/923706487654?text=Assalam-o-Alaikum!%20Mujhe%20Noor%20Emerald%20se%20rohani%20masail%20ke%20bare%20mein%20maloomat%20chahiye.";
+  const waLink = "https://wa.me/923706487654?text=Assalam-o-Alaikum!%20Mujhe%20Online%20Istikhara%20se%20rohani%20masail%20ke%20bare%20mein%20maloomat%20chahiye.";
 
   return (
     <div className="min-h-screen bg-[#fdfdfc] selection:bg-[#daa520] selection:text-white font-serif">
@@ -248,24 +167,19 @@ function App() {
         {view === 'talisman-sub' && talismanSubCategory && <TalismanSubPage category={talismanSubCategory} onNavigate={navigateTo} />}
       </main>
 
-      {/* Admin Modal omitted for brevity, same as previous */}
-      {/* ... */}
-
-      {/* Floating WhatsApp Button - Optimized Position & Alignment */}
       <a 
         href={waLink} 
         target="_blank" 
         rel="noopener noreferrer"
-        className="fixed bottom-8 right-8 z-[150] w-16 h-16 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 animate-pulse-gold"
+        className="fixed bottom-8 right-8 z-[150] w-16 h-16 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300"
         title="WhatsApp Support"
       >
         <i className="fa-brands fa-whatsapp text-4xl" />
       </a>
 
-      {/* AI Rohani Dost Chatbot */}
       <Chatbot />
       
-      <Footer onNavigate={navigateTo} onAdminClick={() => setIsAdminModalOpen(true)} />
+      <Footer onNavigate={navigateTo} />
     </div>
   );
 }
