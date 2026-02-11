@@ -62,6 +62,10 @@ const Chatbot: React.FC = () => {
       return "Ji bilkul, hum shadi, safar aur karobar ke liye 'Masnoon Istikhara' ki saholat dete hain. Apna masla likh kar WhatsApp par bhejein.";
     }
 
+    if (text.includes('privacy') || text.includes('raaz') || text.includes('parda') || text.includes('confidential')) {
+      return "Hamari Service ki Privacy Policy:\n\n100% Confidentiality: Aapka naam, masla, aur tamam guftagu mukammal tor par raaz mein rakhi jati hai.\n\nData Protection: Hum kisi bhi client ka data kisi teesray shakhs (third party) ke sath share nahi karte.\n\nDirect Contact: Aapki tamam baatchit sirf hamaray makhsoos rohani mahir (Expert) tak mehdood rehti hai.\n\nShariat Compliance: Hum shariat ke mutabiq logon ki parda-poshi ka sakhti se dehan rakhte hain.\n\nAap be-fiker ho kar rabta kar sakte hain, aapka aitemad hamari awaleen tarjih hai.";
+    }
+
     return "Behtreen rehnumayi ke liye aap hamare 'Contact Us' button par click karke direct raabta kar sakte hain.";
   };
 
@@ -109,7 +113,7 @@ const Chatbot: React.FC = () => {
         <div ref={scrollRef} className="flex-1 overflow-y-auto p-6 space-y-4 bg-[#f8fafc]">
           {messages.map((msg, i) => (
             <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'} animate-slide-down`}>
-              <div className={`max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed shadow-sm ${msg.role === 'user' ? 'bg-[#064e3b] text-white' : 'bg-white text-gray-700 border'}`}>
+              <div className={`max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed shadow-sm whitespace-pre-wrap ${msg.role === 'user' ? 'bg-[#064e3b] text-white' : 'bg-white text-gray-700 border'}`}>
                 {msg.text}
               </div>
             </div>
