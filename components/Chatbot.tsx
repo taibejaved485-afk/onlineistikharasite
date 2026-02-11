@@ -25,7 +25,22 @@ const Chatbot: React.FC = () => {
   }, [messages, isTyping]);
 
   const getStaticResponse = (userInput: string): string => {
-    const text = userInput.toLowerCase();
+    const text = userInput.toLowerCase().trim();
+    
+    // Greetings Logic: Salam
+    if (text.includes('assalam') || text.includes('salam') || text.includes('slam')) {
+      return "Walaikum Assalam! Noor Emerald mein khush-amdeed. Main aapki kya madad kar sakta hoon?";
+    }
+
+    // Greetings Logic: Hello/Hi
+    if (text === 'hello' || text === 'hi' || text.startsWith('hi ') || text.startsWith('hello ')) {
+      return "Hello! Umeed hai aap khairiyat se honge. Main aapki rohani masail mein madad ke liye hazir hoon.";
+    }
+
+    // Basic Q&A: Who are you?
+    if (text.includes('kaun') || text.includes('koun') || text.includes('who are you') || text.includes('what is this site') || text.includes('site kya hai')) {
+      return "Main Noor Emerald ka digital assistant hoon. Main aapko Istikhara, Wazaif, aur Rohani ilaj ke bare mein maloomat de sakta hoon.";
+    }
     
     // Keyword: Jadu / Tawiz / Tor
     if (text.includes('jadu') || text.includes('taveez') || text.includes('tawiz') || text.includes('tor')) {
@@ -52,8 +67,8 @@ const Chatbot: React.FC = () => {
       return "Ji bilkul, hum shadi, safar aur karobar ke liye 'Masnoon Istikhara' ki saholat dete hain. Apna masla likh kar WhatsApp par bhejein, aapko jald jawab mil jayega.";
     }
 
-    // Default Fallback
-    return "Maazrat, main aapki baat poori tarah samajh nahi saka. Aap behtar rehnumayi ke liye niche diye gaye WhatsApp Button par click kar ke hamare rohani mahireen se rabta karein.";
+    // Fallback Message (Updated)
+    return "Behtreen rehnumayi ke liye aap hamare 'Contact Us' button par click karke direct raabta kar sakte hain.";
   };
 
   const handleSend = () => {
