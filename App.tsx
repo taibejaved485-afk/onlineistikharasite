@@ -47,8 +47,8 @@ function App() {
   const [adminPass, setAdminPass] = useState('');
   const [showPass, setShowPass] = useState(false);
   const [loginError, setLoginError] = useState(false);
-  
-  // Quill Ref
+
+  // Quill Editor References
   const quillRef = useRef<any>(null);
   const editorContainerRef = useRef<HTMLDivElement>(null);
 
@@ -93,12 +93,12 @@ function App() {
     return () => window.removeEventListener('hashchange', handleLocationChange);
   }, []);
 
-  // Initialize Quill when modal and auth is ready
+  // Initialize Quill when modal is open and authenticated
   useEffect(() => {
     if (isAdminModalOpen && isAdminAuthenticated && editorContainerRef.current && !quillRef.current) {
       quillRef.current = new Quill(editorContainerRef.current, {
         theme: 'snow',
-        placeholder: 'Yahan apna blog content likhein (Bold, Headings, Lists ka istemal karein)...',
+        placeholder: 'Apna rohani blog content likhein...',
         modules: {
           toolbar: [
             [{ 'header': [1, 2, 3, false] }],
@@ -111,8 +111,8 @@ function App() {
       });
     }
     
-    // Cleanup Quill when modal closes or unauthenticated
-    if (!isAdminModalOpen || !isAdminAuthenticated) {
+    // Cleanup if closed
+    if (!isAdminModalOpen) {
       quillRef.current = null;
     }
   }, [isAdminModalOpen, isAdminAuthenticated]);
@@ -151,15 +151,16 @@ function App() {
   };
 
   const saveBlog = () => {
-    const editorContent = quillRef.current ? quillRef.current.root.innerHTML : '';
+    // Get HTML content from Quill
+    const editorHtml = quillRef.current ? quillRef.current.root.innerHTML : '';
     
-    if (!newBlog.title || editorContent === '<p><br></p>') {
+    if (!newBlog.title || editorHtml === '<p><br></p>') {
       return alert("Title aur Content dono zaroori hain!");
     }
 
     const entry = { 
       ...newBlog, 
-      content: editorContent,
+      content: editorHtml, 
       id: Date.now(), 
       date: new Date().toLocaleDateString() 
     };
@@ -168,7 +169,7 @@ function App() {
     setBlogs(updated);
     localStorage.setItem('noor_emerald_blogs', JSON.stringify(updated));
     
-    // Clear Form
+    // Reset Form
     setNewBlog({ title: '', category: 'General Blog', img: '', content: '' });
     if (quillRef.current) quillRef.current.root.innerHTML = '';
     
@@ -286,15 +287,15 @@ function App() {
                     </div>
                   </div>
                   
-                  {/* Rich Text Editor Area */}
+                  {/* Rich Text Editor Container */}
                   <div className="md:col-span-2 flex flex-col">
-                    <label className="text-xs font-bold uppercase text-[#064e3b]/60 ml-1 mb-2">Detailed Content (Rich Editor)</label>
-                    <div ref={editorContainerRef} className="bg-white rounded-2xl shadow-inner"></div>
+                    <label className="text-xs font-bold uppercase text-[#064e3b]/60 ml-1 mb-2">Full Content (Formatting Enabled)</label>
+                    <div ref={editorContainerRef} className="bg-white rounded-2xl border border-gray-200"></div>
                   </div>
                 </div>
 
                 <button onClick={saveBlog} className="w-full py-5 bg-[#064e3b] text-white font-serif-display text-xl font-bold rounded-2xl hover:bg-[#daa520] hover:text-[#064e3b] transition-all shadow-xl flex items-center justify-center gap-3 active:scale-95">
-                  <i className="fa-solid fa-cloud-arrow-up" /> Publish Content
+                  <i className="fa-solid fa-cloud-arrow-up" /> Publish Blog
                 </button>
 
                 <div className="pt-10 border-t border-gray-100">

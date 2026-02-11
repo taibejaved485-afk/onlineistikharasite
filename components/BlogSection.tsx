@@ -18,8 +18,8 @@ const BlogSection: React.FC<BlogSectionProps> = ({ blogs }) => {
     document.body.style.overflow = 'auto'; // Restore scrolling
   };
 
-  // Helper to remove HTML tags for preview snippet
-  const getPlainText = (html: string) => {
+  // Helper to remove HTML tags for card preview snippet
+  const stripHtml = (html: string) => {
     const tmp = document.createElement("DIV");
     tmp.innerHTML = html;
     return tmp.textContent || tmp.innerText || "";
@@ -82,7 +82,7 @@ const BlogSection: React.FC<BlogSectionProps> = ({ blogs }) => {
                 </h3>
                 
                 <p className="text-gray-500 font-lora text-sm line-clamp-3 mb-10 leading-relaxed italic">
-                  {getPlainText(blog.content)}
+                  {stripHtml(blog.content)}
                 </p>
                 
                 <button 
@@ -140,7 +140,7 @@ const BlogSection: React.FC<BlogSectionProps> = ({ blogs }) => {
                   {selectedBlog.title}
                 </h2>
 
-                {/* Render Rich HTML Content */}
+                {/* Render Rich HTML Content from Editor */}
                 <div 
                   className="blog-prose font-lora text-lg md:text-xl text-gray-700 leading-loose"
                   dangerouslySetInnerHTML={{ __html: selectedBlog.content }}
