@@ -14,6 +14,7 @@ import SehatSection from './components/SehatSection.tsx';
 import AboutSection from './components/AboutSection.tsx';
 import ConsultationSection from './components/ConsultationSection.tsx';
 import BlogSection from './components/BlogSection.tsx';
+import TestimonialsSection from './components/TestimonialsSection.tsx';
 import Footer from './components/Footer.tsx';
 import AboutPage from './AboutPage.tsx';
 import FAQPage from './FAQPage.tsx';
@@ -232,6 +233,8 @@ function App() {
             <ServicesSection />
             <IslamicDivider />
             <BlogSection blogs={blogs} />
+            <IslamicDivider />
+            <TestimonialsSection />
             <IslamicDivider />
             <GenderConsultation />
             <TalismanCards />
