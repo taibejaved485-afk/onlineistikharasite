@@ -43,38 +43,38 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ item, onNavigate }) => {
     >
       <button 
         onClick={handleMainClick}
-        className={`flex items-center gap-1.5 px-4 py-2 text-white/90 font-serif-display text-lg transition-all duration-300 ${isOpen ? 'text-[#fbbf24]' : 'hover:text-[#fbbf24]'}`}
+        className={`flex items-center gap-1.5 px-2 py-2 text-white/90 font-serif-display text-[14px] xl:text-[15px] transition-all duration-300 ${isOpen ? 'text-[#fbbf24]' : 'hover:text-[#fbbf24]'}`}
       >
         {item.label}
         <svg 
-          className={`w-3.5 h-3.5 transition-transform duration-500 ${isOpen ? 'rotate-180' : ''}`} 
+          className={`w-3 h-3 transition-transform duration-500 ${isOpen ? 'rotate-180' : ''}`} 
           fill="none" 
           stroke="currentColor" 
           viewBox="0 0 24 24"
         >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
         </svg>
       </button>
 
-      {/* Dropdown Container - High Z-Index & Transition */}
+      {/* Dropdown Container */}
       <div 
-        className={`absolute top-[100%] left-0 w-72 pt-2 z-[500] transition-all duration-300 ${
+        className={`absolute top-[100%] left-1/2 -translate-x-1/2 w-64 pt-3 z-[500] transition-all duration-300 ${
           isOpen 
           ? 'opacity-100 pointer-events-auto block animate-slide-down' 
           : 'opacity-0 pointer-events-none hidden'
         }`}
       >
-        <div className="bg-[#064e3b] shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-[8px] overflow-hidden border border-[#fbbf24]">
+        <div className="bg-[#064e3b] shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-[12px] overflow-hidden border border-[#daa520]/30 backdrop-blur-md">
           <div className="py-2 flex flex-col">
             {item.children?.map((child, idx) => (
               <a
                 key={idx}
                 href={child.href}
                 onClick={(e) => handleChildClick(e, child)}
-                className="px-[15px] py-[10px] text-white font-amiri text-lg transition-all duration-300 hover:bg-[#fbbf24] hover:text-[#064e3b] flex items-center justify-between group/item"
+                className="px-5 py-3 text-white/90 font-amiri text-[17px] transition-all duration-300 hover:bg-[#daa520] hover:text-[#064e3b] flex items-center justify-between group/item"
               >
                 <span>{child.label}</span>
-                <i className="fa-solid fa-chevron-right text-[10px] opacity-0 group-hover/item:opacity-100 transition-opacity translate-x-[-5px] group-hover/item:translate-x-0" />
+                <i className="fa-solid fa-chevron-right text-[10px] opacity-0 group-hover/item:opacity-100 transition-all -translate-x-2 group-hover/item:translate-x-0" />
               </a>
             ))}
           </div>
