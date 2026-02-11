@@ -96,12 +96,21 @@ function App() {
   // Initialize Quill when modal is open and authenticated
   useEffect(() => {
     if (isAdminModalOpen && isAdminAuthenticated && editorContainerRef.current && !quillRef.current) {
+      // Configure Quill Fonts
+      const Font = Quill.import('formats/font');
+      Font.whitelist = [
+        'open-sans', 'roboto', 'lato', 'montserrat', 'poppins', 
+        'inter', 'merriweather', 'playfair-display', 'lora', 'oswald'
+      ];
+      Quill.register(Font, true);
+
       quillRef.current = new Quill(editorContainerRef.current, {
         theme: 'snow',
-        placeholder: 'Yahan apna blog content likhein (Formatting ke sath)...',
+        placeholder: 'Apna rohani blog content likhein (Fonts aur Formatting ke sath)...',
         modules: {
           toolbar: [
-            [{ 'header': [1, 2, false] }],
+            [{ 'font': Font.whitelist }],
+            [{ 'header': [1, 2, 3, false] }],
             ['bold', 'italic', 'underline'],
             [{ 'list': 'ordered'}, { 'list': 'bullet' }],
             [{ 'align': [] }],
@@ -109,6 +118,11 @@ function App() {
           ]
         }
       });
+      
+      // Set default font to Poppins for a modern look if empty
+      if (quillRef.current.root.innerHTML === '<p><br></p>') {
+        quillRef.current.format('font', 'poppins');
+      }
     }
     
     // Cleanup Quill instance on close
@@ -171,9 +185,12 @@ function App() {
     
     // Clear the form and editor
     setNewBlog({ title: '', category: 'General Blog', img: '', content: '' });
-    if (quillRef.current) quillRef.current.root.innerHTML = '';
+    if (quillRef.current) {
+        quillRef.current.root.innerHTML = '';
+        quillRef.current.format('font', 'poppins');
+    }
     
-    alert("Success! Blog published to LocalStorage.");
+    alert("Success! Blog published with custom typography.");
   };
 
   const deleteBlog = (id: number) => {
@@ -222,7 +239,7 @@ function App() {
       {isAdminModalOpen && (
         <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-[#064e3b]/80 backdrop-blur-sm" onClick={() => setIsAdminModalOpen(false)} />
-          <div className="relative w-full max-w-5xl max-h-[90vh] overflow-y-auto bg-white rounded-[40px] shadow-2xl border-2 border-[#daa520]/30 islamic-pattern p-6 md:p-12 animate-fade-in-up">
+          <div className="relative w-full max-w-6xl max-h-[95vh] overflow-y-auto bg-white rounded-[40px] shadow-2xl border-2 border-[#daa520]/30 islamic-pattern p-6 md:p-12 animate-fade-in-up">
             
             <button onClick={() => { setIsAdminModalOpen(false); setIsAdminAuthenticated(false); }} className="absolute top-8 right-8 text-gray-400 hover:text-[#064e3b]">
               <i className="fa-solid fa-circle-xmark text-3xl" />
@@ -233,8 +250,8 @@ function App() {
                 <div className="w-20 h-20 bg-[#064e3b] rounded-full flex items-center justify-center mx-auto mb-8 shadow-xl border-2 border-[#daa520]/40">
                   <i className="fa-solid fa-user-shield text-[#daa520] text-3xl" />
                 </div>
-                <h2 className="text-[#064e3b] font-serif-display text-3xl font-bold mb-2">Admin Portal</h2>
-                <p className="text-gray-500 italic mb-8">Login to manage blogs</p>
+                <h2 className="text-[#064e3b] font-serif-display text-3xl font-bold mb-2">Typography Dashboard</h2>
+                <p className="text-gray-500 italic mb-8">Login to create rich-formatted blogs</p>
                 
                 <div className="relative mb-4">
                   <input 
@@ -254,15 +271,15 @@ function App() {
                 </div>
 
                 <button onClick={handleAdminLogin} className="w-full py-4 bg-[#daa520] text-[#064e3b] font-bold rounded-2xl hover:bg-[#064e3b] hover:text-white transition-all shadow-lg active:scale-95">
-                  Access Dashboard
+                  Launch Editor
                 </button>
                 
-                {loginError && <p className="text-red-500 mt-4 animate-bounce font-bold">Ghalat Password! admin123 istemal karein.</p>}
+                {loginError && <p className="text-red-500 mt-4 animate-bounce font-bold">Incorrect Passcode! admin123</p>}
               </div>
             ) : (
               <div className="space-y-10">
                 <div className="flex justify-between items-center border-b border-gray-100 pb-6">
-                  <h2 className="text-[#064e3b] font-serif-display text-3xl font-bold">Blog <span className="text-[#daa520]">Manager</span></h2>
+                  <h2 className="text-[#064e3b] font-serif-display text-3xl font-bold">Rich Blog <span className="text-[#daa520]">Editor</span></h2>
                   <button onClick={() => setIsAdminAuthenticated(false)} className="text-xs font-bold uppercase tracking-widest text-[#daa520] hover:text-[#064e3b] bg-[#064e3b]/5 px-4 py-2 rounded-full">Sign Out</button>
                 </div>
 
@@ -270,50 +287,51 @@ function App() {
                   <div className="space-y-6">
                     <div>
                       <label className="text-xs font-bold uppercase text-[#064e3b]/60 ml-1">Blog Title</label>
-                      <input type="text" placeholder="Title..." value={newBlog.title} onChange={e => setNewBlog({...newBlog, title: e.target.value})} className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:border-[#daa520] outline-none text-[#064e3b]" />
+                      <input type="text" placeholder="Title..." value={newBlog.title} onChange={e => setNewBlog({...newBlog, title: e.target.value})} className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:border-[#daa520] outline-none text-[#064e3b] font-bold" />
                     </div>
                     <div>
                       <label className="text-xs font-bold uppercase text-[#064e3b]/60 ml-1">Category</label>
                       <select value={newBlog.category} onChange={e => setNewBlog({...newBlog, category: e.target.value})} className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:border-[#daa520] outline-none appearance-none text-[#064e3b]">
                         <option>General Blog</option>
                         <option>Islamic Guidance</option>
-                        <option>Taweezat News</option>
                         <option>Success Stories</option>
+                        <option>Typography Showcase</option>
                       </select>
                     </div>
                     <div>
-                      <label className="text-xs font-bold uppercase text-[#064e3b]/60 ml-1">Image URL</label>
+                      <label className="text-xs font-bold uppercase text-[#064e3b]/60 ml-1">Featured Image</label>
                       <input type="text" placeholder="https://..." value={newBlog.img} onChange={e => setNewBlog({...newBlog, img: e.target.value})} className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:border-[#daa520] outline-none text-[#064e3b]" />
                     </div>
                   </div>
                   
                   {/* Quill.js Rich Text Editor Container */}
                   <div className="md:col-span-2 flex flex-col">
-                    <label className="text-xs font-bold uppercase text-[#064e3b]/60 ml-1 mb-2">Detailed Content (Formatting Support)</label>
+                    <label className="text-xs font-bold uppercase text-[#064e3b]/60 ml-1 mb-2">Full Article Content (Choose Fonts from Toolbar)</label>
                     <div ref={editorContainerRef} className="bg-white rounded-2xl border border-gray-200"></div>
+                    <p className="text-[10px] text-gray-400 mt-2 italic">* Select text and use the Font dropdown in the toolbar to change typography.</p>
                   </div>
                 </div>
 
                 <button onClick={saveBlog} className="w-full py-5 bg-[#064e3b] text-white font-serif-display text-xl font-bold rounded-2xl hover:bg-[#daa520] hover:text-[#064e3b] transition-all shadow-xl flex items-center justify-center gap-3 active:scale-95">
-                  <i className="fa-solid fa-cloud-arrow-up" /> Publish to Live Site
+                  <i className="fa-solid fa-feather-pointed" /> Publish Formatted Blog
                 </button>
 
                 <div className="pt-10 border-t border-gray-100">
-                  <h3 className="text-[#064e3b] font-bold mb-4 uppercase text-xs tracking-[0.2em]">Manage Existing Blogs</h3>
-                  <div className="space-y-3">
+                  <h3 className="text-[#064e3b] font-bold mb-4 uppercase text-xs tracking-[0.2em]">Manage Published Blogs</h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {blogs.map(blog => (
                       <div key={blog.id} className="flex justify-between items-center p-4 bg-gray-50 rounded-2xl group border border-transparent hover:border-[#daa520]/30 transition-all">
                         <div className="flex items-center gap-4">
-                          <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center text-[#064e3b] shadow-sm"><i className="fa-solid fa-file-lines" /></div>
+                          <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center text-[#064e3b] shadow-sm"><i className="fa-solid fa-file-pen" /></div>
                           <div>
                             <p className="font-bold text-sm text-[#064e3b]">{blog.title}</p>
-                            <p className="text-[10px] text-gray-400">{blog.category} • {blog.date}</p>
+                            <p className="text-[10px] text-gray-400">{blog.category}</p>
                           </div>
                         </div>
                         <button onClick={() => deleteBlog(blog.id)} className="text-gray-300 hover:text-red-500 transition-colors"><i className="fa-solid fa-trash-can" /></button>
                       </div>
                     ))}
-                    {blogs.length === 0 && <p className="text-center text-gray-300 italic py-4">No blogs found in LocalStorage.</p>}
+                    {blogs.length === 0 && <p className="col-span-2 text-center text-gray-300 italic py-4">No content found in repository.</p>}
                   </div>
                 </div>
               </div>

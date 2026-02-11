@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Emerald Noor Navigation</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:ital,wght@0,400;0,600;1,400&family=Amiri:wght@400;700&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Multi-Font Google API Import -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Lato:wght@400;700&family=Lora:ital,wght@0,400;0,600;1,400&family=Merriweather:wght@400;700&family=Montserrat:wght@400;700&family=Open+Sans:wght@400;700&family=Oswald:wght@400;700&family=Playfair+Display:wght@400;700&family=Poppins:wght@400;700&family=Roboto:wght@400;700&family=Amiri:wght@400;700&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Quill Rich Text Editor CSS & JS -->
@@ -15,7 +16,7 @@
 
     <style>
         body {
-            font-family: 'Lora', serif;
+            font-family: 'Open Sans', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #fcfdfa;
@@ -24,6 +25,18 @@
         .font-cinzel { font-family: 'Cinzel', serif; }
         .font-amiri { font-family: 'Amiri', serif; }
         
+        /* Quill Font Classes - Must match whitelist in JS */
+        .ql-font-open-sans { font-family: 'Open Sans', sans-serif; }
+        .ql-font-roboto { font-family: 'Roboto', sans-serif; }
+        .ql-font-lato { font-family: 'Lato', sans-serif; }
+        .ql-font-montserrat { font-family: 'Montserrat', sans-serif; }
+        .ql-font-poppins { font-family: 'Poppins', sans-serif; }
+        .ql-font-inter { font-family: 'Inter', sans-serif; }
+        .ql-font-merriweather { font-family: 'Merriweather', serif; }
+        .ql-font-playfair-display { font-family: 'Playfair Display', serif; }
+        .ql-font-lora { font-family: 'Lora', serif; }
+        .ql-font-oswald { font-family: 'Oswald', sans-serif; }
+
         .islamic-pattern {
             position: relative;
         }
@@ -45,15 +58,7 @@
             animation: fadeInUp 1s ease-out forwards;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-        .animate-float {
-            animation: float 4s ease-in-out infinite;
-        }
-
-        /* Quill Professional Styling */
+        /* Quill UI Customization */
         .ql-toolbar.ql-snow {
             border: 1px solid #e5e7eb !important;
             border-radius: 1.5rem 1.5rem 0 0 !important;
@@ -64,16 +69,15 @@
             border: 1px solid #e5e7eb !important;
             border-radius: 0 0 1.5rem 1.5rem !important;
             min-height: 300px !important;
-            font-family: 'Lora', serif !important;
-            font-size: 1.1rem !important;
             background: white !important;
         }
         .ql-editor {
             min-height: 300px !important;
             color: #064e3b !important;
+            font-size: 1.1rem !important;
         }
 
-        /* Rendered Blog Content Styling (Prose) */
+        /* Blog Content Rendering (Prose) */
         .blog-prose h1 { font-family: 'Playfair Display', serif; font-size: 2.25rem; font-weight: 700; color: #064e3b; margin: 1.5rem 0; }
         .blog-prose h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: #064e3b; margin: 1.25rem 0; }
         .blog-prose p { margin-bottom: 1.25rem; line-height: 1.8; color: #374151; }
@@ -84,6 +88,18 @@
         .blog-prose em { font-style: italic; }
         .blog-prose .ql-align-center { text-align: center; }
         .blog-prose .ql-align-right { text-align: right; }
+        
+        /* Apply individual font classes in prose */
+        .blog-prose .ql-font-open-sans { font-family: 'Open Sans', sans-serif; }
+        .blog-prose .ql-font-roboto { font-family: 'Roboto', sans-serif; }
+        .blog-prose .ql-font-lato { font-family: 'Lato', sans-serif; }
+        .blog-prose .ql-font-montserrat { font-family: 'Montserrat', sans-serif; }
+        .blog-prose .ql-font-poppins { font-family: 'Poppins', sans-serif; }
+        .blog-prose .ql-font-inter { font-family: 'Inter', sans-serif; }
+        .blog-prose .ql-font-merriweather { font-family: 'Merriweather', serif; }
+        .blog-prose .ql-font-playfair-display { font-family: 'Playfair Display', serif; }
+        .blog-prose .ql-font-lora { font-family: 'Lora', serif; }
+        .blog-prose .ql-font-oswald { font-family: 'Oswald', sans-serif; }
     </style>
 <script type="importmap">
 {
