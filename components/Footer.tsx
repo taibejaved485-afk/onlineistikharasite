@@ -153,6 +153,14 @@ const Footer: React.FC<FooterProps> = ({ onNavigate, onAdminClick }) => {
           <i className="fa-solid fa-kaaba text-[#daa520]/40" />
           <div className="h-px flex-1 bg-gradient-to-l from-transparent to-white/10" />
         </div>
+
+        {/* Closing Blessing */}
+        <div className="text-center py-6">
+           <p className="text-[#fbbf24] font-amiri text-3xl md:text-4xl drop-shadow-lg animate-pulse">
+              جزاك الله خيرا
+           </p>
+           <p className="text-white/40 font-amiri text-xs mt-2 uppercase tracking-[0.4em]">Duaon ki Darkhwast</p>
+        </div>
       </div>
 
       <div className="bg-black/50 py-4 border-t border-white/5">

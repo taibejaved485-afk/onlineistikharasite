@@ -13,11 +13,25 @@ interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [hijriDate, setHijriDate] = useState('');
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
+    
+    // Calculate Hijri Date
+    try {
+      const date = new Intl.DateTimeFormat('en-u-ca-islamic-uma', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+      }).format(new Date());
+      setHijriDate(date + " AH");
+    } catch (e) {
+      setHijriDate("Islamic Date");
+    }
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -32,7 +46,6 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
       e.preventDefault();
       onNavigate?.('home');
     } else if (label === 'Blogs') {
-      // Logic handled via hash in constants, but we add a small delay for smooth scroll if needed
       window.location.hash = 'blogs-section';
     } else if (label === 'Pregnancy') {
       e.preventDefault();
@@ -50,12 +63,30 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
   };
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 px-4 py-4 lg:px-10 pointer-events-none">
-      <nav className={`mx-auto max-w-7xl transition-all duration-700 rounded-xl shadow-2xl border-b-2 border-[#daa520] pointer-events-auto ${
+    <header className="fixed top-0 left-0 w-full z-50 pointer-events-none">
+      {/* Top Bar with Bismillah and Hijri Date */}
+      <div className={`w-full bg-[#064e3b] text-[#fbbf24] transition-all duration-500 overflow-hidden ${isScrolled ? 'h-0 opacity-0' : 'h-14 md:h-16 opacity-100 border-b border-[#daa520]/20'} pointer-events-auto`}>
+        <div className="container mx-auto px-6 h-full flex items-center justify-between relative">
+          <div className="hidden md:block text-[10px] md:text-xs font-bold uppercase tracking-widest opacity-80">
+            {hijriDate}
+          </div>
+          
+          <div className="absolute left-1/2 -translate-x-1/2 text-xl md:text-3xl font-amiri tracking-widest drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">
+            بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
+          </div>
+
+          <div className="hidden md:flex items-center gap-4 opacity-80">
+            <i className="fa-solid fa-mosque text-xs"></i>
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em]">Al-Quds Ash-Sharif</span>
+          </div>
+        </div>
+      </div>
+
+      <nav className={`mx-auto max-w-7xl transition-all duration-700 rounded-xl shadow-2xl border-b-2 border-[#daa520] pointer-events-auto mt-2 lg:mt-4 ${
         isScrolled 
         ? 'bg-[#064e3b]/95 backdrop-blur-md py-2' 
         : 'bg-gradient-to-r from-[#064e3b] via-[#043d2e] to-[#022c22] py-5'
-      } islamic-pattern relative overflow-visible`}>
+      } islamic-pattern relative overflow-visible mx-4 md:mx-auto`}>
         <div className="container mx-auto px-8 flex justify-between items-center relative z-10">
           
           {/* Logo Area */}

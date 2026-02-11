@@ -28,6 +28,7 @@ import TalismanSubPage from './TalismanSubPage.tsx';
 import TalismansPage from './TalismansPage.tsx';
 import CounselingPage from './CounselingPage.tsx';
 import Chatbot from './components/Chatbot.tsx';
+import IslamicDivider from './components/IslamicDivider.tsx';
 
 declare var Quill: any;
 
@@ -203,16 +204,22 @@ function App() {
           <>
             <Hero />
             <AboutSection />
+            <IslamicDivider />
             <IstikharaSection />
+            <IslamicDivider />
             <ServicesSection />
+            <IslamicDivider />
             <BlogSection blogs={blogs} />
+            <IslamicDivider />
             <GenderConsultation />
             <TalismanCards />
+            <IslamicDivider />
             <PregnancySection />
             <KalaJaduSection />
             <MohabbatSection />
             <RizqSection />
             <SehatSection />
+            <IslamicDivider />
             <ConsultationSection />
           </>
         )}
