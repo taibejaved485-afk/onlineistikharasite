@@ -27,7 +27,7 @@
         .font-cinzel { font-family: 'Cinzel', serif; }
         .font-amiri { font-family: 'Amiri', serif; }
         
-        /* Quill Font Classes - Must match whitelist in JS */
+        /* Quill Font Classes */
         .ql-font-open-sans { font-family: 'Open Sans', sans-serif; }
         .ql-font-roboto { font-family: 'Roboto', sans-serif; }
         .ql-font-lato { font-family: 'Lato', sans-serif; }
@@ -38,6 +38,68 @@
         .ql-font-playfair-display { font-family: 'Playfair Display', serif; }
         .ql-font-lora { font-family: 'Lora', serif; }
         .ql-font-oswald { font-family: 'Oswald', sans-serif; }
+
+        /* ENSURING EDITOR TEXT IS VISIBLE */
+        .ql-editor {
+            min-height: 300px !important;
+            background-color: #ffffff !important;
+            color: #1a1a1a !important; /* Specific dark color to prevent invisibility */
+            font-size: 1.1rem !important;
+            line-height: 1.6 !important;
+            text-align: left;
+        }
+
+        /* Prevent parent white-text from affecting the editor */
+        #root .ql-container.ql-snow,
+        #root .ql-editor,
+        #root .ql-editor * {
+            color: #111111 !important;
+        }
+
+        /* Show placeholder correctly */
+        .ql-editor.ql-blank::before {
+            color: #9ca3af !important;
+            font-style: italic !important;
+        }
+
+        /* Toolbar Styling */
+        .ql-toolbar.ql-snow {
+            border: 1px solid #e5e7eb !important;
+            border-radius: 1.5rem 1.5rem 0 0 !important;
+            background: #f3f4f6 !important;
+            padding: 12px !important;
+        }
+        .ql-container.ql-snow {
+            border: 1px solid #e5e7eb !important;
+            border-radius: 0 0 1.5rem 1.5rem !important;
+            background: white !important;
+        }
+
+        /* Dropdown Label Fixes */
+        .ql-snow .ql-picker.ql-font .ql-picker-label::before,
+        .ql-snow .ql-picker.ql-font .ql-picker-item::before {
+          content: 'Font Family' !important;
+        }
+        .ql-snow .ql-picker.ql-font .ql-picker-label[data-value="open-sans"]::before,
+        .ql-snow .ql-picker.ql-font .ql-picker-item[data-value="open-sans"]::before { content: 'Open Sans' !important; }
+        .ql-snow .ql-picker.ql-font .ql-picker-label[data-value="roboto"]::before,
+        .ql-snow .ql-picker.ql-font .ql-picker-item[data-value="roboto"]::before { content: 'Roboto' !important; }
+        .ql-snow .ql-picker.ql-font .ql-picker-label[data-value="lato"]::before,
+        .ql-snow .ql-picker.ql-font .ql-picker-item[data-value="lato"]::before { content: 'Lato' !important; }
+        .ql-snow .ql-picker.ql-font .ql-picker-label[data-value="montserrat"]::before,
+        .ql-snow .ql-picker.ql-font .ql-picker-item[data-value="montserrat"]::before { content: 'Montserrat' !important; }
+        .ql-snow .ql-picker.ql-font .ql-picker-label[data-value="poppins"]::before,
+        .ql-snow .ql-picker.ql-font .ql-picker-item[data-value="poppins"]::before { content: 'Poppins' !important; }
+        .ql-snow .ql-picker.ql-font .ql-picker-label[data-value="inter"]::before,
+        .ql-snow .ql-picker.ql-font .ql-picker-item[data-value="inter"]::before { content: 'Inter' !important; }
+        .ql-snow .ql-picker.ql-font .ql-picker-label[data-value="merriweather"]::before,
+        .ql-snow .ql-picker.ql-font .ql-picker-item[data-value="merriweather"]::before { content: 'Merriweather' !important; }
+        .ql-snow .ql-picker.ql-font .ql-picker-label[data-value="playfair-display"]::before,
+        .ql-snow .ql-picker.ql-font .ql-picker-item[data-value="playfair-display"]::before { content: 'Playfair' !important; }
+        .ql-snow .ql-picker.ql-font .ql-picker-label[data-value="lora"]::before,
+        .ql-snow .ql-picker.ql-font .ql-picker-item[data-value="lora"]::before { content: 'Lora' !important; }
+        .ql-snow .ql-picker.ql-font .ql-picker-label[data-value="oswald"]::before,
+        .ql-snow .ql-picker.ql-font .ql-picker-item[data-value="oswald"]::before { content: 'Oswald' !important; }
 
         .islamic-pattern {
             position: relative;
@@ -60,25 +122,6 @@
             animation: fadeInUp 1s ease-out forwards;
         }
 
-        /* Quill UI Customization */
-        .ql-toolbar.ql-snow {
-            border: 1px solid #e5e7eb !important;
-            border-radius: 1.5rem 1.5rem 0 0 !important;
-            background: #f9fafb !important;
-            padding: 12px !important;
-        }
-        .ql-container.ql-snow {
-            border: 1px solid #e5e7eb !important;
-            border-radius: 0 0 1.5rem 1.5rem !important;
-            min-height: 300px !important;
-            background: white !important;
-        }
-        .ql-editor {
-            min-height: 300px !important;
-            color: #064e3b !important;
-            font-size: 1.1rem !important;
-        }
-
         /* Blog Content Rendering (Prose) */
         .blog-prose h1 { font-family: 'Playfair Display', serif; font-size: 2.25rem; font-weight: 700; color: #064e3b; margin: 1.5rem 0; }
         .blog-prose h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: #064e3b; margin: 1.25rem 0; }
@@ -88,20 +131,9 @@
         .blog-prose strong { color: #064e3b; font-weight: 700; }
         .blog-prose u { text-decoration: underline; }
         .blog-prose em { font-style: italic; }
-        .blog-prose .ql-align-center { text-align: center; }
-        .blog-prose .ql-align-right { text-align: right; }
-        
-        /* Apply individual font classes in prose */
-        .blog-prose .ql-font-open-sans { font-family: 'Open Sans', sans-serif; }
-        .blog-prose .ql-font-roboto { font-family: 'Roboto', sans-serif; }
-        .blog-prose .ql-font-lato { font-family: 'Lato', sans-serif; }
-        .blog-prose .ql-font-montserrat { font-family: 'Montserrat', sans-serif; }
-        .blog-prose .ql-font-poppins { font-family: 'Poppins', sans-serif; }
-        .blog-prose .ql-font-inter { font-family: 'Inter', sans-serif; }
-        .blog-prose .ql-font-merriweather { font-family: 'Merriweather', serif; }
-        .blog-prose .ql-font-playfair-display { font-family: 'Playfair Display', serif; }
-        .blog-prose .ql-font-lora { font-family: 'Lora', serif; }
-        .blog-prose .ql-font-oswald { font-family: 'Oswald', sans-serif; }
+        .blog-prose .ql-align-center { text-align: center !important; }
+        .blog-prose .ql-align-right { text-align: right !important; }
+        .blog-prose .ql-align-left { text-align: left !important; }
     </style>
 <script type="importmap">
 {

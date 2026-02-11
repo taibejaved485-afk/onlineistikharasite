@@ -31,6 +31,8 @@ import MarriagePage from './MarriagePage.tsx';
 import Chatbot from './components/Chatbot.tsx';
 import IslamicDivider from './components/IslamicDivider.tsx';
 
+declare var Quill: any;
+
 export type TaweezCategory = 'jadu' | 'sehat' | 'mohabbat' | 'kamyabi' | 'rizq' | 'hamal' | 'wazaif' | 'amazing';
 export type TalismanCategory = 'success' | 'love' | 'magic' | 'business' | 'pregnancy' | 'pray' | 'ismeazam' | 'guidance' | 'istikhara';
 export type ViewType = 'home' | 'about' | 'faq' | 'testimonials' | 'privacy' | 'disclaimer' | 'return' | 'pregnancy' | 'taweez' | 'taweez-sub' | 'talisman-sub' | 'talismans-main' | 'counseling' | 'marriage';
@@ -47,12 +49,15 @@ function App() {
   const [adminPass, setAdminPass] = useState('');
   const [loginError, setLoginError] = useState(false);
 
-  // New Blog Form State
+  // Quill Editor Reference
+  const quillRef = useRef<any>(null);
+  const editorContainerRef = useRef<HTMLDivElement>(null);
+
+  // New Blog Form State (Content is managed by Quill)
   const [blogForm, setBlogForm] = useState({
     title: '',
     category: 'Istikhara',
-    img: '',
-    content: ''
+    img: ''
   });
 
   useEffect(() => {
@@ -101,6 +106,43 @@ function App() {
     return () => window.removeEventListener('hashchange', () => handleLocationChange(false));
   }, []);
 
+  // Initialize Quill when authenticated AND modal is open
+  useEffect(() => {
+    if (isAdminAuthenticated && isAdminModalOpen && editorContainerRef.current) {
+      // Ensure we don't double-initialize
+      if (quillRef.current) return;
+
+      const Font = Quill.import('formats/font');
+      Font.whitelist = [
+        'open-sans', 'roboto', 'lato', 'montserrat', 'poppins', 'inter', 
+        'merriweather', 'playfair-display', 'lora', 'oswald'
+      ];
+      Quill.register(Font, true);
+
+      quillRef.current = new Quill(editorContainerRef.current, {
+        theme: 'snow',
+        placeholder: 'Likhein yahan...',
+        modules: {
+          toolbar: [
+            [{ 'font': Font.whitelist }],
+            [{ 'header': [1, 2, false] }],
+            ['bold', 'italic', 'underline'],
+            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+            [{ 'align': [] }],
+            ['clean']
+          ]
+        }
+      });
+    }
+
+    return () => {
+       // Reset on close so it can re-initialize properly next time
+       if (!isAdminModalOpen) {
+         quillRef.current = null;
+       }
+    };
+  }, [isAdminAuthenticated, isAdminModalOpen]);
+
   const navigateTo = (target: ViewType, category?: TaweezCategory | TalismanCategory) => {
     if (target === 'about') window.location.hash = 'about-page';
     else if (target === 'faq') window.location.hash = 'faq-page';
@@ -140,24 +182,33 @@ function App() {
   };
 
   const saveBlog = () => {
-    if (!blogForm.title || !blogForm.content) {
-      alert("Title aur Content lazmi hai!");
+    const htmlContent = quillRef.current ? quillRef.current.root.innerHTML : '';
+    
+    if (!blogForm.title || htmlContent === '<p><br></p>' || !htmlContent) {
+      alert("Zaroori: Title aur Blog content dono lazmi hain!");
       return;
     }
+
     const newEntry = {
       ...blogForm,
+      content: htmlContent,
       id: Date.now(),
       date: new Date().toLocaleDateString()
     };
+
     const updatedBlogs = [newEntry, ...blogs];
     setBlogs(updatedBlogs);
     localStorage.setItem('noor_emerald_blogs', JSON.stringify(updatedBlogs));
-    setBlogForm({ title: '', category: 'Istikhara', img: '', content: '' });
-    alert("Blog kamyabi se save ho gaya!");
+    
+    // Reset
+    setBlogForm({ title: '', category: 'Istikhara', img: '' });
+    if (quillRef.current) quillRef.current.root.innerHTML = '';
+    
+    alert("Mubarak! Blog kamyabi se publish ho gaya.");
   };
 
   const deleteBlog = (id: number) => {
-    if (window.confirm("Kya aap waqai ye blog delete karna chahte hain?")) {
+    if (window.confirm("Kya aap waqai is blog ko delete karna chahte hain?")) {
       const updated = blogs.filter(b => b.id !== id);
       setBlogs(updated);
       localStorage.setItem('noor_emerald_blogs', JSON.stringify(updated));
@@ -212,11 +263,11 @@ function App() {
       {/* Admin Modal */}
       {isAdminModalOpen && (
         <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-[#064e3b]/80 backdrop-blur-md" onClick={() => setIsAdminModalOpen(false)} />
-          <div className="relative bg-white w-full max-w-4xl rounded-[40px] shadow-2xl border-t-8 border-[#daa520] overflow-hidden animate-fade-in-up">
+          <div className="absolute inset-0 bg-[#064e3b]/90 backdrop-blur-lg" onClick={() => setIsAdminModalOpen(false)} />
+          <div className="relative bg-white w-full max-w-5xl rounded-[40px] shadow-2xl border-t-8 border-[#daa520] overflow-hidden animate-fade-in-up">
             
-            <button onClick={() => setIsAdminModalOpen(false)} className="absolute top-6 right-6 text-gray-400 hover:text-[#064e3b] z-10">
-              <i className="fa-solid fa-xmark text-2xl" />
+            <button onClick={() => setIsAdminModalOpen(false)} className="absolute top-6 right-6 text-gray-400 hover:text-[#064e3b] z-20">
+              <i className="fa-solid fa-circle-xmark text-3xl" />
             </button>
 
             {!isAdminAuthenticated ? (
@@ -225,85 +276,109 @@ function App() {
                   <i className="fa-solid fa-lock text-[#daa520] text-3xl" />
                 </div>
                 <h2 className="text-3xl font-serif-display text-[#064e3b] mb-2 font-bold">Admin Portal</h2>
-                <p className="text-gray-500 mb-8 font-lora">Credentials darj karein</p>
+                <p className="text-gray-500 mb-8">Dashboard tak rasai ke liye password darj karein</p>
                 
                 <form onSubmit={handleLogin} className="max-w-sm mx-auto space-y-4">
                   <input 
                     type="password" 
-                    placeholder="Password (admin123)" 
+                    placeholder="Enter Password" 
                     value={adminPass}
                     onChange={(e) => setAdminPass(e.target.value)}
-                    className="w-full px-6 py-4 bg-gray-50 border border-gray-200 rounded-2xl text-center focus:outline-none focus:border-[#daa520] transition-all"
+                    className="w-full px-6 py-4 bg-gray-50 border border-gray-200 rounded-2xl text-center focus:outline-none focus:border-[#daa520] transition-all text-black font-bold"
                   />
                   <button type="submit" className="w-full py-4 bg-[#daa520] text-[#064e3b] font-bold rounded-2xl hover:bg-[#064e3b] hover:text-white transition-all shadow-lg">
-                    Login Dashboard
+                    Verify & Login
                   </button>
-                  {loginError && <p className="text-red-500 text-sm font-bold animate-pulse">Ghalat Password! Dobara koshish karein.</p>}
+                  {loginError && <p className="text-red-500 text-sm font-bold animate-pulse">Ghalat Password! Please dubara check karein.</p>}
                 </form>
               </div>
             ) : (
-              <div className="flex flex-col h-[80vh]">
-                <div className="bg-[#064e3b] p-6 text-white flex justify-between items-center islamic-pattern">
-                  <h3 className="text-2xl font-serif-display font-bold">Online <span className="text-[#daa520]">Istikhara</span> Dashboard</h3>
-                  <button onClick={() => setIsAdminAuthenticated(false)} className="text-[#daa520] font-bold text-xs uppercase tracking-widest hover:text-white">Logout</button>
+              <div className="flex flex-col h-[85vh]">
+                <div className="bg-[#064e3b] p-6 text-white flex justify-between items-center islamic-pattern border-b border-[#daa520]/20">
+                  <div className="flex items-center gap-4">
+                     <i className="fa-solid fa-gauge-high text-[#daa520] text-xl" />
+                     <h3 className="text-2xl font-serif-display font-bold uppercase tracking-widest">Admin Control Panel</h3>
+                  </div>
+                  <button onClick={() => setIsAdminAuthenticated(false)} className="bg-white/10 px-4 py-2 rounded-lg text-[#daa520] font-bold text-xs uppercase tracking-widest hover:bg-red-500 hover:text-white transition-all">Sign Out</button>
                 </div>
                 
-                <div className="flex-1 overflow-y-auto p-10 grid grid-cols-1 lg:grid-cols-3 gap-10">
+                <div className="flex-1 overflow-y-auto p-8 grid grid-cols-1 lg:grid-cols-3 gap-10">
                   <div className="lg:col-span-2 space-y-6">
-                    <h4 className="text-xl font-serif-display text-[#064e3b] font-bold border-b pb-2">Naya Blog Likhein</h4>
+                    <h4 className="text-xl font-serif-display text-[#064e3b] font-bold border-b pb-2 flex items-center gap-2">
+                       <i className="fa-solid fa-pen-nib text-[#daa520]" /> Compose New Post
+                    </h4>
+                    
                     <div className="grid grid-cols-2 gap-4">
-                      <input 
-                        type="text" 
-                        placeholder="Blog Title" 
-                        value={blogForm.title}
-                        onChange={(e) => setBlogForm({...blogForm, title: e.target.value})}
-                        className="col-span-2 px-6 py-4 bg-gray-50 border rounded-2xl focus:border-[#daa520] outline-none"
-                      />
-                      <select 
-                        value={blogForm.category}
-                        onChange={(e) => setBlogForm({...blogForm, category: e.target.value})}
-                        className="px-6 py-4 bg-gray-50 border rounded-2xl focus:border-[#daa520] outline-none appearance-none"
-                      >
-                        <option>Istikhara</option>
-                        <option>Wazaif</option>
-                        <option>Jadu ka Tor</option>
-                        <option>Nuri Ilaj</option>
-                        <option>Miscellaneous</option>
-                      </select>
-                      <input 
-                        type="text" 
-                        placeholder="Image URL" 
-                        value={blogForm.img}
-                        onChange={(e) => setBlogForm({...blogForm, img: e.target.value})}
-                        className="px-6 py-4 bg-gray-50 border rounded-2xl focus:border-[#daa520] outline-none"
-                      />
+                      <div className="col-span-2">
+                        <label className="text-[10px] font-bold uppercase text-gray-400 ml-2">Blog Title</label>
+                        <input 
+                          type="text" 
+                          placeholder="Title likhein..." 
+                          value={blogForm.title}
+                          onChange={(e) => setBlogForm({...blogForm, title: e.target.value})}
+                          className="w-full px-6 py-4 bg-gray-50 border rounded-2xl focus:border-[#daa520] outline-none font-bold text-[#064e3b]"
+                        />
+                      </div>
+                      <div>
+                        <label className="text-[10px] font-bold uppercase text-gray-400 ml-2">Category</label>
+                        <select 
+                          value={blogForm.category}
+                          onChange={(e) => setBlogForm({...blogForm, category: e.target.value})}
+                          className="w-full px-6 py-4 bg-gray-50 border rounded-2xl focus:border-[#daa520] outline-none font-medium text-[#064e3b]"
+                        >
+                          <option>Istikhara</option>
+                          <option>Wazaif</option>
+                          <option>Jadu ka Tor</option>
+                          <option>Nuri Ilaj</option>
+                          <option>Miscellaneous</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="text-[10px] font-bold uppercase text-gray-400 ml-2">Cover Image URL</label>
+                        <input 
+                          type="text" 
+                          placeholder="Image link (optional)" 
+                          value={blogForm.img}
+                          onChange={(e) => setBlogForm({...blogForm, img: e.target.value})}
+                          className="w-full px-6 py-4 bg-gray-50 border rounded-2xl focus:border-[#daa520] outline-none text-[#064e3b]"
+                        />
+                      </div>
                     </div>
-                    <textarea 
-                      placeholder="Blog ka content yahan likhein (HTML support mojood hai)..." 
-                      rows={8}
-                      value={blogForm.content}
-                      onChange={(e) => setBlogForm({...blogForm, content: e.target.value})}
-                      className="w-full px-6 py-4 bg-gray-50 border rounded-2xl focus:border-[#daa520] outline-none resize-none"
-                    />
-                    <button onClick={saveBlog} className="w-full py-5 bg-[#064e3b] text-white font-bold rounded-2xl shadow-xl hover:bg-[#daa520] hover:text-[#064e3b] transition-all">
-                      Save Blog Entry
+                    
+                    {/* Rich Text Editor */}
+                    <div className="space-y-2">
+                       <label className="text-[10px] font-bold uppercase text-gray-400 ml-2">Detailed Content (Select font from toolbar)</label>
+                       <div className="relative shadow-xl">
+                          <div ref={editorContainerRef} className="min-h-[350px] bg-white rounded-b-2xl" />
+                       </div>
+                    </div>
+
+                    <button onClick={saveBlog} className="w-full py-5 bg-[#064e3b] text-[#fbbf24] font-serif-display font-bold text-xl rounded-2xl shadow-xl hover:bg-[#daa520] hover:text-[#064e3b] transition-all flex items-center justify-center gap-3">
+                      <i className="fa-solid fa-paper-plane" /> Publish This Blog
                     </button>
                   </div>
 
+                  {/* Sidebar with Recent Posts */}
                   <div className="space-y-6">
-                    <h4 className="text-xl font-serif-display text-[#064e3b] font-bold border-b pb-2">Sabiqa Blogs ({blogs.length})</h4>
-                    <div className="space-y-4 max-h-[400px] overflow-y-auto pr-2">
-                      {blogs.map(blog => (
-                        <div key={blog.id} className="p-4 bg-gray-50 rounded-2xl border border-gray-100 flex justify-between items-center group">
-                          <div className="flex-1 min-w-0">
-                            <p className="font-bold text-[#064e3b] truncate text-sm">{blog.title}</p>
-                            <p className="text-[10px] text-gray-400">{blog.category} • {blog.date}</p>
+                    <h4 className="text-xl font-serif-display text-[#064e3b] font-bold border-b pb-2 flex items-center gap-2">
+                       <i className="fa-solid fa-clock-rotate-left text-[#daa520]" /> Recent Posts
+                    </h4>
+                    <div className="space-y-4 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar">
+                      {blogs.length === 0 ? (
+                        <p className="text-gray-400 italic text-center py-10">Abhi tak koi post nahi hai.</p>
+                      ) : (
+                        blogs.map(blog => (
+                          <div key={blog.id} className="p-4 bg-white rounded-2xl border-2 border-gray-50 flex justify-between items-center group hover:border-[#daa520] transition-all shadow-sm">
+                            <div className="flex-1 min-w-0 pr-4">
+                              <p className="font-bold text-[#064e3b] truncate text-sm">{blog.title}</p>
+                              <p className="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">{blog.category} • {blog.date}</p>
+                            </div>
+                            <button onClick={() => deleteBlog(blog.id)} className="text-gray-300 hover:text-red-500 p-2 transition-colors">
+                              <i className="fa-solid fa-trash-can" />
+                            </button>
                           </div>
-                          <button onClick={() => deleteBlog(blog.id)} className="text-gray-300 hover:text-red-500 p-2">
-                            <i className="fa-solid fa-trash-can" />
-                          </button>
-                        </div>
-                      ))}
+                        ))
+                      )}
                     </div>
                   </div>
                 </div>
