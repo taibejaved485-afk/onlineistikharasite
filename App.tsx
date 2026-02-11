@@ -52,8 +52,8 @@ function App() {
   const quillRef = useRef<any>(null);
   const editorContainerRef = useRef<HTMLDivElement>(null);
 
-  // Blog Form State
-  const [newBlog, setNewBlog] = useState({ title: '', category: 'General Blog', img: '', content: '' });
+  // Blog Form State - Default category updated
+  const [newBlog, setNewBlog] = useState({ title: '', category: 'Istikhara', img: '', content: '' });
 
   useEffect(() => {
     // Initial Load from LocalStorage
@@ -96,7 +96,6 @@ function App() {
   // Initialize Quill when modal is open and authenticated
   useEffect(() => {
     if (isAdminModalOpen && isAdminAuthenticated && editorContainerRef.current && !quillRef.current) {
-      // Configure Quill Fonts
       const Font = Quill.import('formats/font');
       Font.whitelist = [
         'open-sans', 'roboto', 'lato', 'montserrat', 'poppins', 
@@ -106,7 +105,7 @@ function App() {
 
       quillRef.current = new Quill(editorContainerRef.current, {
         theme: 'snow',
-        placeholder: 'Apna rohani blog content likhein (Fonts aur Formatting ke sath)...',
+        placeholder: 'Apna rohani blog content likhein...',
         modules: {
           toolbar: [
             [{ 'font': Font.whitelist }],
@@ -119,13 +118,11 @@ function App() {
         }
       });
       
-      // Set default font to Poppins for a modern look if empty
       if (quillRef.current.root.innerHTML === '<p><br></p>') {
         quillRef.current.format('font', 'poppins');
       }
     }
     
-    // Cleanup Quill instance on close
     if (!isAdminModalOpen) {
       quillRef.current = null;
     }
@@ -165,7 +162,6 @@ function App() {
   };
 
   const saveBlog = () => {
-    // Extract HTML directly from the Quill root
     const editorHtml = quillRef.current ? quillRef.current.root.innerHTML : '';
     
     if (!newBlog.title || editorHtml === '<p><br></p>') {
@@ -183,14 +179,13 @@ function App() {
     setBlogs(updated);
     localStorage.setItem('noor_emerald_blogs', JSON.stringify(updated));
     
-    // Clear the form and editor
-    setNewBlog({ title: '', category: 'General Blog', img: '', content: '' });
+    setNewBlog({ title: '', category: 'Istikhara', img: '', content: '' });
     if (quillRef.current) {
         quillRef.current.root.innerHTML = '';
         quillRef.current.format('font', 'poppins');
     }
     
-    alert("Success! Blog published with custom typography.");
+    alert("Blog published with selected category!");
   };
 
   const deleteBlog = (id: number) => {
@@ -291,11 +286,12 @@ function App() {
                     </div>
                     <div>
                       <label className="text-xs font-bold uppercase text-[#064e3b]/60 ml-1">Category</label>
-                      <select value={newBlog.category} onChange={e => setNewBlog({...newBlog, category: e.target.value})} className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:border-[#daa520] outline-none appearance-none text-[#064e3b]">
-                        <option>General Blog</option>
-                        <option>Islamic Guidance</option>
-                        <option>Success Stories</option>
-                        <option>Typography Showcase</option>
+                      <select value={newBlog.category} onChange={e => setNewBlog({...newBlog, category: e.target.value})} className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:border-[#daa520] outline-none appearance-none text-[#064e3b] font-bold">
+                        <option value="Istikhara">Istikhara</option>
+                        <option value="Wazaif">Wazaif</option>
+                        <option value="Jadu ka Tor">Jadu ka Tor</option>
+                        <option value="Nuri Ilaj">Nuri Ilaj</option>
+                        <option value="Miscellaneous">Miscellaneous</option>
                       </select>
                     </div>
                     <div>
@@ -308,7 +304,6 @@ function App() {
                   <div className="md:col-span-2 flex flex-col">
                     <label className="text-xs font-bold uppercase text-[#064e3b]/60 ml-1 mb-2">Full Article Content (Choose Fonts from Toolbar)</label>
                     <div ref={editorContainerRef} className="bg-white rounded-2xl border border-gray-200"></div>
-                    <p className="text-[10px] text-gray-400 mt-2 italic">* Select text and use the Font dropdown in the toolbar to change typography.</p>
                   </div>
                 </div>
 
