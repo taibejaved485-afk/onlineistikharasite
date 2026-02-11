@@ -56,7 +56,7 @@ function App() {
   const [newBlog, setNewBlog] = useState({ title: '', category: 'General Blog', img: '', content: '' });
 
   useEffect(() => {
-    // Initial Load
+    // Initial Load from LocalStorage
     const saved = localStorage.getItem('noor_emerald_blogs');
     if (saved) setBlogs(JSON.parse(saved));
 
@@ -98,10 +98,10 @@ function App() {
     if (isAdminModalOpen && isAdminAuthenticated && editorContainerRef.current && !quillRef.current) {
       quillRef.current = new Quill(editorContainerRef.current, {
         theme: 'snow',
-        placeholder: 'Apna rohani blog content likhein...',
+        placeholder: 'Yahan apna blog content likhein (Formatting ke sath)...',
         modules: {
           toolbar: [
-            [{ 'header': [1, 2, 3, false] }],
+            [{ 'header': [1, 2, false] }],
             ['bold', 'italic', 'underline'],
             [{ 'list': 'ordered'}, { 'list': 'bullet' }],
             [{ 'align': [] }],
@@ -111,7 +111,7 @@ function App() {
       });
     }
     
-    // Cleanup if closed
+    // Cleanup Quill instance on close
     if (!isAdminModalOpen) {
       quillRef.current = null;
     }
@@ -151,7 +151,7 @@ function App() {
   };
 
   const saveBlog = () => {
-    // Get HTML content from Quill
+    // Extract HTML directly from the Quill root
     const editorHtml = quillRef.current ? quillRef.current.root.innerHTML : '';
     
     if (!newBlog.title || editorHtml === '<p><br></p>') {
@@ -169,11 +169,11 @@ function App() {
     setBlogs(updated);
     localStorage.setItem('noor_emerald_blogs', JSON.stringify(updated));
     
-    // Reset Form
+    // Clear the form and editor
     setNewBlog({ title: '', category: 'General Blog', img: '', content: '' });
     if (quillRef.current) quillRef.current.root.innerHTML = '';
     
-    alert("Blog Published successfully!");
+    alert("Success! Blog published to LocalStorage.");
   };
 
   const deleteBlog = (id: number) => {
@@ -234,12 +234,12 @@ function App() {
                   <i className="fa-solid fa-user-shield text-[#daa520] text-3xl" />
                 </div>
                 <h2 className="text-[#064e3b] font-serif-display text-3xl font-bold mb-2">Admin Portal</h2>
-                <p className="text-gray-400 italic mb-8">Access the spiritual content management</p>
+                <p className="text-gray-500 italic mb-8">Login to manage blogs</p>
                 
                 <div className="relative mb-4">
                   <input 
                     type={showPass ? "text" : "password"} 
-                    placeholder="Enter Passcode (admin123)" 
+                    placeholder="Enter Password (admin123)" 
                     value={adminPass}
                     onChange={(e) => setAdminPass(e.target.value)}
                     className="w-full px-6 py-4 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:border-[#daa520] transition-all text-center text-[#064e3b] font-bold"
@@ -254,23 +254,23 @@ function App() {
                 </div>
 
                 <button onClick={handleAdminLogin} className="w-full py-4 bg-[#daa520] text-[#064e3b] font-bold rounded-2xl hover:bg-[#064e3b] hover:text-white transition-all shadow-lg active:scale-95">
-                  Verify & Enter
+                  Access Dashboard
                 </button>
                 
-                {loginError && <p className="text-red-500 mt-4 animate-bounce font-bold">Incorrect Password! Use 'admin123'</p>}
+                {loginError && <p className="text-red-500 mt-4 animate-bounce font-bold">Ghalat Password! admin123 istemal karein.</p>}
               </div>
             ) : (
               <div className="space-y-10">
                 <div className="flex justify-between items-center border-b border-gray-100 pb-6">
-                  <h2 className="text-[#064e3b] font-serif-display text-3xl font-bold">Content <span className="text-[#daa520]">Manager</span></h2>
-                  <button onClick={() => setIsAdminAuthenticated(false)} className="text-xs font-bold uppercase tracking-widest text-[#daa520] hover:text-[#064e3b] bg-[#064e3b]/5 px-4 py-2 rounded-full">Logout</button>
+                  <h2 className="text-[#064e3b] font-serif-display text-3xl font-bold">Blog <span className="text-[#daa520]">Manager</span></h2>
+                  <button onClick={() => setIsAdminAuthenticated(false)} className="text-xs font-bold uppercase tracking-widest text-[#daa520] hover:text-[#064e3b] bg-[#064e3b]/5 px-4 py-2 rounded-full">Sign Out</button>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                   <div className="space-y-6">
                     <div>
-                      <label className="text-xs font-bold uppercase text-[#064e3b]/60 ml-1">Title</label>
-                      <input type="text" placeholder="Blog Title..." value={newBlog.title} onChange={e => setNewBlog({...newBlog, title: e.target.value})} className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:border-[#daa520] outline-none text-[#064e3b]" />
+                      <label className="text-xs font-bold uppercase text-[#064e3b]/60 ml-1">Blog Title</label>
+                      <input type="text" placeholder="Title..." value={newBlog.title} onChange={e => setNewBlog({...newBlog, title: e.target.value})} className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:border-[#daa520] outline-none text-[#064e3b]" />
                     </div>
                     <div>
                       <label className="text-xs font-bold uppercase text-[#064e3b]/60 ml-1">Category</label>
@@ -287,19 +287,19 @@ function App() {
                     </div>
                   </div>
                   
-                  {/* Rich Text Editor Container */}
+                  {/* Quill.js Rich Text Editor Container */}
                   <div className="md:col-span-2 flex flex-col">
-                    <label className="text-xs font-bold uppercase text-[#064e3b]/60 ml-1 mb-2">Full Content (Formatting Enabled)</label>
+                    <label className="text-xs font-bold uppercase text-[#064e3b]/60 ml-1 mb-2">Detailed Content (Formatting Support)</label>
                     <div ref={editorContainerRef} className="bg-white rounded-2xl border border-gray-200"></div>
                   </div>
                 </div>
 
                 <button onClick={saveBlog} className="w-full py-5 bg-[#064e3b] text-white font-serif-display text-xl font-bold rounded-2xl hover:bg-[#daa520] hover:text-[#064e3b] transition-all shadow-xl flex items-center justify-center gap-3 active:scale-95">
-                  <i className="fa-solid fa-cloud-arrow-up" /> Publish Blog
+                  <i className="fa-solid fa-cloud-arrow-up" /> Publish to Live Site
                 </button>
 
                 <div className="pt-10 border-t border-gray-100">
-                  <h3 className="text-[#064e3b] font-bold mb-4 uppercase text-xs tracking-[0.2em]">Recent Publications</h3>
+                  <h3 className="text-[#064e3b] font-bold mb-4 uppercase text-xs tracking-[0.2em]">Manage Existing Blogs</h3>
                   <div className="space-y-3">
                     {blogs.map(blog => (
                       <div key={blog.id} className="flex justify-between items-center p-4 bg-gray-50 rounded-2xl group border border-transparent hover:border-[#daa520]/30 transition-all">
@@ -313,7 +313,7 @@ function App() {
                         <button onClick={() => deleteBlog(blog.id)} className="text-gray-300 hover:text-red-500 transition-colors"><i className="fa-solid fa-trash-can" /></button>
                       </div>
                     ))}
-                    {blogs.length === 0 && <p className="text-center text-gray-300 italic py-4">No content found in local repository.</p>}
+                    {blogs.length === 0 && <p className="text-center text-gray-300 italic py-4">No blogs found in LocalStorage.</p>}
                   </div>
                 </div>
               </div>

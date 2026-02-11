@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:ital,wght@0,400;0,600;1,400&family=Amiri:wght@400;700&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Quill Rich Text Editor -->
+    <!-- Quill Rich Text Editor CSS & JS -->
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 
@@ -37,21 +37,6 @@
             z-index: 0;
         }
 
-        .glass-dropdown {
-            background: rgba(6, 78, 59, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(218, 165, 32, 0.3);
-        }
-
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-slide-down {
-            animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
@@ -68,59 +53,37 @@
             animation: float 4s ease-in-out infinite;
         }
 
-        /* Gold Glow Effect for Buttons */
-        .btn-gold-glow {
-            position: relative;
-            box-shadow: 0 0 10px rgba(218, 165, 32, 0.3);
-            transition: all 0.4s ease;
-        }
-        .btn-gold-glow:hover {
-            box-shadow: 0 0 20px rgba(218, 165, 32, 0.6);
-            transform: translateY(-2px);
-        }
-
-        @keyframes pulse-gold {
-            0% { box-shadow: 0 0 0 0 rgba(218, 165, 32, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(218, 165, 32, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(218, 165, 32, 0); }
-        }
-        .animate-pulse-gold {
-            animation: pulse-gold 2s infinite;
-        }
-
-        /* Quill Styles Override */
+        /* Quill Professional Styling */
         .ql-toolbar.ql-snow {
             border: 1px solid #e5e7eb !important;
-            border-radius: 1rem 1rem 0 0 !important;
+            border-radius: 1.5rem 1.5rem 0 0 !important;
             background: #f9fafb !important;
             padding: 12px !important;
         }
         .ql-container.ql-snow {
             border: 1px solid #e5e7eb !important;
-            border-radius: 0 0 1rem 1rem !important;
-            min-height: 250px !important;
+            border-radius: 0 0 1.5rem 1.5rem !important;
+            min-height: 300px !important;
             font-family: 'Lora', serif !important;
-            font-size: 1rem !important;
+            font-size: 1.1rem !important;
+            background: white !important;
         }
         .ql-editor {
-            min-height: 250px !important;
-        }
-        .ql-editor.ql-blank::before {
-            color: #9ca3af !important;
-            font-style: italic !important;
+            min-height: 300px !important;
+            color: #064e3b !important;
         }
 
-        /* Prose Overrides for Blog Content Display */
-        .blog-prose h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; color: #064e3b; margin-top: 2rem; margin-bottom: 1.5rem; line-height: 1.2; }
-        .blog-prose h2 { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: #064e3b; margin-top: 1.75rem; margin-bottom: 1.25rem; line-height: 1.3; }
-        .blog-prose h3 { font-family: 'Playfair Display', serif; font-size: 1.75rem; font-weight: 700; color: #064e3b; margin-top: 1.5rem; margin-bottom: 1rem; line-height: 1.4; }
-        .blog-prose p { margin-bottom: 1.5rem; line-height: 1.8; color: #374151; }
-        .blog-prose ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; }
-        .blog-prose ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 1.5rem; }
-        .blog-prose li { margin-bottom: 0.5rem; }
+        /* Rendered Blog Content Styling (Prose) */
+        .blog-prose h1 { font-family: 'Playfair Display', serif; font-size: 2.25rem; font-weight: 700; color: #064e3b; margin: 1.5rem 0; }
+        .blog-prose h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: #064e3b; margin: 1.25rem 0; }
+        .blog-prose p { margin-bottom: 1.25rem; line-height: 1.8; color: #374151; }
+        .blog-prose ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.25rem; }
+        .blog-prose ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 1.25rem; }
         .blog-prose strong { color: #064e3b; font-weight: 700; }
-        .blog-prose em { font-style: italic; }
         .blog-prose u { text-decoration: underline; }
+        .blog-prose em { font-style: italic; }
+        .blog-prose .ql-align-center { text-align: center; }
+        .blog-prose .ql-align-right { text-align: right; }
     </style>
 <script type="importmap">
 {
