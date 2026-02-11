@@ -43,7 +43,7 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ item, onNavigate }) => {
     >
       <button 
         onClick={handleMainClick}
-        className={`flex items-center gap-1.5 px-4 py-2 text-white/90 font-serif-display text-lg transition-all duration-300 ${isOpen ? 'text-[#daa520]' : 'hover:text-[#daa520]'}`}
+        className={`flex items-center gap-1.5 px-4 py-2 text-white/90 font-serif-display text-lg transition-all duration-300 ${isOpen ? 'text-[#fbbf24]' : 'hover:text-[#fbbf24]'}`}
       >
         {item.label}
         <svg 
@@ -56,31 +56,28 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ item, onNavigate }) => {
         </svg>
       </button>
 
-      {/* Dropdown Container */}
+      {/* Dropdown Container - High Z-Index & Transition */}
       <div 
-        className={`absolute top-[100%] left-0 w-80 pt-6 z-[100] transition-all duration-300 ${
+        className={`absolute top-[100%] left-0 w-72 pt-2 z-[500] transition-all duration-300 ${
           isOpen 
           ? 'opacity-100 pointer-events-auto block animate-slide-down' 
           : 'opacity-0 pointer-events-none hidden'
         }`}
       >
-        <div className="glass-dropdown shadow-[0_30px_60px_rgba(0,0,0,0.6)] rounded-[24px] overflow-hidden border-t-4 border-[#daa520]">
-          <div className="py-6 relative z-10 flex flex-col">
+        <div className="bg-[#064e3b] shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-[8px] overflow-hidden border border-[#fbbf24]">
+          <div className="py-2 flex flex-col">
             {item.children?.map((child, idx) => (
               <a
                 key={idx}
                 href={child.href}
                 onClick={(e) => handleChildClick(e, child)}
-                className="group flex items-center px-10 py-4.5 text-base text-white/90 hover:bg-white/10 transition-all duration-300"
+                className="px-[15px] py-[10px] text-white font-amiri text-lg transition-all duration-300 hover:bg-[#fbbf24] hover:text-[#064e3b] flex items-center justify-between group/item"
               >
-                <div className="w-2 h-2 rounded-full bg-[#daa520] mr-5 scale-0 group-hover:scale-100 transition-transform duration-300" />
-                <span className="group-hover:text-[#daa520] group-hover:translate-x-2 transition-all duration-300 font-serif-display font-medium tracking-wide leading-tight">
-                  {child.label}
-                </span>
+                <span>{child.label}</span>
+                <i className="fa-solid fa-chevron-right text-[10px] opacity-0 group-hover/item:opacity-100 transition-opacity translate-x-[-5px] group-hover/item:translate-x-0" />
               </a>
             ))}
           </div>
-          <div className="h-1.5 bg-gradient-to-r from-transparent via-[#daa520]/40 to-transparent"></div>
         </div>
       </div>
     </div>
