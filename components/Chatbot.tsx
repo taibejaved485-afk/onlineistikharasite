@@ -85,13 +85,10 @@ const Chatbot: React.FC = () => {
     
     setIsTyping(true);
 
-    // Dynamic delay for typing realism
     const delay = Math.min(Math.max(userMsg.length * 20, 1000), 2500);
 
     setTimeout(() => {
       let botResponse = "";
-      
-      // Check if it matches a quick reply label exactly
       const quickMatch = QUICK_REPLIES.find(qr => qr.label === userMsg);
       if (quickMatch) {
         botResponse = quickMatch.response;
@@ -118,17 +115,17 @@ const Chatbot: React.FC = () => {
 
   return (
     <>
-      {/* Floating Toggle Button */}
+      {/* Floating Toggle Button - Aligned 15px above WhatsApp Button (bottom-8 + height-16 + 15px gap approx bottom-28) */}
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className={`fixed bottom-28 right-8 z-[110] w-14 h-14 bg-[#064e3b] text-[#fbbf24] rounded-full flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 border-2 border-[#fbbf24]/50 ${isOpen ? 'rotate-90' : ''}`}
+        className={`fixed bottom-[111px] right-8 z-[150] w-14 h-14 bg-[#064e3b] text-[#fbbf24] rounded-full flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 border-2 border-[#fbbf24]/50 ${isOpen ? 'rotate-90' : ''}`}
         aria-label="Toggle Chat"
       >
         <i className={`fa-solid ${isOpen ? 'fa-xmark' : 'fa-comment-dots'} text-2xl`} />
       </button>
 
       {/* Chat Window */}
-      <div className={`fixed bottom-48 right-4 md:right-8 z-[120] w-[95vw] md:w-[420px] h-[660px] bg-white rounded-[40px] shadow-[0_30px_100px_rgba(0,0,0,0.6)] border-2 border-[#064e3b]/10 flex flex-col overflow-hidden transition-all duration-500 transform ${isOpen ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-20 opacity-0 scale-90 pointer-events-none'}`}>
+      <div className={`fixed bottom-48 right-4 md:right-8 z-[160] w-[95vw] md:w-[420px] h-[660px] bg-white rounded-[40px] shadow-[0_30px_100px_rgba(0,0,0,0.6)] border-2 border-[#064e3b]/10 flex flex-col overflow-hidden transition-all duration-500 transform ${isOpen ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-20 opacity-0 scale-90 pointer-events-none'}`}>
         
         {/* Header */}
         <div className="bg-[#064e3b] p-6 text-white islamic-pattern relative">
@@ -174,7 +171,7 @@ const Chatbot: React.FC = () => {
           )}
         </div>
 
-        {/* Quick Menu Buttons - Always Visible Above Input */}
+        {/* Quick Menu Buttons */}
         <div className="px-5 pt-2 pb-0 flex flex-wrap gap-2">
            {QUICK_REPLIES.map((qr, idx) => (
              <button
@@ -208,7 +205,7 @@ const Chatbot: React.FC = () => {
           </div>
           
           <a 
-            href="https://wa.me/923706487654" 
+            href="https://wa.me/923706487654?text=Assalam-o-Alaikum!%20Mujhe%20Noor%20Emerald%20se%20rohani%20masail%20ke%20bare%20mein%20maloomat%20chahiye." 
             target="_blank" 
             rel="noopener noreferrer"
             className="w-full h-20 flex flex-col items-center justify-center bg-[#25D366] text-white rounded-[30px] font-serif-display font-bold shadow-2xl transition-all duration-300 hover:scale-[1.03] active:scale-95 group border-4 border-[#fbbf24]/20"
