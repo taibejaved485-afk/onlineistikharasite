@@ -6,12 +6,19 @@ interface Message {
   text: string;
 }
 
+const QUICK_REPLIES = [
+  { label: 'Istikhara ka tareeqa?', response: 'Istikhara ke liye aap hamari "Services" section check karein ya direct WhatsApp par raabta karein. Hum aapki behtareen rehnumayi karenge.' },
+  { label: 'Aaj ka Wazifa', response: 'Har qism ke masail ke liye hamare "Blog" section mein tajweez karda makhsoos wazaif mojood hain jo Quran-o-Sunnat ke mutabiq hain.' },
+  { label: 'Contact Expert', response: 'Aap hamare "Contact Us" page par ja kar form fill kar sakte hain ya niche diye gaye WhatsApp icon par click karke direct mahireen se baat karein.' },
+  { label: 'Fees & Charges', response: 'Hamari basic maloomat aur mashwara bilkul muft hain, lekin makhsoos rohani ilaj ya taweezat ke hadiya ke liye aap admin se WhatsApp par raabta kar sakte hain.' }
+];
+
 const Chatbot: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     { 
       role: 'model', 
-      text: "Assalam-o-Alaikum! Main aapka Rohani Dost hoon. Aapko kis qism ki rohani madad ya rehnumayi chahiye? (Maslan: Jadu, Shadi, ya Rizq ke masail)" 
+      text: "Assalam-o-Alaikum! Main aapka Rohani Dost hoon. Aapko kis qism ki rohani madad ya rehnumayi chahiye? Niche diye gaye menu se bhi muntakhib kar sakte hain." 
     }
   ]);
   const [input, setInput] = useState('');
@@ -67,23 +74,46 @@ const Chatbot: React.FC = () => {
       return "Ji bilkul, hum shadi, safar aur karobar ke liye 'Masnoon Istikhara' ki saholat dete hain. Apna masla likh kar WhatsApp par bhejein, aapko jald jawab mil jayega.";
     }
 
-    // Fallback Message (Updated)
+    // Fallback Message
     return "Behtreen rehnumayi ke liye aap hamare 'Contact Us' button par click karke direct raabta kar sakte hain.";
+  };
+
+  const processResponse = (userMsg: string, isManual: boolean = true) => {
+    if (isManual) {
+      setMessages(prev => [...prev, { role: 'user', text: userMsg }]);
+    }
+    
+    setIsTyping(true);
+
+    // Dynamic delay for typing realism
+    const delay = Math.min(Math.max(userMsg.length * 20, 1000), 2500);
+
+    setTimeout(() => {
+      let botResponse = "";
+      
+      // Check if it matches a quick reply label exactly
+      const quickMatch = QUICK_REPLIES.find(qr => qr.label === userMsg);
+      if (quickMatch) {
+        botResponse = quickMatch.response;
+      } else {
+        botResponse = getStaticResponse(userMsg);
+      }
+
+      setMessages(prev => [...prev, { role: 'model', text: botResponse }]);
+      setIsTyping(false);
+    }, delay);
   };
 
   const handleSend = () => {
     const userMsg = input.trim();
     if (!userMsg) return;
-
-    setMessages(prev => [...prev, { role: 'user', text: userMsg }]);
     setInput('');
-    setIsTyping(true);
+    processResponse(userMsg);
+  };
 
-    setTimeout(() => {
-      const botResponse = getStaticResponse(userMsg);
-      setMessages(prev => [...prev, { role: 'model', text: botResponse }]);
-      setIsTyping(false);
-    }, 800);
+  const handleQuickReply = (qr: typeof QUICK_REPLIES[0]) => {
+    setMessages(prev => [...prev, { role: 'user', text: qr.label }]);
+    processResponse(qr.label, false);
   };
 
   return (
@@ -91,7 +121,7 @@ const Chatbot: React.FC = () => {
       {/* Floating Toggle Button */}
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className={`fixed bottom-28 right-8 z-[110] w-14 h-14 bg-[#064e3b] text-[#daa520] rounded-full flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 border-2 border-[#daa520]/50 ${isOpen ? 'rotate-90' : ''}`}
+        className={`fixed bottom-28 right-8 z-[110] w-14 h-14 bg-[#064e3b] text-[#fbbf24] rounded-full flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 border-2 border-[#fbbf24]/50 ${isOpen ? 'rotate-90' : ''}`}
         aria-label="Toggle Chat"
       >
         <i className={`fa-solid ${isOpen ? 'fa-xmark' : 'fa-comment-dots'} text-2xl`} />
@@ -104,14 +134,14 @@ const Chatbot: React.FC = () => {
         <div className="bg-[#064e3b] p-6 text-white islamic-pattern relative">
           <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent" />
           <div className="relative z-10 flex items-center gap-4">
-             <div className="w-12 h-12 bg-[#daa520] rounded-full flex items-center justify-center text-[#064e3b] shadow-lg border-2 border-white/20">
+             <div className="w-12 h-12 bg-[#fbbf24] rounded-full flex items-center justify-center text-[#064e3b] shadow-lg border-2 border-white/20">
                 <i className="fa-solid fa-star-and-crescent text-xl" />
              </div>
              <div>
                 <h3 className="font-serif-display font-bold text-xl leading-tight">Rohani Dost AI</h3>
                 <div className="flex items-center gap-1.5">
                   <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                  <p className="text-[10px] text-[#daa520] uppercase tracking-widest font-bold">Local Assistant</p>
+                  <p className="text-[10px] text-[#fbbf24] uppercase tracking-widest font-bold">Local Assistant</p>
                 </div>
              </div>
           </div>
@@ -132,18 +162,33 @@ const Chatbot: React.FC = () => {
           ))}
           {isTyping && (
             <div className="flex justify-start">
-              <div className="bg-white p-4 rounded-2xl border border-[#064e3b]/5 flex items-center gap-2">
+              <div className="bg-white p-4 rounded-2xl border border-[#064e3b]/5 flex items-center gap-3">
+                <p className="text-[10px] font-bold text-gray-400 italic uppercase tracking-widest">Bot is typing...</p>
                 <div className="flex gap-1">
-                  <div className="w-1.5 h-1.5 bg-[#daa520] rounded-full animate-bounce" />
-                  <div className="w-1.5 h-1.5 bg-[#daa520] rounded-full animate-bounce [animation-delay:0.2s]" />
-                  <div className="w-1.5 h-1.5 bg-[#daa520] rounded-full animate-bounce [animation-delay:0.4s]" />
+                  <div className="w-1.5 h-1.5 bg-[#fbbf24] rounded-full animate-bounce" />
+                  <div className="w-1.5 h-1.5 bg-[#fbbf24] rounded-full animate-bounce [animation-delay:0.2s]" />
+                  <div className="w-1.5 h-1.5 bg-[#fbbf24] rounded-full animate-bounce [animation-delay:0.4s]" />
                 </div>
               </div>
             </div>
           )}
         </div>
 
-        {/* Input & WhatsApp Link */}
+        {/* Quick Menu Buttons - Always Visible Above Input */}
+        <div className="px-5 pt-2 pb-0 flex flex-wrap gap-2">
+           {QUICK_REPLIES.map((qr, idx) => (
+             <button
+               key={idx}
+               onClick={() => handleQuickReply(qr)}
+               disabled={isTyping}
+               className="bg-[#fbbf24] text-[#064e3b] px-4 py-2 rounded-full text-xs font-bold shadow-md hover:bg-white transition-all active:scale-95 border border-[#fbbf24]/50"
+             >
+               {qr.label}
+             </button>
+           ))}
+        </div>
+
+        {/* Input Area */}
         <div className="p-5 bg-white border-t border-gray-100 space-y-4">
           <div className="flex gap-2">
             <input 
@@ -151,12 +196,12 @@ const Chatbot: React.FC = () => {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-              placeholder="Masla likhein (Jadu, Shadi, Rizq...)"
-              className="flex-1 bg-gray-50 border border-gray-200 rounded-2xl px-5 py-3 text-sm focus:outline-none focus:border-[#daa520] transition-all shadow-inner"
+              placeholder="Sawal likhein ya menu se choose karein..."
+              className="flex-1 bg-gray-50 border border-gray-200 rounded-2xl px-5 py-3 text-sm focus:outline-none focus:border-[#fbbf24] transition-all shadow-inner"
             />
             <button 
               onClick={handleSend}
-              className="w-12 h-12 bg-[#daa520] text-[#064e3b] rounded-2xl flex items-center justify-center shadow-md hover:bg-[#064e3b] hover:text-white transition-all active:scale-90"
+              className="w-12 h-12 bg-[#fbbf24] text-[#064e3b] rounded-2xl flex items-center justify-center shadow-md hover:bg-[#064e3b] hover:text-white transition-all active:scale-90"
             >
               <i className="fa-solid fa-paper-plane" />
             </button>
@@ -166,13 +211,13 @@ const Chatbot: React.FC = () => {
             href="https://wa.me/923706487654" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="w-full h-24 flex flex-col items-center justify-center bg-[#25D366] text-white rounded-[30px] font-serif-display font-bold shadow-2xl transition-all duration-300 hover:scale-[1.03] active:scale-95 group animate-pulse-gold border-4 border-[#daa520]/20"
+            className="w-full h-20 flex flex-col items-center justify-center bg-[#25D366] text-white rounded-[30px] font-serif-display font-bold shadow-2xl transition-all duration-300 hover:scale-[1.03] active:scale-95 group border-4 border-[#fbbf24]/20"
           >
             <div className="flex items-center gap-4">
-              <i className="fa-brands fa-whatsapp text-5xl" />
+              <i className="fa-brands fa-whatsapp text-4xl" />
               <div className="text-left">
-                <span className="text-2xl uppercase tracking-wider block leading-none">WhatsApp Rabta</span>
-                <span className="text-[11px] opacity-90 font-lora italic">Click here for Direct Spiritual Help</span>
+                <span className="text-xl uppercase tracking-wider block leading-none">WhatsApp Rabta</span>
+                <span className="text-[9px] opacity-90 font-lora italic">Direct Spiritual Help</span>
               </div>
             </div>
           </a>
