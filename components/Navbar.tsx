@@ -31,6 +31,9 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
     if (label === 'Home') {
       e.preventDefault();
       onNavigate?.('home');
+    } else if (label === 'Blogs') {
+      // Logic handled via hash in constants, but we add a small delay for smooth scroll if needed
+      window.location.hash = 'blogs-section';
     } else if (label === 'Pregnancy') {
       e.preventDefault();
       onNavigate?.('pregnancy');

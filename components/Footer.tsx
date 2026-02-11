@@ -4,9 +4,10 @@ import { ViewType } from '../App';
 
 interface FooterProps {
   onNavigate?: (target: ViewType) => void;
+  onAdminClick?: () => void;
 }
 
-const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
+const Footer: React.FC<FooterProps> = ({ onNavigate, onAdminClick }) => {
   const quickLinks = [
     { name: 'About us', target: 'about' as ViewType, href: '#about-page' },
     { name: 'Contact', target: 'home' as ViewType, href: '#contact' },
@@ -51,7 +52,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 NOOR <span className="text-[#daa520]">EMERALD</span>
               </h3>
             </div>
-            <p className="text-white/70 font-amiri text-lg leading-relaxed dir-rtl">
+            <p className="text-white/70 font-amiri text-lg leading-relaxed dir-rtl text-right">
               Online Istikhara Site aik Islamic Rohani Website hai jo Quran-o-Sunnat ki roshni mein insani masail ka hal aur behtareen rohani renumayi faraham karti hai.
             </p>
             <div className="h-1 w-20 bg-gradient-to-r from-[#daa520] to-transparent rounded-full" />
@@ -155,10 +156,16 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
       </div>
 
       <div className="bg-black/50 py-4 border-t border-white/5">
-        <div className="container mx-auto px-6 text-center">
+        <div className="container mx-auto px-6 text-center flex flex-col md:flex-row items-center justify-center gap-4">
           <p className="text-white/40 font-lora text-sm tracking-widest">
             Copyright © 2026 <span className="text-[#daa520]/60 font-serif-display font-bold">Online Istikhara Site</span>. All Rights Reserved.
           </p>
+          <button 
+            onClick={onAdminClick} 
+            className="text-[#daa520]/20 hover:text-[#daa520]/60 transition-colors text-[10px] uppercase tracking-[0.3em] font-bold"
+          >
+            Admin Portal
+          </button>
         </div>
       </div>
     </footer>

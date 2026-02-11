@@ -1,0 +1,196 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noor Emerald | Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lora:wght@400;600&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Lora', serif; background-color: #fcfdfa; }
+        .font-serif-display { font-family: 'Playfair Display', serif; }
+        .islamic-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 0 L60 40 L100 50 L60 60 L50 100 L40 60 L0 50 L40 40 Z' fill='%23daa520' fill-opacity='0.05'/%3E%3C/svg%3E");
+        }
+        .emerald-gradient { background: linear-gradient(135deg, #064e3b 0%, #022c22 100%); }
+    </style>
+</head>
+<body class="islamic-pattern min-h-screen">
+
+    <!-- Login Section -->
+    <div id="login-screen" class="flex items-center justify-center min-h-screen p-6">
+        <div class="bg-white w-full max-w-md rounded-[40px] shadow-2xl border-t-4 border-[#daa520] p-10 text-center animate-fade-in">
+            <div class="w-20 h-20 emerald-gradient rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl border-2 border-[#daa520]/30">
+                <i class="fa-solid fa-lock text-[#daa520] text-3xl"></i>
+            </div>
+            <h2 class="text-3xl font-serif-display text-[#064e3b] mb-2">Admin Portal</h2>
+            <p class="text-gray-500 mb-8 italic">Please enter your credentials</p>
+            
+            <input type="password" id="admin-pass" placeholder="Password (admin123)" class="w-full px-6 py-4 bg-gray-50 border border-gray-200 rounded-2xl mb-4 focus:outline-none focus:border-[#daa520] transition-all text-center">
+            <button onclick="checkLogin()" class="w-full py-4 bg-[#daa520] text-[#064e3b] font-bold rounded-2xl hover:bg-[#064e3b] hover:text-white transition-all shadow-lg transform active:scale-95">
+                Login Dashboard
+            </button>
+            <p id="error-msg" class="text-red-500 mt-4 text-sm hidden">Ghalat Password! Dobara koshish karein.</p>
+        </div>
+    </div>
+
+    <!-- Dashboard Section -->
+    <div id="dashboard-screen" class="hidden">
+        <!-- Header -->
+        <header class="emerald-gradient text-white py-6 px-8 shadow-xl flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <div class="w-10 h-10 bg-[#daa520] rounded-full flex items-center justify-center text-[#064e3b] font-bold">N</div>
+                <h1 class="text-2xl font-serif-display tracking-wider">Noor Emerald <span class="text-[#daa520]">Admin</span></h1>
+            </div>
+            <button onclick="logout()" class="text-[#daa520] hover:text-white flex items-center gap-2 font-bold uppercase text-xs tracking-widest">
+                Logout <i class="fa-solid fa-sign-out"></i>
+            </button>
+        </header>
+
+        <main class="container mx-auto px-6 py-12 max-w-4xl">
+            <!-- Form Section -->
+            <div class="bg-white rounded-[40px] shadow-xl border border-gray-100 overflow-hidden">
+                <div class="bg-gray-50 px-10 py-6 border-b border-gray-100 flex justify-between items-center">
+                    <h3 class="text-[#064e3b] font-serif-display text-xl font-bold">Create New Blog Entry</h3>
+                    <span class="text-xs bg-[#daa520]/20 text-[#064e3b] px-3 py-1 rounded-full font-bold uppercase tracking-widest">Status: Online</span>
+                </div>
+                
+                <div class="p-10 space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold text-[#064e3b]/60 uppercase tracking-widest ml-1">Blog Title</label>
+                            <input type="text" id="blog-title" placeholder="Title likhein..." class="w-full px-6 py-4 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:border-[#daa520] transition-all">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold text-[#064e3b]/60 uppercase tracking-widest ml-1">Category</label>
+                            <select id="blog-cat" class="w-full px-6 py-4 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:border-[#daa520] transition-all appearance-none cursor-pointer">
+                                <option>General Blog</option>
+                                <option>Islamic Guidance</option>
+                                <option>Taweezat News</option>
+                                <option>Success Stories</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold text-[#064e3b]/60 uppercase tracking-widest ml-1">Featured Image URL</label>
+                        <input type="text" id="blog-img" placeholder="https://example.com/image.jpg" class="w-full px-6 py-4 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:border-[#daa520] transition-all">
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold text-[#064e3b]/60 uppercase tracking-widest ml-1">Content (Tafseel)</label>
+                        <textarea id="blog-content" rows="6" placeholder="Apna content yahan likhein..." class="w-full px-6 py-4 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:border-[#daa520] transition-all resize-none"></textarea>
+                    </div>
+
+                    <button onclick="saveBlog()" class="w-full py-5 bg-[#064e3b] text-white font-serif-display font-bold text-xl rounded-2xl shadow-xl hover:bg-[#daa520] hover:text-[#064e3b] transition-all transform active:scale-[0.98] flex items-center justify-center gap-3">
+                        <i class="fa-solid fa-cloud-arrow-up"></i> Save to Repository
+                    </button>
+                </div>
+            </div>
+
+            <!-- Preview/Recent Section -->
+            <div class="mt-12">
+                <h4 class="text-[#064e3b] font-serif-display text-2xl font-bold mb-6">Recent Local Entries</h4>
+                <div id="blog-list" class="space-y-4">
+                    <!-- Blogs will appear here from localStorage -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Check Login
+        function checkLogin() {
+            const pass = document.getElementById('admin-pass').value;
+            const error = document.getElementById('error-msg');
+            
+            if(pass === 'admin123') {
+                document.getElementById('login-screen').classList.add('hidden');
+                document.getElementById('dashboard-screen').classList.remove('hidden');
+                loadBlogs();
+            } else {
+                error.classList.remove('hidden');
+                setTimeout(() => error.classList.add('hidden'), 3000);
+            }
+        }
+
+        // Logout
+        function logout() {
+            document.getElementById('dashboard-screen').classList.add('hidden');
+            document.getElementById('login-screen').classList.remove('hidden');
+            document.getElementById('admin-pass').value = '';
+        }
+
+        // Save Blog to LocalStorage
+        function saveBlog() {
+            const title = document.getElementById('blog-title').value;
+            const category = document.getElementById('blog-cat').value;
+            const img = document.getElementById('blog-img').value;
+            const content = document.getElementById('blog-content').value;
+
+            if(!title || !content) {
+                alert("Please fill title and content!");
+                return;
+            }
+
+            const blogEntry = {
+                id: Date.now(),
+                title,
+                category,
+                img,
+                content,
+                date: new Date().toLocaleDateString()
+            };
+
+            const existingBlogs = JSON.parse(localStorage.getItem('noor_emerald_blogs') || '[]');
+            existingBlogs.unshift(blogEntry);
+            localStorage.setItem('noor_emerald_blogs', JSON.stringify(existingBlogs));
+
+            // Reset form
+            document.getElementById('blog-title').value = '';
+            document.getElementById('blog-img').value = '';
+            document.getElementById('blog-content').value = '';
+            
+            alert("Success! Blog saved to LocalStorage.");
+            loadBlogs();
+        }
+
+        // Load Blogs from LocalStorage
+        function loadBlogs() {
+            const list = document.getElementById('blog-list');
+            const blogs = JSON.parse(localStorage.getItem('noor_emerald_blogs') || '[]');
+            
+            if(blogs.length === 0) {
+                list.innerHTML = `<div class="bg-gray-100 p-8 rounded-2xl text-center text-gray-400 italic">Abhi tak koi entry nahi hai.</div>`;
+                return;
+            }
+
+            list.innerHTML = blogs.map(blog => `
+                <div class="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm flex justify-between items-center group hover:border-[#daa520] transition-all">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center text-[#064e3b]">
+                            <i class="fa-solid fa-file-lines"></i>
+                        </div>
+                        <div>
+                            <h5 class="font-bold text-[#064e3b]">${blog.title}</h5>
+                            <p class="text-xs text-gray-400">${blog.category} • ${blog.date}</p>
+                        </div>
+                    </div>
+                    <button onclick="deleteBlog(${blog.id})" class="text-gray-300 hover:text-red-500 transition-colors p-2">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function deleteBlog(id) {
+            let blogs = JSON.parse(localStorage.getItem('noor_emerald_blogs') || '[]');
+            blogs = blogs.filter(b => b.id !== id);
+            localStorage.setItem('noor_emerald_blogs', JSON.stringify(blogs));
+            loadBlogs();
+        }
+    </script>
+</body>
+</html>

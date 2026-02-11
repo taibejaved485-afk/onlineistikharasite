@@ -1,0 +1,24 @@
+
+backend:
+  name: git-gateway
+  branch: main
+
+# This allows editing without pushing to git during local development
+local_backend: true 
+
+publish_mode: editorial_workflow
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "blog"
+    label: "Noor Emerald Blogs"
+    folder: "content/blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Blog Title (Surkhi)", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Featured Image", name: "thumbnail", widget: "image" }
+      - { label: "Content (Tafseel)", name: "body", widget: "markdown" }
+      - { label: "Author", name: "author", widget: "string", default: "Noor Emerald Admin" }

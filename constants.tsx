@@ -3,6 +3,7 @@ import { NavItem } from './types';
 
 export const MENU_DATA: NavItem[] = [
   { label: 'Home', href: '#' },
+  { label: 'Blogs', href: '#blogs-section' },
   { label: 'Pregnancy', href: '#pregnancy-page' },
   {
     label: 'Islamic Taweez',
