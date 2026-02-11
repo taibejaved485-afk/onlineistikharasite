@@ -12,104 +12,112 @@ const CATEGORY_CONTENT: Record<TaweezCategory, any> = {
     title: "Daily Islamic Wazaif",
     subtitle: "Rozmarra ki Mushkilat ka Qurani Hal",
     icon: "📖",
-    significance: "Islamic Wazaif are powerful spiritual tools rooted in the verses of the Holy Quran and the beautiful names of Allah (Asma-ul-Husna). They serve as a constant source of divine assistance for overcoming daily hurdles, mental stress, and spiritual blockages. By performing these makhsoos Qurani kalimat with pure intention, one can invite infinite blessings into their life.",
-    urdu: "Har maslay ka hal Quran mein maujood hai. Rozmarra ki pareshaniyon aur mushkilat ke liye makhsoos Qurani kalimat ka wird aapki zindagi mein sakoon aur barkat lata hai.",
+    significance: "Islamic Wazaif are powerful spiritual tools rooted in the divine verses of the Holy Quran and the beautiful names of Allah (Asma-ul-Husna). Zindagi mein kabhi kabhi aisy mawaqay aate hain jab insan zehni dabao aur pareshani ka shikar ho jata hai. Aisy mein Allah ka zikr hi wo wahid rasta hai jo dil ko sakoon deta hai. Hamare tajweez karda wazaif Quran-o-Sunnat ki roshni mein tayyar kiye gaye hain. Introduction: Wazaif ka matlab hai kisi makhsoos kalimay ya ayat ko aik muqarrah tadad mein parhna. Ye rohani qatray ki manind hain jo ahista ahista dil ki sakhti ko khatam karte hain. Solution: Quran-e-Pak mein irshad hai 'Bala bi-dhikrillahi tatma'innul qulub' (Be-shak Allah ke zikr mein hi dilon ka itminan hai). Hum har maslay ke liye makhsoos ayaat ka intikhab karte hain jo aapki rohani quwwat ko jidat bakhshti hain. Benefits: In wazaif ke zariye aapko zehni sakoon milta hai, dushmano ke shar se hifazat hoti hai, aur rizq mein barkat ke darwazay khulte hain. Ye wazaif aapke ghar mein aman aur mohabbat ki faza qaim karne mein madadgar sabit hote hain.",
+    urdu: "Har maslay ka hal Quran mein maujood hai. Rozmarra ki pareshaniyon aur mushkilat ke liye makhsoos Qurani kalimat ka wird aapki zindagi mein sakoon aur barkat lata hai. Hum aapko batatay hain ke kis tarah in makhsoos ayaat se aap apni mushkilat ko asan kar sakte hain.",
     details: [
-      "Authentic wazaif for mental peace and anxiety relief.",
-      "Specific supplications for protection from unseen dangers.",
-      "Guidance on the proper times (auqat) and methods for effective wird.",
-      "Customized spiritual routines for personal and family wellbeing."
+      "Zehni sakoon aur anxiety se mukammal nijaat.",
+      "Ghar mein lari jhagray khatam karne ke liye makhsoos azkar.",
+      "Dushman aur hasid ki buri nazar se hifazati dhal.",
+      "Rizq mein barkat aur karobari bandish ka khatma.",
+      "Be-khwabi (Insomnia) aur khauf ka rohani ilaj."
     ]
   },
   mohabbat: {
     title: "Harmonious Relationships",
     subtitle: "Jayiz Mohabbat aur Ittefaq",
     icon: "❤️",
-    significance: "In the light of Shariah, love and harmony between spouses (Mian-Biwi) and family members are sacred. Our spiritual solutions focus on removing misunderstandings, softening hearts, and fostering mutual respect through permissible (halal) Quranic prayers. These treatments are specifically designed to bring peace to broken homes and strengthen the bond of marriage.",
-    urdu: "Miyan-biwi mein ittefaq aur jayiz muhabbat ke rohani amliyat ke zariye hum gharon mein sukoon aur mohabbat paida karne ki koshish karte hain.",
+    significance: "In the light of Shariah, love and harmony between family members are the foundation of a peaceful society. Aaj kal ke daur mein gharon mein na-chaqi aur miyan biwi ke darmiyan ikhtelafat aik aam masla ban chuke hain. Introduction: Aksar ye ikhtelafat rohani bandish ya buri nazar ki wajah se hote hain jo hasideen ki wajah se paida ki jati hai. Jab dilon mein dooriyan barh jati hain, to Quran-e-Pak ki ayaat dilon ko jorne ka kaam karti hain. Solution: Allah Ta'ala ne Surah Al-Anfal mein farmaya ke 'Dilon mein mohabbat Allah hi dalta hai'. Hum jayiz mohabbat aur ittefaq ke liye makhsoos Naqsh aur duaen tajweez karte hain jo Shariah ke dairay mein hoti hain. Benefits: In amliyat ke zariye miyan biwi ke darmiyan mohabbat barhti hai, sasural ke masail hal hote hain, aur ghar mein sukoon ki faza qaim hoti hai. Ye solutions un logon ke liye hain jo apni shadi shuda zindagi ko tabahi se bachana chahte hain.",
+    urdu: "Miyan-biwi mein ittefaq aur jayiz muhabbat ke rohani amliyat ke zariye hum gharon mein sukoon aur mohabbat paida karne ki koshish karte hain. Hamari renumayi sirf aur sirf jayiz rishton ke liye hai.",
     details: [
-      "Spiritual solutions for marital disputes and misunderstandings.",
-      "Quranic prayers to soften hearts and create mutual love.",
-      "Halal amliyat for resolving family conflicts and rivalries.",
-      "Removing spiritual obstacles in lawful (halal) marriage proposals."
+      "Miyan biwi ke darmiyan na-chaqi ka mukammal khatma.",
+      "Sasural mein izzat aur mohabbat hasil karne ka rohani hal.",
+      "Pasand ki shadi mein anay wali rukawaton ka sharai tor.",
+      "Gharelu ranjishen aur dushmani khatam karne ke wazaif.",
+      "Dilon mein narmi aur hamdardi paida karne ke makhsoos naqsh."
     ]
   },
   sehat: {
     title: "Spiritual Healing for Health",
     subtitle: "Sehat aur Shifa-e-Kamila",
     icon: "💊",
-    significance: "Health is a blessing from Allah, and for every illness, He has provided a cure. Spiritual healing (Rohani Ilaj) works alongside medical treatment to rejuvenate the body and soul. Using the 'Ayaat-e-Shifa' (Verses of Healing), we help individuals recover from physical ailments and psychological distress that medical science sometimes struggles to address.",
-    urdu: "Bimariyon se shifa aur jismani o nafsiati sehat ke liye makhsoos Qurani duain aur rohani ilaj ka bandobast kiya jata hai.",
+    significance: "Health is a blessing from Allah, and for every illness, He has provided a cure. Rohani ilaj (Spiritual Healing) jismani ilaj ke sath mil kar shifa ki raftar ko barha deta hai. Introduction: Bohat si bimariyan aisi hoti hain jin ki medical report theek aati hai lekin mareez ki halat kharab hoti hai. Ye aksar asrat, saya ya nazar-e-bad ki wajah se hota hai. Solution: Quran mein 'Ayat-e-Shifa' mojood hain jo har tarah ki jismani aur nafsiati bimari ke liye dhaal hain. Hum makhsoos ayaat ka damm aur naqsh faraham karte hain jo Allah ke hukm se mareez ko shifa dete hain. Benefits: Is se mareez ka hosla barhta hai, purani se purani bimari mein afaqah hota hai, aur zehni sukoon milta hai. Ye ilaj har umar ke fard ke liye moassar hai.",
+    urdu: "Bimariyon se shifa aur jismani o nafsiati sehat ke liye makhsoos Qurani duain aur rohani ilaj ka bandobast kiya jata hai. Allah ne har bimari ke liye shifa utari hai.",
     details: [
-      "Spiritual healing for chronic physical diseases.",
-      "Relief from psychological issues, depression, and insomnia.",
-      "Ayaat-e-Shifa water (Damm) and makhsoos Shifa Taweezat.",
-      "Strengthening the immune system through spiritual energy."
+      "Purani aur pechida bimariyon mein rohani madad.",
+      "Nafsiati masail aur depression ka Quranic ilaj.",
+      "Bachon ki sehat aur hifazat ke liye makhsoos taweezat.",
+      "Jism mein taqat aur tawanayi bahal karne ke wazaif.",
+      "Buri nazar ke asrat se jism ko pak karne ka tarika."
     ]
   },
   jadu: {
     title: "Protection from Black Magic",
     subtitle: "Jadu ka Tor aur Hifazat",
     icon: "🛡️",
-    significance: "Black magic (Kala Jadu) and the Evil Eye (Nazar-e-Bad) are real threats mentioned in our faith. Protection involves creating a spiritual 'shield' using the powerful verses of 'Ayat-ul-Kursi' and the 'Char Qul'. Our taweezat are prepared to dismantle the darkest of spells and return the individual to a state of purity and divine protection.",
-    urdu: "Nazar-e-bad, har qism ki hifazat, aur bandishon ke khatmay ke liye Quran-o-Sunnat ki roshni mein mazboot rohani hifazati dhal.",
+    significance: "Black magic (Kala Jadu) and the Evil Eye (Nazar-e-Bad) are real threats mentioned in the Holy Quran and Hadith. Introduction: Jadu insan ki zindagi ko tabah kar deta hai, karobar band kar deta hai aur sehat ko barbad kar deta hai. Ye hasad ki wajah se kiya jata hai. Solution: Hum Quran-e-Pak ki makhsoos ayaat (Manzil) aur makhsoos aadaad se tayyar karda 'Loh-e-Hifazat' dete hain jo har qism ke jadu ko kaat deta hai. Benefits: Is se aapka karobar khul jata hai, ghar mein barkat aati hai, aur dushman ki har chal nakaam ho jati hai. Aapka ghar aur ahle-khana har qism ke shar se mehfooz rehte hain.",
+    urdu: "Nazar-e-bad, har qism ki hifazat, aur bandishon ke khatmay ke liye Quran-o-Sunnat ki roshni mein mazboot rohani hifazati dhal. Jadu ka tor Quran se hi mumkin hai.",
     details: [
-      "Dismantling severe black magic and evil spells.",
-      "Protection from jealous eyes (Nazar-e-bad) and envious people.",
-      "Cleansing homes and workplaces from negative spiritual entities.",
-      "Permanent protection shields (Naqsh-e-Hifazat) for individuals."
+      "Kalay jadu aur sifli ilm ka 100% rohani tor.",
+      "Karobari bandish aur rizq ki rukawat ka khatma.",
+      "Ghar aur dukan ki hifazat ke liye makhsoos naqsh.",
+      "Hasid ki buri nazar aur jalan se hifazat.",
+      "Sihr-e-mufarriq (rishtey torne wala jadu) ka ilaj."
     ]
   },
   kamyabi: {
     title: "Victory & Career Success",
     subtitle: "Kamyabi aur Fateh",
     icon: "🏆",
-    significance: "Success in exams, career, or any life challenge requires both hard work and divine favor. By tapping into the spiritual power of specific Ism-e-Azam, we help seekers find favor in the eyes of others and overcome competition. These talismans are designed to unlock your potential and clear the path toward your goals.",
-    urdu: "Imtihan, muqabla, aur zindagi ke har maidan mein fateh pane aur kamyabi hasil karne ke liye authentic rohani rehnumayi.",
+    significance: "Success in exams, career, or any life challenge requires both hard work and divine favor. Introduction: Aaj ke muqablay ke daur mein insan mehnat to karta hai lekin naseeb sath nahi deta. Ye aksar rohani rukawaton ki wajah se hota hai jo hasideen ki wajah se paida hoti hain. Solution: Hum Ism-e-Azam ki barkat se aise naqsh tayyar karte hain jo aapki shakhsiyat mein kashish aur raste mein asani paida karte hain. Benefits: Is se aapko naukri mein taraqqi milti hai, imtehanat mein kamyabi milti hai, aur har maidan mein aapka palra bhari rehta hai. Log aapki baat ko tawajjo se sunte hain aur izzat karte hain.",
+    urdu: "Imtihan, muqabla, aur zindagi ke har maidan mein fateh pane aur kamyabi hasil karne ke liye authentic rohani rehnumayi aur makhsoos Ism-e-Azam ka wird.",
     details: [
-      "Spiritual support for competitive exams and interviews.",
-      "Gaining favor and respect in social and professional circles.",
-      "Removing hurdles that block professional growth and promotion.",
-      "Enhancing confidence and focus through spiritual meditation."
+      "Competitive exams aur job interviews mein kamyabi.",
+      "Office aur karobar mein izzat o martaba mein izafa.",
+      "Legal masail aur court cases mein fateh ka rohani hal.",
+      "Dushmanon par ghalba aur unki chalon se hifazat.",
+      "Personality development aur confidence mein izafa."
     ]
   },
   rizq: {
     title: "Business & Wealth Blessings",
     subtitle: "Rizq aur Karobar mein Barkat",
     icon: "💰",
-    significance: "Rizq (sustenance) is pre-ordained, but its flow can be restricted by spiritual blockages or lack of blessings (barkat). Using the power of the Great Name (Ism-e-Azam), we provide solutions to remove the 'bandish' (blockage) on wealth and business. Our focus is to invite prosperity that is pure (Tayyab) and lasting.",
-    urdu: "Karobar mein barkat aur tangi-e-rizq door karne ke liye Ism-e-Azam aur makhsoos Qurani barkati naqsh ka istemal.",
+    significance: "Rizq (sustenance) is pre-ordained, but its flow can be restricted by spiritual blockages. Introduction: Karobar mein achanak nuqsan, gahakon ki kami, aur paison mein barkat na hona asrat ki alamat ho sakti hai. Solution: Hum Naqsh-e-Sulemani aur makhsoos Barkati ayaat ke zariye rizq ke darwazay kholte hain. Benefits: Is se aapki amdani mein izafa hota hai, be-fuzool kharch khatam hota hai, aur karobar din dugni raat chugni taraqqi karta hai. Karobari dushmani aur jalan ka asar bhi khatam ho jata hai.",
+    urdu: "Karobar mein barkat aur tangi-e-rizq door karne ke liye Ism-e-Azam aur makhsoos Qurani barkati naqsh ka istemal. Rizq Allah ke hath mein hai hum sirf rasta dikhate hain.",
     details: [
-      "Removing business blockages (Karobari bandish) and losses.",
-      "Attracting new opportunities and profitable ventures.",
-      "Barkat in savings and daily income through spiritual wazaif.",
-      "Protection from financial jealousy and corporate evil eye."
+      "Karobari bandish aur nuqsan ka mukammal khatma.",
+      "Naye gahakon ki tawajjo aur sale mein izafa.",
+      "Qarz se nijaat aur mali mustahkami ka wazifa.",
+      "Dukan aur showroom ki barkat ke liye makhsoos naqsh.",
+      "Ghar mein rizq ki farawani aur barkat ki dua."
     ]
   },
   hamal: {
     title: "Pregnancy & Fertility Support",
     subtitle: "Aulaad ki Nemat aur Hifazat",
     icon: "🌸",
-    significance: "The journey to parenthood is one of faith. For those struggling with infertility or facing complications during pregnancy, spiritual support offers a beacon of hope. We provide specialized naqsh to ensure the safety of both mother and child (Maa o Bacha) and remove any spiritual barriers preventing conception.",
-    urdu: "Aulaad ki nemat ke liye Qurani duain aur dauran-e-hamal maa o bacha ki hifazat ke liye makhsoos rohani shields.",
+    significance: "The journey to parenthood is a blessing and requires spiritual care. Introduction: Be-auladi aik dardnak masla hai jo dilon ko tor deta hai. Aksar medical ilaj ke sath sath rohani madad ki zaroorat hoti hai taake womb (reham) har asar se pak ho sake. Solution: Hum makhsoos Qurani ayaat ke naqsh faraham karte hain jo hamal ko mehfooz banatay hain. Benefits: Maa aur bacha dono sehat mand rehte hain, hamal bar bar girne (miscarriage) ka masla hal hota hai, aur Allah ke fazl se aulaad-e-saaleh naseeb hoti hai.",
+    urdu: "Aulaad ki nemat ke liye Qurani duain aur dauran-e-hamal maa o bacha ki hifazat ke liye makhsoos rohani shields. Hamara maqsad har ghar mein khushi lana hai.",
     details: [
-      "Spiritual assistance for individuals facing infertility (Be-auladi).",
-      "Ensuring a safe pregnancy and healthy delivery of the child.",
-      "Protection from negative energies that affect the womb.",
-      "Prayers for the righteous and healthy upbringing of children."
+      "Be-auladi ka mukammal rohani ilaj aur renumayi.",
+      "Hamal bar bar girne se bachane ka khas naqsh.",
+      "Dauran-e-hamal maa aur bache ki rohani hifazat.",
+      "Aulaad-e-narina ke liye makhsoos Qurani wazaif.",
+      "Delivery mein asani aur sehat ke liye khas duain."
     ]
   },
   amazing: {
     title: "Amazing Spiritual Secrets",
     subtitle: "Hairat-angez aur Nayaab Tilismat",
     icon: "✨",
-    significance: "Our 'Amazing' category includes rare and unique spiritual solutions derived from the ancient wisdom of Sufis and scholars. These talismans are prepared under rare celestial alignments and offer extraordinary results for complex problems that seem impossible to solve. They represent the pinnacle of our spiritual expertise.",
-    urdu: "Wo khas aur nayaab tilismat aur rohani asrat jo hairat-angez nataij dete hain aur namumkin ko mumkin banatay hain.",
+    significance: "This category represents the highest level of our spiritual expertise. Introduction: Kuch masail aisy hote hain jo saloon se hal nahi hote aur har rasta band lagta hai. Ye 'Amazing' category inhi pechida masail ke liye hai. Solution: Hum nayaab aadaad aur nayaab auqat mein aise tilismat tayyar karte hain jo hairat-angez nataij dete hain. Benefits: In se namumkin kaam mumkin ho jate hain, shadeed se shadeed bandish khatam hoti hai, aur zindagi mein aik azeem tabdeeli aati hai. Ye sirf khas logon ke liye hai jo rohaniat ki gehrai ko samajhte hain.",
+    urdu: "Wo khas aur nayaab tilismat aur rohani asrat jo hairat-angez nataij dete hain aur namumkin ko mumkin banatay hain. Ye hamari barson ki mehnat ka nichor hai.",
     details: [
-      "Rare talismans prepared during specific celestial alignments.",
-      "Solutions for highly complex and long-standing life problems.",
-      "Special spiritual rings with extraordinary protective properties.",
-      "One-on-one Muraqaba guidance for advanced spiritual seekers."
+      "Nayaab aur qadeem tilismat jo saloon purani bandish kat de.",
+      "Zindagi mein achanak bari tabdeeli lane ke amliyat.",
+      "Taskheer-e-khalq (logon ko mutasir karne) ka khas naqsh.",
+      "Ghaibi madad aur mushkilat se fori nijaat.",
+      "Spiritual high-energy rings for protection and luck."
     ]
   }
 };
@@ -160,8 +168,8 @@ const TaweezSubPage: React.FC<TaweezSubPageProps> = ({ category, onNavigate }) =
             {/* Left: Significance Content */}
             <div className="space-y-12">
               <div className="relative">
-                <h2 className="text-[#064e3b] font-serif-display text-4xl font-bold mb-6">Spiritual Significance</h2>
-                <div className="w-24 h-1.5 bg-rose-400 rounded-full" />
+                <h2 className="text-[#064e3b] font-serif-display text-4xl font-bold mb-6 italic">Roohani Significance & Detailed Analysis</h2>
+                <div className="w-24 h-1.5 bg-[#daa520] rounded-full" />
               </div>
 
               <div className="bg-white p-10 rounded-[40px] border border-gray-100 shadow-2xl relative overflow-hidden group">
@@ -173,7 +181,7 @@ const TaweezSubPage: React.FC<TaweezSubPageProps> = ({ category, onNavigate }) =
 
               <div className="p-10 bg-[#064e3b] text-white rounded-[40px] shadow-2xl border-r-[12px] border-[#daa520] relative">
                 <div className="absolute inset-0 islamic-pattern opacity-10 pointer-events-none" />
-                <h3 className="text-[#daa520] font-serif-display text-2xl font-bold mb-6 text-right">اصل مقصد (اردو)</h3>
+                <h3 className="text-[#daa520] font-serif-display text-2xl font-bold mb-6 text-right font-amiri tracking-widest uppercase">اصل مقصد اور روhani حل</h3>
                 <p className="text-3xl font-amiri leading-[1.8] text-right dir-rtl relative z-10">
                   {content.urdu}
                 </p>
@@ -183,7 +191,7 @@ const TaweezSubPage: React.FC<TaweezSubPageProps> = ({ category, onNavigate }) =
             {/* Right: Key Features & Order Button */}
             <div className="sticky top-44 space-y-10">
               <div className="bg-white p-12 rounded-[50px] border-2 border-[#daa520]/10 shadow-3xl space-y-10">
-                <h3 className="text-[#064e3b] font-serif-display text-3xl font-bold mb-4 italic">How We Assist You 💠</h3>
+                <h3 className="text-[#064e3b] font-serif-display text-3xl font-bold mb-4 italic">Exclusive Benefits 💠</h3>
                 
                 <ul className="space-y-8">
                   {content.details.map((detail: string, i: number) => (
@@ -191,7 +199,7 @@ const TaweezSubPage: React.FC<TaweezSubPageProps> = ({ category, onNavigate }) =
                       <div className="mt-1.5 w-7 h-7 rounded-full bg-[#daa520] flex items-center justify-center text-[#064e3b] shrink-0 shadow-xl group-hover:rotate-12 group-hover:scale-110 transition-all duration-300">
                         <i className="fa-solid fa-star-and-crescent text-[12px]" />
                       </div>
-                      <span className="text-gray-700 font-lora text-lg leading-relaxed">{detail}</span>
+                      <span className="text-gray-700 font-lora text-lg leading-relaxed font-bold">{detail}</span>
                     </li>
                   ))}
                 </ul>
@@ -208,12 +216,9 @@ const TaweezSubPage: React.FC<TaweezSubPageProps> = ({ category, onNavigate }) =
                     }}
                     className="w-full py-6 bg-[#064e3b] text-white font-serif-display font-bold text-2xl rounded-[24px] hover:bg-[#daa520] hover:text-[#064e3b] transition-all duration-500 shadow-2xl flex items-center justify-center gap-5 group"
                   >
-                    Consult an Expert Now
+                    Request This Service
                     <i className="fa-solid fa-scroll group-hover:translate-x-2 group-hover:-rotate-12 transition-all duration-300" />
                   </button>
-                  <p className="mt-6 text-center text-gray-400 text-sm font-lora italic">
-                    * Personalized according to your name and specific spiritual needs.
-                  </p>
                 </div>
               </div>
             </div>
