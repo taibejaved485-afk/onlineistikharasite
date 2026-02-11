@@ -44,18 +44,6 @@ function App() {
   
   // Admin & Blog State
   const [blogs, setBlogs] = useState<any[]>([]);
-  const [isAdminModalOpen, setIsAdminModalOpen] = useState(false);
-  const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(false);
-  const [adminPass, setAdminPass] = useState('');
-  const [showPass, setShowPass] = useState(false);
-  const [loginError, setLoginError] = useState(false);
-
-  // Quill Editor References
-  const quillRef = useRef<any>(null);
-  const editorContainerRef = useRef<HTMLDivElement>(null);
-
-  // Blog Form State
-  const [newBlog, setNewBlog] = useState({ title: '', category: 'Istikhara', img: '', content: '' });
 
   useEffect(() => {
     const saved = localStorage.getItem('noor_emerald_blogs');
@@ -126,6 +114,10 @@ function App() {
     if (target === 'talisman-sub' && category) setTalismanSubCategory(category as TalismanCategory);
   };
 
+  const handleAdminClick = () => {
+    window.location.href = 'admin/index.html';
+  };
+
   const waLink = "https://wa.me/923706487654?text=Assalam-o-Alaikum!%20Mujhe%20Online%20Istikhara%20se%20rohani%20masail%20ke%20bare%20mein%20maloomat%20chahiye.";
 
   return (
@@ -183,7 +175,7 @@ function App() {
 
       <Chatbot />
       
-      <Footer onNavigate={navigateTo} />
+      <Footer onNavigate={navigateTo} onAdminClick={handleAdminClick} />
     </div>
   );
 }
