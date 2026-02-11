@@ -61,8 +61,17 @@ function App() {
     const saved = localStorage.getItem('noor_emerald_blogs');
     if (saved) setBlogs(JSON.parse(saved));
 
-    const handleLocationChange = () => {
+    const handleLocationChange = (isInitial = false) => {
       const hash = window.location.hash;
+      
+      // If it's the very first load and no hash or just a '#' is present, 
+      // explicitly stay at the top and don't trigger any scroll logic.
+      if (isInitial && (!hash || hash === '#' || hash === '')) {
+        window.scrollTo(0, 0);
+        setView('home');
+        return;
+      }
+
       if (hash === '#about-page') setView('about');
       else if (hash === '#faq-page') setView('faq');
       else if (hash === '#testimonials-page') setView('testimonials');
@@ -75,6 +84,7 @@ function App() {
       else if (hash === '#counseling-page') setView('counseling');
       else if (hash === '#blogs-section') {
         setView('home');
+        // Only scroll to blogs if specifically targeted
         setTimeout(() => document.getElementById('blogs-section')?.scrollIntoView({ behavior: 'smooth' }), 100);
       } else if (hash.startsWith('#taweez-')) {
         const cat = hash.replace('#taweez-', '') as TaweezCategory;
@@ -84,14 +94,17 @@ function App() {
         const cat = hash.replace('#talisman-', '') as TalismanCategory;
         setTalismanSubCategory(cat);
         setView('talisman-sub');
-      } else setView('home');
+      } else {
+        setView('home');
+        if (!isInitial) window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
       
-      if (hash !== '#blogs-section') window.scrollTo(0, 0);
+      if (hash && hash !== '#blogs-section' && !isInitial) window.scrollTo(0, 0);
     };
 
-    handleLocationChange();
-    window.addEventListener('hashchange', handleLocationChange);
-    return () => window.removeEventListener('hashchange', handleLocationChange);
+    handleLocationChange(true); // Pass true for initial load
+    window.addEventListener('hashchange', () => handleLocationChange(false));
+    return () => window.removeEventListener('hashchange', () => handleLocationChange(false));
   }, []);
 
   // Initialize Quill when modal is open and authenticated
