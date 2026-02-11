@@ -1,11 +1,23 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 
 interface BlogSectionProps {
   blogs: any[];
 }
 
 const BlogSection: React.FC<BlogSectionProps> = ({ blogs }) => {
+  const [selectedBlog, setSelectedBlog] = useState<any | null>(null);
+
+  const openBlog = (blog: any) => {
+    setSelectedBlog(blog);
+    document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+  };
+
+  const closeBlog = () => {
+    setSelectedBlog(null);
+    document.body.style.overflow = 'auto'; // Restore scrolling
+  };
+
   if (blogs.length === 0) {
     return (
       <section id="blogs-section" className="py-20 bg-[#fcfdfa] text-center border-t border-gray-100 scroll-mt-24">
@@ -66,7 +78,10 @@ const BlogSection: React.FC<BlogSectionProps> = ({ blogs }) => {
                   {blog.content}
                 </p>
                 
-                <button className="w-full py-4.5 bg-[#064e3b] text-white rounded-2xl font-serif-display font-bold text-sm tracking-widest uppercase hover:bg-[#daa520] hover:text-[#064e3b] transition-all duration-300 flex items-center justify-center gap-3 group/btn shadow-lg">
+                <button 
+                  onClick={() => openBlog(blog)}
+                  className="w-full py-4.5 bg-[#064e3b] text-white rounded-2xl font-serif-display font-bold text-sm tracking-widest uppercase hover:bg-[#daa520] hover:text-[#064e3b] transition-all duration-300 flex items-center justify-center gap-3 group/btn shadow-lg"
+                >
                   Read Full Post
                   <i className="fa-solid fa-arrow-right-long group-hover/btn:translate-x-2 transition-transform" />
                 </button>
@@ -74,6 +89,70 @@ const BlogSection: React.FC<BlogSectionProps> = ({ blogs }) => {
             </div>
           ))}
         </div>
+
+        {/* Full Blog Modal */}
+        {selectedBlog && (
+          <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 md:p-8">
+            <div 
+              className="absolute inset-0 bg-[#064e3b]/90 backdrop-blur-md" 
+              onClick={closeBlog}
+            />
+            <div className="relative w-full max-w-4xl max-h-[90vh] bg-white rounded-[40px] shadow-2xl overflow-y-auto animate-fade-in-up border-2 border-[#daa520]/20">
+              
+              {/* Close Button */}
+              <button 
+                onClick={closeBlog}
+                className="absolute top-6 right-6 z-10 w-12 h-12 bg-white/80 hover:bg-[#daa520] text-[#064e3b] rounded-full flex items-center justify-center shadow-lg transition-all active:scale-90"
+              >
+                <i className="fa-solid fa-xmark text-xl" />
+              </button>
+
+              {/* Modal Header Image */}
+              <div className="relative h-64 md:h-[400px] w-full">
+                <img 
+                  src={selectedBlog.img || 'https://i.pinimg.com/736x/0e/e1/27/0ee127623546030a9c820a0ee7412e32.jpg'} 
+                  className="w-full h-full object-cover"
+                  alt={selectedBlog.title}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent" />
+                <div className="absolute bottom-6 left-10">
+                   <span className="bg-[#daa520] text-[#064e3b] px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest shadow-xl">
+                    {selectedBlog.category}
+                  </span>
+                </div>
+              </div>
+
+              {/* Modal Content Body */}
+              <div className="p-8 md:p-16 pt-0">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-2 h-2 rounded-full bg-[#daa520]" />
+                  <p className="text-[#daa520] font-bold uppercase tracking-widest text-sm">{selectedBlog.date}</p>
+                </div>
+
+                <h2 className="text-[#064e3b] font-serif-display text-3xl md:text-5xl font-bold mb-10 leading-tight">
+                  {selectedBlog.title}
+                </h2>
+
+                <div className="prose prose-emerald max-w-none">
+                  <p className="text-gray-700 font-lora text-lg md:text-xl leading-loose whitespace-pre-wrap italic">
+                    {selectedBlog.content}
+                  </p>
+                </div>
+
+                <div className="mt-16 pt-10 border-t border-gray-100 flex flex-col items-center">
+                   <i className="fa-solid fa-star-and-crescent text-[#daa520] text-3xl mb-6 opacity-40" />
+                   <p className="text-[#064e3b]/50 font-amiri text-xl italic tracking-widest uppercase">Noor Emerald Spiritual Guidance</p>
+                   <button 
+                    onClick={closeBlog}
+                    className="mt-10 px-10 py-4 bg-[#064e3b] text-white rounded-full font-bold uppercase tracking-widest hover:bg-[#daa520] hover:text-[#064e3b] transition-all shadow-xl"
+                   >
+                     Close Article
+                   </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Decorative Bottom Pattern */}
         <div className="mt-20 flex justify-center opacity-10">
