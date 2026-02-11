@@ -4,6 +4,7 @@ import { NavItem } from './types';
 export const MENU_DATA: NavItem[] = [
   { label: 'Home', href: '#' },
   { label: 'Blogs', href: '#blogs-section' },
+  { label: 'Marriage Service', href: '#marriage-page' },
   { label: 'Pregnancy', href: '#pregnancy-page' },
   {
     label: 'Islamic Taweez',

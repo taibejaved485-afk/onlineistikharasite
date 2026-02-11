@@ -27,6 +27,7 @@ import TaweezSubPage from './TaweezSubPage.tsx';
 import TalismanSubPage from './TalismanSubPage.tsx';
 import TalismansPage from './TalismansPage.tsx';
 import CounselingPage from './CounselingPage.tsx';
+import MarriagePage from './MarriagePage.tsx';
 import Chatbot from './components/Chatbot.tsx';
 import IslamicDivider from './components/IslamicDivider.tsx';
 
@@ -34,7 +35,7 @@ declare var Quill: any;
 
 export type TaweezCategory = 'jadu' | 'sehat' | 'mohabbat' | 'kamyabi' | 'rizq' | 'hamal' | 'wazaif' | 'amazing';
 export type TalismanCategory = 'success' | 'love' | 'magic' | 'business' | 'pregnancy' | 'pray' | 'ismeazam' | 'guidance' | 'istikhara';
-export type ViewType = 'home' | 'about' | 'faq' | 'testimonials' | 'privacy' | 'disclaimer' | 'return' | 'pregnancy' | 'taweez' | 'taweez-sub' | 'talisman-sub' | 'talismans-main' | 'counseling';
+export type ViewType = 'home' | 'about' | 'faq' | 'testimonials' | 'privacy' | 'disclaimer' | 'return' | 'pregnancy' | 'taweez' | 'taweez-sub' | 'talisman-sub' | 'talismans-main' | 'counseling' | 'marriage';
 
 function App() {
   const [view, setView] = useState<ViewType>('home');
@@ -79,6 +80,7 @@ function App() {
       else if (hash === '#taweez-page') setView('taweez');
       else if (hash === '#talismans-page') setView('talismans-main');
       else if (hash === '#counseling-page') setView('counseling');
+      else if (hash === '#marriage-page') setView('marriage');
       else if (hash === '#blogs-section') {
         setView('home');
         setTimeout(() => document.getElementById('blogs-section')?.scrollIntoView({ behavior: 'smooth' }), 100);
@@ -112,6 +114,7 @@ function App() {
     else if (target === 'taweez') window.location.hash = 'taweez-page';
     else if (target === 'talismans-main') window.location.hash = 'talismans-page';
     else if (target === 'counseling') window.location.hash = 'counseling-page';
+    else if (target === 'marriage') window.location.hash = 'marriage-page';
     else if (target === 'taweez-sub' && category) window.location.hash = `taweez-${category}`;
     else if (target === 'talisman-sub' && category) window.location.hash = `talisman-${category}`;
     else {
@@ -163,6 +166,7 @@ function App() {
         {view === 'taweez' && <TaweezPage onNavigate={navigateTo} />}
         {view === 'talismans-main' && <TalismansPage onNavigate={navigateTo} />}
         {view === 'counseling' && <CounselingPage onNavigate={navigateTo} />}
+        {view === 'marriage' && <MarriagePage onNavigate={navigateTo} />}
         {view === 'taweez-sub' && taweezSubCategory && <TaweezSubPage category={taweezSubCategory} onNavigate={navigateTo} />}
         {view === 'talisman-sub' && talismanSubCategory && <TalismanSubPage category={talismanSubCategory} onNavigate={navigateTo} />}
       </main>
